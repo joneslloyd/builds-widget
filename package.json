@@ -1,7 +1,7 @@
 {
-  "name": "preact-webpack",
-  "version": "1.0.0",
-  "description": "testing webpack with preact",
+  "name": "mobalytics-builds-widget",
+  "version": "0.1.0",
+  "description": "A builds widget for Mobalytics, built on Preact",
   "main": "./src/app/index.js",
   "scripts": {
     "watch": "webpack --watch",
@@ -11,12 +11,7 @@
     "build": "webpack --env=build=true",
     "dist": "webpack --env=dist=true"
   },
-  "keywords": [
-    "preact",
-    "webpack"
-  ],
-  "author": "@MykalMachon",
-  "license": "ISC",
+  "author": "Lloyd Jones <lj@mobalyticshq.com>",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/plugin-transform-react-jsx": "^7.9.4",
