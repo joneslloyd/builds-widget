@@ -1,4 +1,4 @@
-var e,t,o=require("preact"),r=require("goober/global"),i=require("goober");const a=r.createGlobalStyles`
+"use strict";var e,t,o=require("preact"),r=require("goober/global"),i=require("goober");const a=r.createGlobalStyles`
   *,
   *::before,
   *::after {

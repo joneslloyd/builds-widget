@@ -1,5 +1,5 @@
-import { createGlobalStyles } from 'goober/global'
-import tw, { theme, GlobalStyles as BaseStyles } from 'twin.macro'
+import { createGlobalStyles } from 'goober/global';
+import tw, { theme, GlobalStyles as BaseStyles } from 'twin.macro';
 
 const CustomStyles = createGlobalStyles`
   body {
@@ -9,10 +9,10 @@ const CustomStyles = createGlobalStyles`
 `
 
 const GlobalStyles = () => (
-    <>
-        <BaseStyles />
-        <CustomStyles />
-    </>
+  <>
+    <BaseStyles />
+    <CustomStyles />
+  </>
 )
 
 export default GlobalStyles
