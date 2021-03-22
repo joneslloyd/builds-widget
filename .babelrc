@@ -1,11 +1,35 @@
 {
-  "presets": ["@babel/preset-env"],
+  "presets": [
+    "@babel/preset-env"
+  ],
   "plugins": [
-    ["@babel/transform-react-jsx", { "pragma": "h", "pragmaFrag": "Fragment" }]
+    [
+      "@babel/transform-react-jsx",
+      {
+        "pragma": "h",
+        "pragmaFrag": "Fragment"
+      }
+    ],
+    [
+      "babel-plugin-jsx-pragmatic",
+      {
+        "module": "preact",
+        "export": "h",
+        "import": "h"
+      }
+    ],
+    [
+      "babel-plugin-transform-goober",
+      {
+        "name": "_styled"
+      }
+    ]
   ],
   "env": {
     "test": {
-      "plugins": ["@babel/plugin-transform-runtime"]
+      "plugins": [
+        "@babel/plugin-transform-runtime"
+      ]
     }
   }
 }

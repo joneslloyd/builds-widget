@@ -1,5 +1,5 @@
 import habitat from 'preact-habitat';
-import GlobalStyles from './styles/global-styles';
+import GlobalStyles from './app/styles/global-styles';
 import App from './app';
 import { setup } from 'goober';
 
