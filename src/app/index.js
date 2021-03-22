@@ -5,5 +5,5 @@ const { render } = habitat(App);
 
 render({
   selector: '[data-moba-widget="build"]',
-  clean: true,
+  clean: true
 });
