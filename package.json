@@ -9,7 +9,6 @@
   "scripts": {
     "test": "NODE_ENV=test jest",
     "build": "preact build --no-prerender --template src/index.ejs --sw false",
-    "serve": "preact serve",
     "dev": "preact watch --port 3000 --template src/index.ejs",
     "dist": "microbundle --strict --globals goober/global=gooberGlobal --entry src/app/widget/index.js"
   },
