@@ -14,13 +14,14 @@ module.exports = (env) => {
     mode: 'production',
     devtool: 'source-map',
     entry: {
-      index: './src/app/index.js',
+      index: './src/widget/index.js',
     },
     output: {
       libraryTarget: 'umd',
       filename: '[name].bundle.js',
-      path: path.resolve(__dirname, outputFolderName),
+      path: path.resolve(__dirname, outputFolderName)
     },
+    target: ["web"],
     optimization: {
       splitChunks: {},
     },
