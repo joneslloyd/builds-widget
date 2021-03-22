@@ -5,28 +5,28 @@
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
   "module": "dist/index.m.js",
-  "source": "components/hello-world/index.js",
+  "source": "app/widget/index.js",
   "scripts": {
     "test": "NODE_ENV=test jest",
     "build": "preact build --no-prerender --clean --template src/index.ejs --service-worker false",
     "serve": "preact serve",
-    "dev": "preact watch --template src/index.ejs",
-    "dist": "microbundle --entry src/components/hello-world/index.js"
+    "dev": "preact watch --port 3000 --template src/index.ejs",
+    "dist": "microbundle --entry src/app/widget/index.js"
   },
   "keywords": [],
   "author": "Lloyd Jones <lj@mobalyticshq.com>",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "7.13.8",
     "@babel/plugin-proposal-decorators": "^7.13.5",
-    "@babel/preset-env": "^7.13.10",
+    "@babel/plugin-transform-object-assign": "^7.12.13",
+    "@babel/plugin-transform-react-constant-elements": "^7.13.10",
+    "@babel/plugin-transform-react-jsx": "^7.12.17",
+    "@babel/preset-env": "7.13.10",
     "babel-plugin-jsx-pragmatic": "^1.0.2",
-    "babel-plugin-transform-es2015-typeof-symbol": "^6.23.0",
-    "babel-plugin-transform-object-assign": "^6.22.0",
-    "babel-plugin-transform-react-constant-elements": "^6.23.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.10",
-    "babel-plugin-transform-regenerator": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-plugin-macros": "^3.0.1",
+    "babel-plugin-transform-goober": "^1.2.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "eslint": "^7.22.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
@@ -34,14 +34,16 @@
     "node-sass": "^5.0.0",
     "preact-cli": "^3.0.0",
     "preact-render-to-string": "^5.1.16",
-    "sass-loader": "^10.1.1"
+    "sass-loader": "^10.1.1",
+    "tailwindcss": "^2.0.4",
+    "twin.macro": "^2.3.0"
   },
   "dependencies": {
+    "goober": "^2.0.35",
     "preact": "^10.5.13",
     "preact-compat": "^3.19.0",
     "preact-habitat": "^3.3.0",
-    "preact-render-to-string": "^5.1.16",
-    "preact-router": "^3.2.1"
+    "preact-render-to-string": "^5.1.16"
   },
   "jest": {
     "verbose": true,
@@ -71,5 +73,15 @@
       "node_modules",
       "src"
     ]
-  }
+  },
+  "babelMacros": {
+    "twin": {
+      "preset": "goober"
+    }
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "maintained node versions"
+  ]
 }
