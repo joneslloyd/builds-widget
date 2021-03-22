@@ -1,14 +1,13 @@
-import 'twin.macro'
+import tw, { styled } from 'twin.macro';
+
+const LogoLink = styled.a(() => [
+    tw`w-32 mb-10 p-5 block opacity-50 hover:opacity-100`
+]);
 
 const Logo = () => (
-    <a
-        tw="w-32 mb-10 p-5 block opacity-50 hover:opacity-100"
-        href="https://github.com/ben-rogerson/twin.macro"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
+    <LogoLink href="https://github.com/ben-rogerson/twin.macro" target="_blank" rel="noopener noreferrer">
         <TwinSvg />
-    </a>
+    </LogoLink>
 )
 
 const TwinSvg = () => (
