@@ -10,8 +10,11 @@
     "test": "NODE_ENV=test jest",
     "build": "preact build --no-prerender --template src/index.ejs --sw false",
     "dev": "preact watch --port 3000 --template src/index.ejs",
-    "dist": "microbundle --strict --globals goober/global=gooberGlobal --entry src/app/widget/index.js"
+    "dist": "microbundle --external none --compress --entry src/app/widget/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [],
   "author": "Lloyd Jones <lj@mobalyticshq.com>",
   "license": "MIT",
@@ -30,22 +33,21 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "babel-preset-minify": "^0.5.1",
     "eslint": "^7.22.0",
+    "goober": "^2.0.35",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
     "microbundle": "^0.13.0",
     "node-sass": "^5.0.0",
-    "preact-cli": "^3.0.0",
+    "preact-cli": "^3.0.5",
+    "preact-compat": "^3.19.0",
+    "preact-habitat": "^3.3.0",
     "preact-render-to-string": "^5.1.16",
     "sass-loader": "^10.1.1",
     "tailwindcss": "^2.0.4",
     "twin.macro": "^2.3.0"
   },
   "dependencies": {
-    "goober": "^2.0.35",
-    "preact": "^10.5.13",
-    "preact-compat": "^3.19.0",
-    "preact-habitat": "^3.3.0",
-    "preact-render-to-string": "^5.1.16"
+    "preact": "^10.5.13"
   },
   "jest": {
     "verbose": true,

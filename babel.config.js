@@ -55,6 +55,9 @@ module.exports = function (api) {
     env: {
       production: {
         presets: ["minify"]
+      },
+      test: {
+        presets: ["preact-cli/babel", { "modules": "commonjs" }]
       }
     }
   };
