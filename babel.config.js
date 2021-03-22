@@ -1,4 +1,5 @@
 var isTest = (process.env.BABEL_ENV || process.env.NODE_ENV) === "test";
+var isProd = (process.env.BABEL_ENV === "production" || process.env.NODE_ENV === "production");
 
 module.exports = function (api) {
 
@@ -9,11 +10,10 @@ module.exports = function (api) {
       require.resolve("@babel/preset-env"),
       {
         loose: true,
-        uglify: true,
         modules: isTest ? "commonjs" : false,
         exclude: [
-          "transform-regenerator",
-          "transform-es2015-typeof-symbol"
+          "@babel/plugin-transform-regenerator",
+          "@babel/plugin-transform-typeof-symbol"
         ]
       }
     ]
@@ -22,9 +22,13 @@ module.exports = function (api) {
   const plugins = [
     require.resolve("babel-plugin-macros"),
     require.resolve("@babel/plugin-transform-object-assign"),
-    require.resolve("@babel/plugin-proposal-decorators"),
     require.resolve("@babel/plugin-transform-react-constant-elements"),
     require.resolve("babel-plugin-transform-react-remove-prop-types"),
+    [require.resolve("@babel/plugin-proposal-decorators"),
+    {
+      decoratorsBeforeExport: true,
+      legacy: false
+    }],
     [require.resolve("babel-plugin-transform-goober"),
     {
       name: "_styled"
@@ -47,6 +51,11 @@ module.exports = function (api) {
 
   return {
     presets,
-    plugins
+    plugins,
+    env: {
+      production: {
+        presets: ["minify"]
+      }
+    }
   };
 };
