@@ -4,17 +4,26 @@
     "ecmaVersion": 2019,
     "sourceType": "module"
   },
-  "ignorePatterns": ["/node_modules/*"],
+  "ignorePatterns": [
+    "/node_modules/*"
+  ],
   "rules": {
-    "strict": ["error", "never"],
+    "strict": [
+      "error",
+      "never"
+    ],
     "camelcase": "error",
     "no-unexpected-multiline": "error",
     "no-unsafe-negation": "error",
     "no-undef": "error",
     "no-unused-vars": "warn",
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/no-unescaped-entities": 0
   },
-  "plugins": ["react"],
+  "plugins": [
+    "react"
+  ],
   "settings": {
     "react": {
       "pragma": "h",
@@ -25,5 +34,8 @@
     "browser": true,
     "es6": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended"]
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ]
 }

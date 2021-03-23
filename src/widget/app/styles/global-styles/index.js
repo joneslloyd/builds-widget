@@ -9,10 +9,10 @@ const CustomStyles = createGlobalStyles`
 `;
 
 const GlobalStyles = () => (
-    <>
-        <BaseStyles />
-        <CustomStyles />
-    </>
+  <>
+    <BaseStyles />
+    <CustomStyles />
+  </>
 );
 
 export default GlobalStyles;

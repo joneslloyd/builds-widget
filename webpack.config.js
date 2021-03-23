@@ -3,11 +3,12 @@ const webpack = require('webpack');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = (env) => {
 
   //Grab environment vars
-  const { dist = false, build = false, port = 3000 } = env || {};
+  const { NODE_ENV = 'development', dist = false, build = false, port = 3000 } = env || {};
 
   //Set the environment
   const devEnv = dist ? 'dist' : (build ? 'build' : 'dev');
@@ -17,19 +18,24 @@ module.exports = (env) => {
 
   //Set up plugins
   const plugins = [
-    ...('dist' !== devEnv ? new CopyPlugin([
-      { from: './src/templates/**', to: '', flatten: true },
-    ]) : []),
-    new ESLintPlugin({
-      extensions: ['js', 'jsx', 'ts', 'tsx'],
-      emitWarning: true,
+    ...('dist' !== devEnv ? [new CopyPlugin({
+      patterns: [
+        { from: './src/templates/**', to: "[name][ext]", }
+      ]
+    })] : []),
+    // new ESLintPlugin({
+    //   extensions: ['js', 'jsx', 'ts', 'tsx'],
+    //   emitWarning: true,
+    // }),
+    // new NodePolyfillPlugin(),
+    new webpack.ProvidePlugin({
+      process: 'process',
     }),
-    new NodePolyfillPlugin()
   ];
 
   //Return the config
   return {
-    mode: 'production',
+    mode: NODE_ENV,
     devtool: 'source-map',
     entry: {
       index: './src/widget/index.js',
@@ -40,6 +46,20 @@ module.exports = (env) => {
       path: path.resolve(__dirname, outputFolderName)
     },
     target: ["web"],
+    // externals: [
+    //   nodeExternals(
+    //     {
+    //       options: {
+    //         importType: function (moduleName) { return 'amd ' + moduleName; }
+    //       }
+    //     }
+    //   )
+    // ],
+    // node: {
+    //   global: true,
+    //   __filename: false,
+    //   __dirname: false,
+    // },
     optimization: {
       splitChunks: {},
     },
@@ -48,6 +68,13 @@ module.exports = (env) => {
     },
     module: {
       rules: [
+        {
+          enforce: 'pre',
+          test: /\.js?/i,
+          exclude: /node_modules/,
+          loader: 'eslint-loader',
+          options: {},
+        },
         {
           test: /\.js?/i,
           exclude: /(node_modules)/,
@@ -77,21 +104,15 @@ module.exports = (env) => {
       writeToDisk: true
     },
     resolve: {
-
+      alias: {
+        process: require.resolve('process')
+      },
       fallback: {
         fs: false,
         module: false,
-        tls: false,
-        net: false,
-        path: false,
-        zlib: false,
-        http: false,
-        https: false,
-        stream: false,
-        process: false,
-        util: require.resolve("util/"),
-        path: require.resolve("path-browserify")
-      }
-    }
+        os: require.resolve('os-browserify/browser'),
+        path: require.resolve('path-browserify')
+      },
+    },
   };
 };
