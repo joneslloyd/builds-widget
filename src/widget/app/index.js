@@ -9,7 +9,7 @@ const ButtonList = tw.div`flex flex-col justify-center h-full gap-y-5`;
 
 const App = (props) => {
 
-  const { color } = props;
+  const { champion } = props;
 
   return (
     <Container>
@@ -19,7 +19,7 @@ const App = (props) => {
         <Button isSmall>Close</Button>
       </ButtonList>
       <Logo />
-      <p>You've selected {color}</p>
+      <p>You've selected {champion}</p>
     </Container>
   );
 };
