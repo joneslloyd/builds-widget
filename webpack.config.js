@@ -65,6 +65,7 @@ module.exports = (env) => {
     },
     devServer: {
       contentBase: './dev/',
+      hot: true
     },
     module: {
       rules: [
@@ -98,10 +99,9 @@ module.exports = (env) => {
     },
     plugins,
     devServer: {
-      contentBase: path.join(__dirname, outputFolderName),
       compress: true,
       port,
-      writeToDisk: true
+      liveReload: true
     },
     resolve: {
       alias: {

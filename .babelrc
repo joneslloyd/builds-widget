@@ -4,10 +4,10 @@
   ],
   "plugins": [
     [
-      "@babel/transform-react-jsx",
+      "@babel/plugin-transform-react-jsx",
       {
-        "pragma": "h",
-        "pragmaFrag": "Fragment"
+        "runtime": "automatic",
+        "importSource": "preact"
       }
     ],
     [
@@ -23,7 +23,8 @@
       {
         "name": "_styled"
       }
-    ]
+    ],
+    "babel-plugin-macros"
   ],
   "env": {
     "test": {
