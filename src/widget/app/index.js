@@ -3,7 +3,7 @@ import Button from './components/button';
 import Logo from './components/logo';
 
 const Container = tw.div`flex flex-col items-center justify-center h-screen
-  bg-gradient-to-b from-electric to-ribbon`;
+  bg-gradient-to-b from-mobalytics-light to-mobalytics text-white`;
 
 const ButtonList = tw.div`flex flex-col justify-center h-full gap-y-5`;
 

@@ -1,9 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const ESLintPlugin = require('eslint-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
-const nodeExternals = require('webpack-node-externals');
 
 module.exports = (env) => {
 
@@ -23,11 +20,6 @@ module.exports = (env) => {
         { from: './src/templates/**', to: "[name][ext]", }
       ]
     })] : []),
-    // new ESLintPlugin({
-    //   extensions: ['js', 'jsx', 'ts', 'tsx'],
-    //   emitWarning: true,
-    // }),
-    // new NodePolyfillPlugin(),
     new webpack.ProvidePlugin({
       process: 'process',
     }),
@@ -46,26 +38,8 @@ module.exports = (env) => {
       path: path.resolve(__dirname, outputFolderName)
     },
     target: ["web"],
-    // externals: [
-    //   nodeExternals(
-    //     {
-    //       options: {
-    //         importType: function (moduleName) { return 'amd ' + moduleName; }
-    //       }
-    //     }
-    //   )
-    // ],
-    // node: {
-    //   global: true,
-    //   __filename: false,
-    //   __dirname: false,
-    // },
     optimization: {
       splitChunks: {},
-    },
-    devServer: {
-      contentBase: './dev/',
-      hot: true
     },
     module: {
       rules: [
@@ -84,24 +58,14 @@ module.exports = (env) => {
             options: {},
           },
         },
-        {
-          test: /\.s[ac]ss$/i,
-          use: [
-            // Creates `style` nodes from JS strings
-            'style-loader',
-            // Translates CSS into CommonJS
-            'css-loader',
-            // Compiles Sass to CSS
-            'sass-loader',
-          ],
-        },
       ],
     },
     plugins,
     devServer: {
-      compress: true,
       port,
-      liveReload: true
+      compress: true,
+      hot: true,
+      overlay: true
     },
     resolve: {
       alias: {

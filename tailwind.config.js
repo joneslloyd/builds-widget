@@ -15,8 +15,10 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                electric: '#db00ff',
-                ribbon: '#0047ff',
+                mobalytics: {
+                    light: 'hsl(253, 54%, 25%)',
+                    DEFAULT: 'hsl(253, 54%, 15%)',
+                }
             },
         },
     },
