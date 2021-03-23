@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
+const chalk = require('chalk');
 
 module.exports = (env) => {
 
@@ -25,8 +26,16 @@ module.exports = (env) => {
     }),
   ];
 
+  const localNetworkDevServer = `${require('ip').address()}:${port}`;
+
+  if ('dev' === devEnv) {
+    console.log(chalk.bgRgb(27, 18, 59).rgb(255, 255, 255).bold(`\n+++ Local dev server: http://localhost:${port}`));
+    console.log(chalk.bgRgb(27, 18, 59).rgb(255, 255, 255).bold(`+++ Local network dev server: http://${localNetworkDevServer}\n`));
+  }
+
   //Return the config
   return {
+    stats: false,
     mode: NODE_ENV,
     devtool: 'source-map',
     entry: {
@@ -62,10 +71,28 @@ module.exports = (env) => {
     },
     plugins,
     devServer: {
-      port,
+      client: {
+        logging: 'warn'
+      },
       compress: true,
-      hot: true,
-      overlay: true
+      dev: {
+        stats: false
+      },
+      hot: false,
+      liveReload: true,
+      open: false,
+      overlay: true,
+      public: localNetworkDevServer,
+      port,
+      static: {
+        directory: path.resolve(__dirname, outputFolderName),
+        watch: {
+          aggregateTimeout: 300,
+          poll: 1000,
+          ignored: /node_modules/,
+        }
+      },
+      transportMode: 'ws',
     },
     resolve: {
       alias: {
