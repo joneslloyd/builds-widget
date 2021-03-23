@@ -6,17 +6,18 @@ const chalk = require('chalk');
 module.exports = (env) => {
 
   //Grab environment vars
-  const { NODE_ENV = 'development', dist = false, build = false, port = 3000 } = env || {};
-
-  //Set the environment
-  const devEnv = dist ? 'dist' : (build ? 'build' : 'dev');
+  const { NODE_ENV = 'development', mode = 'dev', port = 3000 } = env || {};
 
   //Set the output folder name
-  const outputFolderName = `${devEnv}/`;
+  const outputFolderName = `${mode}/`;
+
+  const isDistMode = 'dist' === mode;
+
+  const isDevMode = 'dev' === mode;
 
   //Set up plugins
   const plugins = [
-    ...('dist' !== devEnv ? [new CopyPlugin({
+    ...(!isDistMode ? [new CopyPlugin({
       patterns: [
         { from: './src/templates/**', to: "[name][ext]", }
       ]
@@ -28,7 +29,7 @@ module.exports = (env) => {
 
   const localNetworkDevServer = `${require('ip').address()}:${port}`;
 
-  if ('dev' === devEnv) {
+  if (isDevMode) {
     console.log(chalk.bgRgb(27, 18, 59).rgb(255, 255, 255).bold(`\n+++ Local dev server: http://localhost:${port}`));
     console.log(chalk.bgRgb(27, 18, 59).rgb(255, 255, 255).bold(`+++ Local network dev server: http://${localNetworkDevServer}\n`));
   }
