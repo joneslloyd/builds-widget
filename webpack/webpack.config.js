@@ -1,12 +1,26 @@
 const path = require('path');
 const webpack = require('webpack');
+const dotenv = require('dotenv-safe');
 const CopyPlugin = require('copy-webpack-plugin');
 const chalk = require('chalk');
 
 module.exports = (env) => {
 
-  //Grab environment vars
-  const { NODE_ENV = 'development', mode = 'dev', port = 3000 } = env || {};
+  //Grab vars from package.json
+  const { NODE_ENV = 'development', mode = 'dev', devServerPort = 3000, DATA_API = 'https://api.int.mobalytics.gg/lol/graphql/v1/query', SQUIDEX_API = 'https://app.mobalytics.gg/api/league/gql/static/v1' } = env || {};
+
+  //Grab Env vars
+  const envVarsRaw = dotenv.config().parsed;
+
+  //Put them into an object
+  const envVarsInner = Object.keys(envVarsRaw).reduce((prev, next) => {
+    prev[`VARIABLE_${next.toUpperCase()}`] = JSON.stringify(envVarsRaw[next]);
+    return prev;
+  }, {});
+
+  const envVars = {
+    'VARIABLES': envVarsInner
+  };
 
   //Set the output folder name
   const outputFolderName = `${mode}/`;
@@ -25,14 +39,10 @@ module.exports = (env) => {
     new webpack.ProvidePlugin({
       process: 'process',
     }),
+    new webpack.DefinePlugin(envVars)
   ];
 
-  const localNetworkDevServer = `${require('ip').address()}:${port}`;
-
-  if (isDevMode) {
-    console.log(chalk.bgRgb(27, 18, 59).rgb(255, 255, 255).bold(`\n+++ Local dev server: http://localhost:${port}`));
-    console.log(chalk.bgRgb(27, 18, 59).rgb(255, 255, 255).bold(`+++ Local network dev server: http://${localNetworkDevServer}\n`));
-  }
+  const localNetworkDevServer = `${require('ip').address()}:${devServerPort}`;
 
   //Return the config
   return {
@@ -73,7 +83,8 @@ module.exports = (env) => {
     plugins,
     devServer: {
       client: {
-        logging: 'warn'
+        logging: 'warn',
+        overlay: true
       },
       compress: true,
       dev: {
@@ -82,9 +93,8 @@ module.exports = (env) => {
       hot: false,
       liveReload: true,
       open: false,
-      overlay: true,
       public: localNetworkDevServer,
-      port,
+      port: devServerPort,
       static: {
         directory: path.resolve(__dirname, outputFolderName),
         watch: {

@@ -4,12 +4,12 @@
   "description": "A builds widget for Mobalytics, built on Preact",
   "main": "./src/widget/index.js",
   "scripts": {
-    "watch": "webpack --watch",
-    "start": "webpack serve --env=port=3000",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
-    "build": "webpack --env=NODE_ENV=production --env=build=true",
-    "dist": "webpack --env=NODE_ENV=production --env=dist=true"
+    "watch": "webpack --config webpack/webpack.config.js --watch --env=mode=watch",
+    "start": "webpack serve --config webpack/webpack.config.js --env=port=3000 --env=mode=dev",
+    "test": "jest --env=mode=test",
+    "test:coverage": "jest --coverage --env=mode=test",
+    "build": "webpack --config webpack/webpack.config.js --env=NODE_ENV=production --env=mode=build",
+    "dist": "webpack --config webpack/webpack.config.js --env=NODE_ENV=production --env=mode=dist"
   },
   "author": "Lloyd Jones <lj@mobalyticshq.com>",
   "devDependencies": {
@@ -26,6 +26,7 @@
     "babel-plugin-transform-goober": "^1.2.0",
     "chalk": "^4.1.0",
     "copy-webpack-plugin": "^8.1.0",
+    "dotenv-safe": "^8.2.0",
     "eslint": "^7.22.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-react": "^7.22.0",
@@ -49,7 +50,10 @@
     "webpack-dev-server": "^4.0.0-beta.0",
     "webpack-node-externals": "^2.5.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@urql/preact": "^2.0.0",
+    "graphql": "^15.5.0"
+  },
   "babelMacros": {
     "twin": {
       "preset": "goober"

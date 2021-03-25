@@ -1,6 +1,7 @@
 import habitat from 'preact-habitat';
 import GlobalStyles from './app/styles/global-styles';
 import App from './app';
+import Context from './app/lib/context'
 import { setup } from 'goober';
 
 /* eslint-disable no-undef */
@@ -10,8 +11,10 @@ const Widget = (props) => {
 
     return (
         <>
-            <GlobalStyles />
-            <App {...props} />
+            <Context {...props}>
+                <GlobalStyles />
+                <App />
+            </Context>
         </>
     );
 };
