@@ -55,6 +55,7 @@ module.exports = (env) => {
     output: {
       libraryTarget: 'umd',
       filename: '[name].bundle.js',
+      /* eslint-disable no-undef */
       path: path.resolve(__dirname, outputFolderName)
     },
     target: ["web"],
@@ -77,7 +78,7 @@ module.exports = (env) => {
             loader: 'babel-loader',
             options: {},
           },
-        },
+        }
       ],
     },
     plugins,
@@ -96,6 +97,7 @@ module.exports = (env) => {
       public: localNetworkDevServer,
       port: devServerPort,
       static: {
+        /* eslint-disable no-undef */
         directory: path.resolve(__dirname, outputFolderName),
         watch: {
           aggregateTimeout: 300,

@@ -20,16 +20,21 @@ const Context = ({ children, champion = '' }) => {
         error: false
     });
 
+    //General "loading" flag for both
+    const [loading, setLoading] = useState(false);
+
     const store = {
         dataApiBuildData,
         setDataApiBuildData,
         squidexApiBuildData,
-        setSquidexApiBuildData
+        setSquidexApiBuildData,
+        loading,
+        setLoading
     };
 
     useEffect(() => {
-        getDataApiData(champion, dataApiBuildData, setDataApiBuildData);
-        getSquidexApiData(champion, squidexApiBuildData, setSquidexApiBuildData);
+        getDataApiData(champion, dataApiBuildData, setDataApiBuildData, loading, setLoading);
+        getSquidexApiData(champion, squidexApiBuildData, setSquidexApiBuildData, loading, setLoading);
     }, []);
 
     return (

@@ -1,13 +1,15 @@
 import { dataApiClient, squidexApiClient } from '../graphql/client';
 import { DATA_API_CHAMPION_QUERY, SQUIDEX_API_CHAMPION_QUERY } from '../graphql/queries';
 
-export const getDataApiData = (champion, buildData, setBuildData) => {
+export const getDataApiData = (champion, buildData, setBuildData, loading, setLoading) => {
 
     //Set loading on 'dataApiData'
     setBuildData({
         ...buildData,
         loading: true
     });
+
+    setLoading(true);
 
     //Get the data
     dataApiClient.query(DATA_API_CHAMPION_QUERY, {
@@ -20,16 +22,19 @@ export const getDataApiData = (champion, buildData, setBuildData) => {
             loading: false,
             error: error ? error : false
         });
+        setLoading(false);
     });
 };
 
-export const getSquidexApiData = (champion, buildData, setBuildData) => {
+export const getSquidexApiData = (champion, buildData, setBuildData, loading, setLoading) => {
 
     //Set loading on 'squidexApiData'
     setBuildData({
         ...buildData,
         loading: true
     });
+
+    setLoading(true);
 
     //Get the data
     squidexApiClient.query(SQUIDEX_API_CHAMPION_QUERY, {
@@ -54,5 +59,6 @@ export const getSquidexApiData = (champion, buildData, setBuildData) => {
             loading: false,
             error: error ? error : false
         });
+        setLoading(false);
     });
 };
