@@ -19,9 +19,12 @@ module.exports = {
                     light: 'hsl(253, 54%, 25%)',
                     DEFAULT: 'hsl(253, 54%, 15%)',
                 },
-                widget: {
+                'widget-purple': {
                     light: 'hsl(248, 34%, 23%)',
-                    DEFAULT: 'hsl(248, 37%, 20%)'
+                    DEFAULT: 'hsl(248, 37%, 20%)',
+                },
+                'widget-gold': {
+                    DEFAULT: 'hsl(41, 43%, 55%)'
                 }
             },
         },

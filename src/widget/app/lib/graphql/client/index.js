@@ -3,10 +3,10 @@ import { getEnvVar } from '../../helpers'
 
 const apiData = getEnvVar('DATA_API');
 const apiDataToken = getEnvVar('DATA_API_TOKEN');
-// const apiSquidex = getEnvVar('SQUIDEX_API');
-// const apiSquidexToken = getEnvVar('SQUIDEX_API_TOKEN');
+const apiSquidex = getEnvVar('SQUIDEX_API');
+const apiSquidexToken = getEnvVar('SQUIDEX_API_TOKEN');
 
-export const client = createClient({
+export const dataApiClient = createClient({
     url: apiData,
     fetchOptions: () => {
         return {
@@ -15,4 +15,13 @@ export const client = createClient({
     },
 });
 
-export default client;
+export const squidexApiClient = createClient({
+    url: apiSquidex,
+    fetchOptions: () => {
+        return {
+            headers: { authorization: apiSquidexToken ? `Bearer ${apiSquidexToken}` : '' },
+        };
+    },
+});
+
+export default dataApiClient;

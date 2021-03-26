@@ -23,7 +23,7 @@ module.exports = (env) => {
   };
 
   //Set the output folder name
-  const outputFolderName = `${mode}/`;
+  const outputFolderName = `../${mode}/`;
 
   const isDistMode = 'dist' === mode;
 

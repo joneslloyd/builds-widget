@@ -1,42 +1,35 @@
 import { createContext } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
-import client from '../graphql/client';
-import { CHAMPION_QUERY } from '../graphql/queries';
+import { getDataApiData, getSquidexApiData } from '../data';
 
 export const BuildContext = createContext(null);
 
 const Context = ({ children, champion = '' }) => {
 
-    const [buildData, setBuildData] = useState({
+    //Data API data
+    const [dataApiBuildData, setDataApiBuildData] = useState({
+        data: {},
+        loading: false,
+        error: false
+    });
+
+    //Squidex API data
+    const [squidexApiBuildData, setSquidexApiBuildData] = useState({
         data: {},
         loading: false,
         error: false
     });
 
     const store = {
-        buildData,
-        setBuildData
+        dataApiBuildData,
+        setDataApiBuildData,
+        squidexApiBuildData,
+        setSquidexApiBuildData
     };
 
     useEffect(() => {
-
-        setBuildData({
-            ...buildData,
-            loading: true
-        });
-
-        client.query(CHAMPION_QUERY, {
-            champion
-        }).toPromise().then(result => {
-
-            const { data, error } = result;
-
-            setBuildData({
-                data,
-                loading: false,
-                error: error ? error : false
-            });
-        });
+        getDataApiData(champion, dataApiBuildData, setDataApiBuildData);
+        getSquidexApiData(champion, squidexApiBuildData, setSquidexApiBuildData);
     }, []);
 
     return (

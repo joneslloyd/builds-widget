@@ -8,3 +8,8 @@ export const getEnvVar = (namePart = 'DATA_API') => {
     const vars = getEnvironmentVariables();
     return vars[name] !== 'undefined' ? vars[name] : false;
 };
+
+export const championImage = (slug) => {
+    const cdnUrl = getEnvVar('CDN_URL');
+    return `${cdnUrl}/assets/lol/images/dd/champions/icons/${slug.toLowerCase()}.png`;
+}

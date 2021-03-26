@@ -6,8 +6,7 @@ const SkillsStyles = tw.div`flex flex-col bg-transparent`;
 
 const Skills = () => {
 
-    const { buildData } = useContext(BuildContext);
-    const { data } = buildData;
+    const { dataApiBuildData: { data = {} } = {} } = useContext(BuildContext);
 
     return (
         <SkillsStyles>
