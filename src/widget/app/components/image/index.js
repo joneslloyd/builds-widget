@@ -1,12 +1,15 @@
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
-const ImageStyles = tw.img`flex`;
+const Image = ({ src, alt, title, width, height, rounded = false }) => {
 
-const Image = ({ src, alt, title, width, height }) => {
+    const ImageStyles = styled.img(({ rounded }) => [
+        tw`flex`,
+        rounded === true && tw`rounded-full`,
+    ]);
 
     return (
         <>
-            <ImageStyles src={src} alt={alt} title={title} width={width} height={height} />
+            <ImageStyles src={src} alt={alt} title={title} width={width} height={height} rounded={rounded} />
         </>
     );
 };

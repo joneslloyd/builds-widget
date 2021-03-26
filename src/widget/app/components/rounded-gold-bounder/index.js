@@ -1,6 +1,6 @@
 import tw from 'twin.macro';
 
-const RoundedGoldBorderStyles = tw.div`border-solid border-4 border-widget-gold`;
+const RoundedGoldBorderStyles = tw.div`border-solid border-2 border-widget-gold rounded-full`;
 
 const RoundedGoldBorder = ({ children }) => {
 
