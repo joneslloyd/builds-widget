@@ -15,8 +15,11 @@ export const DATA_API_CHAMPION_QUERY = `
                         style
                     }
                     role
-                    spells
                     skillOrder
+                    spells
+                    stats {
+                        matchCount
+                    }
                     type
                 }
                 stats {

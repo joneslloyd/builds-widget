@@ -23,3 +23,7 @@ export const roundWinRate = (value, precision = 1) => {
     const multiplier = Math.pow(10, precision || 0);
     return Math.round(value * multiplier) / multiplier;
 };
+
+export const commaNumber = (num) => {
+    return num ? num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : false;
+};
