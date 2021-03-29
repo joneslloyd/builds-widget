@@ -1,5 +1,5 @@
 import Header from './components/header';
-import Skills from './components/skills';
+import Body from './components/body';
 import Footer from './components/footer';
 import tw from 'twin.macro';
 
@@ -10,7 +10,7 @@ const App = () => {
   return (
     <Container>
       <Header />
-      <Skills />
+      <Body />
       <Footer />
     </Container>
   );

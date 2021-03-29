@@ -43,6 +43,9 @@ module.exports = {
                 },
                 'widget-green': {
                     DEFAULT: 'hsl(165, 72%, 45%)'
+                },
+                'widget-white': {
+                    line: 'hsla(0, 0%, 100%, 0.05)'
                 }
             },
         },
