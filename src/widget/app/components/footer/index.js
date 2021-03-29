@@ -4,7 +4,7 @@ import PoweredBy from '../powered-by';
 import tw from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
 
-const FooterStyles = tw(FlexRow)`bg-widget-purple rounded-b-md p-3.5`;
+const FooterStyles = tw(FlexRow)`bg-widget-purple rounded-b-md p-3.5 border-t border-widget-white-line`;
 
 const Footer = () => {
 

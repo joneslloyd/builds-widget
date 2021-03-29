@@ -8,7 +8,7 @@ import tw from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
 
-const HeaderStyles = tw(FlexRow)`bg-widget-purple rounded-t-md px-3 py-2.5`;
+const HeaderStyles = tw(FlexRow)`bg-widget-purple rounded-t-md px-3 py-2.5 border-b border-widget-white-line`;
 const NamePatchStyles = tw(FlexCol)`md:pl-2`;
 
 const Header = () => {
