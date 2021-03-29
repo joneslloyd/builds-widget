@@ -1,16 +1,16 @@
-import { useContext } from 'preact/hooks';
-import { BuildContext } from '../../lib/context';
+import GamesAnalyzed from '../games-analyzed';
+import MoreBuilds from '../more-builds';
 import tw from 'twin.macro';
+import FlexRow from '../../styles/components/flex-row';
 
-const FooterStyles = tw.div`flex flex-row items-center justify-start h-full bg-widget-purple rounded-b-md`;
+const FooterStyles = tw(FlexRow)`bg-widget-purple rounded-b-md p-3.5`;
 
 const Footer = () => {
 
-    const { dataApiBuildData: { data = {} } = {} } = useContext(BuildContext);
-
     return (
         <FooterStyles>
-            {JSON.stringify(data)}
+            <GamesAnalyzed />
+            <MoreBuilds />
         </FooterStyles>
     );
 };

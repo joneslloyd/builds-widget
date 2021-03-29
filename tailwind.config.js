@@ -31,8 +31,10 @@ module.exports = {
                     DEFAULT: 'hsl(253, 54%, 15%)',
                 },
                 'widget-purple': {
+                    lightest: 'hsl(238, 24%, 76%)',
                     light: 'hsl(248, 34%, 23%)',
                     DEFAULT: 'hsl(248, 37%, 20%)',
+                    border: 'hsl(250, 37%, 29%)',
                     text: 'hsl(245, 14%, 47%)',
                 },
                 'widget-gold': {
@@ -43,6 +45,22 @@ module.exports = {
                     DEFAULT: 'hsl(165, 72%, 45%)'
                 }
             },
+        },
+        fill: theme => ({
+            current: 'currentColor',
+            'widget-gold': theme('colors.widget-gold'),
+            'widget-gold-light': theme('colors.widget-gold.light'),
+        }),
+        stroke: theme => ({
+            current: 'currentColor',
+            'widget-gold': theme('colors.widget-gold'),
+            'widget-gold-light': theme('colors.widget-gold.light'),
+        }),
+    },
+    variants: {
+        extend: {
+            fill: ['hover'],
+            stroke: ['hover']
         },
     },
     plugins: [],
