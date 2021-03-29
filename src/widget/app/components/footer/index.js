@@ -1,5 +1,6 @@
 import GamesAnalyzed from '../games-analyzed';
 import MoreBuilds from '../more-builds';
+import PoweredBy from '../powered-by';
 import tw from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
 
@@ -11,6 +12,7 @@ const Footer = () => {
         <FooterStyles>
             <GamesAnalyzed />
             <MoreBuilds />
+            <PoweredBy />
         </FooterStyles>
     );
 };
