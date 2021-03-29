@@ -1,7 +1,7 @@
 import { useState } from 'preact/hooks';
 import tw, { styled } from 'twin.macro';
 
-const Image = ({ src, alt, title, width, height, rounded = false }) => {
+const Image = ({ src, alt, title, width, height, rounded = false, bgColor = true }) => {
 
     const [loading, setLoading] = useState(true);
 
@@ -19,7 +19,8 @@ const Image = ({ src, alt, title, width, height, rounded = false }) => {
     ]);
 
     const ImageStyles = styled.img(({ rounded }) => [
-        tw`flex bg-widget-gold-light`,
+        tw`flex`,
+        bgColor === true && tw`bg-widget-gold-light`,
         rounded === true && tw`rounded-full`,
         loading && { 'object-position': '-99999px 99999px' },
     ]);

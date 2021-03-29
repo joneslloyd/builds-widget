@@ -1,35 +1,35 @@
+import Rune from '../rune';
 import { useContext } from 'preact/hooks';
 import { BuildContext } from '../../lib/context';
 import tw from 'twin.macro';
-import FlexRow from '../../styles/components/flex-row';
+import FlexCol from '../../styles/components/flex-col';
 import SmallWhiteText from '../../styles/components/small-white-text';
+import RunesDisplay from '../../styles/components/runes-display';
 
-const RunesStyles = tw(FlexRow)``;
+const RunesStyles = tw(FlexCol)``;
 const RunesSmallWhiteText = tw(SmallWhiteText)`uppercase`;
+const RunesDisplayStyles = tw(RunesDisplay)`uppercase pt-4`;
+const RuneGroup = tw(RunesDisplay)``;
 
 const Runes = () => {
 
-    const { dataApiBuildData: { data: { lol: { champion: { build: { perks: { IDs: iDs = [], style = false, subStyle = false } = {} } = {} } = {} } = {} } = {} } = {}, squidexApiBuildData: { data: { perks = [] } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
+    const { dataApiBuildData: { data: { lol: { champion: { build: { perks = {} } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
+    const { IDs: iDs = [], style: primaryId = false, subStyle: secondaryId = false } = perks;
 
-    // console.log(iDs, style, subStyle);
-    // console.log(perks);
-
-    const parent = perks.filter(i => i.flatData.riotId === style)[0];
-    const primaryRunes = {
-        parent,
-        children: perks.filter(i => iDs.includes(i.flatData.riotId))
-    };
-
-    console.log(iDs);
-    console.log(primaryRunes);
-
-    /* ❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️UPDATE ME */
-    const runes = true;
-    const loading = isLoading || !runes;
+    const loading = isLoading || !perks;
 
     return (
         <RunesStyles>
             <RunesSmallWhiteText>Runes</RunesSmallWhiteText>
+            <RunesDisplayStyles>
+                <RuneGroup>
+                    <Rune id={primaryId} wh={36} rounded={false} />
+                    <Rune id={iDs[0]} wh={36} rounded={false} />
+                    <Rune id={iDs[1]} wh={32} rounded={true} gold={true} />
+                    <Rune id={iDs[2]} wh={32} rounded={true} gold={true} />
+                    <Rune id={iDs[3]} wh={32} rounded={true} gold={true} />
+                </RuneGroup>
+            </RunesDisplayStyles>
         </RunesStyles>
     );
 };

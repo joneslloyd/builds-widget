@@ -1,4 +1,4 @@
-import RoundedGoldBorder from '../rounded-gold-bounder';
+import RoundedGoldBorder from '../rounded-gold-border';
 import Image from '../image';
 import { useContext } from 'preact/hooks';
 import { BuildContext } from '../../lib/context';

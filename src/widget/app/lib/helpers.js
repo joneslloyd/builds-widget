@@ -27,3 +27,8 @@ export const roundWinRate = (value, precision = 1) => {
 export const commaNumber = (num) => {
     return num ? num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : false;
 };
+
+export const perkImage = (perk) => {
+    const cdnUrl = getEnvVar('CDN_URL');
+    return perk ? `${cdnUrl}/assets/lol/images/perks/${perk}.png` : false;
+};
