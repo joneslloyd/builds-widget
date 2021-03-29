@@ -12,10 +12,10 @@ const MatchesSmallWhiteText = tw(SmallWhiteText)``;
 
 const Matches = () => {
 
-    const { dataApiBuildData: { data: { lol: { champion: { build: { stats: { matchCount: matchCountRaw } = {} } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
-    const matchCount = commaNumber(matchCountRaw);
+    const { dataApiBuildData: { data: { lol: { champion: { build: { stats: { matchCount: matchCountRaw = 'x,xxx' } = {} } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
+    const matchCount = 'x,xxx' !== matchCountRaw ? commaNumber(matchCountRaw) : matchCountRaw;
 
-    const loading = isLoading || !matchCount;
+    const loading = isLoading || ('x,xxx' === matchCountRaw || !matchCount);
 
     return (
         <MatchesStyles>

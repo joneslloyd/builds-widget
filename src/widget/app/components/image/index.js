@@ -1,7 +1,7 @@
 import { useState } from 'preact/hooks';
 import tw, { styled } from 'twin.macro';
 
-const Image = ({ src, alt, title, width, height, rounded = false, bgColor = true }) => {
+const Image = ({ src = false, alt, title, width, height, rounded = false, bgColor = true }) => {
 
     const [loading, setLoading] = useState(true);
 

@@ -11,12 +11,12 @@ const RoleSmallPurpleText = tw(SmallPurpleText)`pl-1.5`;
 
 const Role = () => {
 
-    const { dataApiBuildData: { data: { lol: { champion: { build: { role: rawRole = '' } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
+    const { dataApiBuildData: { data: { lol: { champion: { build: { role: rawRole = 'XXX' } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
 
     const role = rawRole.toLowerCase();
     const roleIcon = rolenameIcon(rawRole);
 
-    const loading = isLoading || !role;
+    const loading = isLoading || ('xxx' === role || !role);
 
     return (
         <RoleStyles>

@@ -11,9 +11,9 @@ const PatchSmallWhiteText = tw(SmallWhiteText)``;
 
 const Patch = () => {
 
-    const { dataApiBuildData: { data: { lol: { champion: { build: { patch = '' } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
+    const { dataApiBuildData: { data: { lol: { champion: { build: { patch = 'xx.x' } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
 
-    const loading = isLoading || !patch;
+    const loading = isLoading || ('xx.x' === patch || !patch);
 
     return (
         <PatchStyles>

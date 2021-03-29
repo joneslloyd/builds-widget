@@ -16,7 +16,7 @@ export const championImage = (slug) => {
 
 export const rolenameIcon = (rolename) => {
     const cdnUrl = getEnvVar('CDN_URL');
-    return rolename ? `${cdnUrl}/assets/lol/images/rolename-icon/${rolename}.svg` : false;
+    return rolename && 'XXX' !== rolename ? `${cdnUrl}/assets/lol/images/rolename-icon/${rolename}.svg` : false;
 };
 
 export const roundWinRate = (value, precision = 1) => {

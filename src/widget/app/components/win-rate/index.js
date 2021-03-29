@@ -13,11 +13,11 @@ const WinRate = () => {
 
     const { dataApiBuildData: { data, data: { lol: { champion: { stats: { winRateHistory = [] } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
     const latestWinRateHistoryItem = winRateHistory ? winRateHistory[0] : {};
-    const { value: winRateRaw } = latestWinRateHistoryItem || {};
+    const { value: winRateRaw = 'XX.X' } = latestWinRateHistoryItem || {};
 
-    const winRate = `${roundWinRate(winRateRaw)}%`;
+    const winRate = `${'XX.X' !== winRateRaw ? roundWinRate(winRateRaw) : 'XX.X'}%`;
 
-    const loading = isLoading || !winRate;
+    const loading = isLoading || ('XX.X%' === winRate || !winRate);
 
     return (
         <WinRateStyles>
