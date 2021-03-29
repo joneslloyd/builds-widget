@@ -13,6 +13,7 @@ export const DATA_API_CHAMPION_QUERY = `
                     perks {
                         IDs
                         style
+                        subStyle
                     }
                     role
                     skillOrder
@@ -410,6 +411,7 @@ export const SQUIDEX_API_CHAMPION_QUERY = `
     }
 
     fragment PerkPostGameFragment on RunesV1DataFlatDto {
+        childRunes
         riotId
         name
         matchResultStatsLabels

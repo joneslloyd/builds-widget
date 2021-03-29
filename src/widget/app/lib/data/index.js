@@ -50,7 +50,7 @@ export const getSquidexApiData = (champion, buildData, setBuildData, loading, se
         withCountersData: false,
         withCombosData: false,
         withMatchupSpecificCountersData: false,
-        withProBuildsData: false
+        withProBuildsData: true
     }).toPromise().then(result => {
         const { data, error } = result;
         setBuildData({
