@@ -32,3 +32,13 @@ export const perkImage = (perk) => {
     const cdnUrl = getEnvVar('CDN_URL');
     return perk ? `${cdnUrl}/assets/lol/images/perks/${perk}.png` : false;
 };
+
+export const summonerSpellIcon = (slug) => {
+    const cdnUrl = getEnvVar('CDN_URL');
+    return slug ? `${cdnUrl}/assets/lol/images/dd/summoner-spells/${slug}.png` : false;
+};
+
+export const gameItemIcon = (id) => {
+    const cdnUrl = getEnvVar('CDN_URL');
+    return id ? `${cdnUrl}/assets/lol/images/dd/game-items/${id}.png` : false;
+}

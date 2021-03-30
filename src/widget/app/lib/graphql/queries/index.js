@@ -46,6 +46,12 @@ export const SQUIDEX_API_CHAMPION_QUERY = `
     }
 
     fragment ChampionsCommonStaticDataFragment on AppQueries {
+        querySummonersSpellsV1Contents {
+            flatData {
+                riotId
+                slug
+            }
+        }
         championCommonInfo: queryChampionsV1Contents(filter: $championFilter) {
             flatData {
             ...ChampionPageStaticFragment

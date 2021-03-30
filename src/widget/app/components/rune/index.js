@@ -16,8 +16,10 @@ const Rune = ({ id, wh = 32, rounded = false, gold = false, leftSpace = false, b
     const WrapComponentStyles = styled(WrapComponent)(({ leftSpace }) => [
         tw`z-10`,
         'large' === leftSpace ? tw`ml-4!` : tw``,
-        'normal' === leftSpace ? tw`ml-3!` : tw``,
+        'normal' === leftSpace ? tw`ml-3.5!` : tw``,
         'small' === leftSpace ? tw`ml-2!` : tw``,
+        'smaller' === leftSpace ? tw`ml-1!` : tw``,
+        'smallest' === leftSpace ? tw`ml-0.5!` : tw``,
         { width: `${wh}px`, height: `${wh}px` }
     ]);
 
