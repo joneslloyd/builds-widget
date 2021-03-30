@@ -9,6 +9,10 @@ export const getEnvVar = (namePart = 'DATA_API') => {
     return vars[name] !== 'undefined' ? vars[name] : false;
 };
 
+export const getLineColorFromIcon = (iconCode) => {
+    return 8000 === iconCode ? 'gold' : (8100 === iconCode ? 'red' : (8200 === iconCode ? 'purple' : (8400 === iconCode ? 'green' : 'blue')));
+};
+
 export const championImage = (slug) => {
     const cdnUrl = getEnvVar('CDN_URL');
     return slug ? `${cdnUrl}/assets/lol/images/dd/champions/icons/${slug.toLowerCase()}.png` : false;

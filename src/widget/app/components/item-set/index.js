@@ -21,13 +21,12 @@ const ItemSet = ({ name, items, loading = true, leftSpace = false }) => {
             <ItemSetSmallPurpleText loading={loading}>{name}</ItemSetSmallPurpleText>
             <FlexRow>
                 <ItemSetDisplayStyles>
-                    <SpellItem slug={items[0]} />
-                    {typeof items[1] !== 'undefined' && (
-                        <SpellItem slug={items[1]} leftSpace="small" />
-                    )}
-                    {typeof items[2] !== 'undefined' && (
-                        <SpellItem slug={items[2]} leftSpace="small" />
-                    )}
+                    {items.map((c, i) => {
+                        const leftSpace = 0 === i ? false : 'small';
+                        return (
+                            <SpellItem slug={c} key={c} leftSpace={leftSpace} />
+                        );
+                    })}
                 </ItemSetDisplayStyles>
             </FlexRow>
         </ItemSetStyles>

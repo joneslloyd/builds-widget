@@ -1,6 +1,8 @@
 import Runes from '../runes';
 import Spells from '../spells';
 import Items from '../items';
+import SkillPriority from '../skill-priority';
+import SkillOrder from '../skill-order';
 import tw, { styled } from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
 
@@ -21,6 +23,10 @@ const Body = () => {
             </BodyRow>
             <BodyRow pt={true}>
                 <Items />
+            </BodyRow>
+            <BodyRow pt={true}>
+                <SkillPriority />
+                <SkillOrder />
             </BodyRow>
         </BodyStyles>
     );
