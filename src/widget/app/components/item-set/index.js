@@ -22,8 +22,12 @@ const ItemSet = ({ name, items, loading = true, leftSpace = false }) => {
             <FlexRow>
                 <ItemSetDisplayStyles>
                     <SpellItem slug={items[0]} />
-                    <SpellItem slug={items[1]} leftSpace="small" />
-                    <SpellItem slug={items[2]} leftSpace="small" />
+                    {typeof items[1] !== 'undefined' && (
+                        <SpellItem slug={items[1]} leftSpace="small" />
+                    )}
+                    {typeof items[2] !== 'undefined' && (
+                        <SpellItem slug={items[2]} leftSpace="small" />
+                    )}
                 </ItemSetDisplayStyles>
             </FlexRow>
         </ItemSetStyles>
