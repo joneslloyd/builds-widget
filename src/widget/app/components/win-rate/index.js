@@ -6,7 +6,7 @@ import FlexRow from '../../styles/components/flex-row';
 import SmallPurpleText from '../../styles/components/small-purple-text';
 
 const WinRateStyles = tw(FlexRow)`pl-3.5`;
-const WinRateSmallPurpleText = tw(SmallPurpleText)`pr-1.5`;
+const WinRateSmallPurpleText = tw(SmallPurpleText)`pr-1`;
 const WinRateSmallGreenText = tw(SmallPurpleText)`text-widget-green`;
 
 const WinRate = () => {

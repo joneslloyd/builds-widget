@@ -6,8 +6,8 @@ import FlexRow from '../../styles/components/flex-row';
 import SmallPurpleText from '../../styles/components/small-purple-text';
 import SmallWhiteText from '../../styles/components/small-white-text';
 
-const MatchesStyles = tw(FlexRow)`pl-2`;
-const MatchesSmallPurpleText = tw(SmallPurpleText)`pr-1.5 lowercase`;
+const MatchesStyles = tw(FlexRow)`pl-1`;
+const MatchesSmallPurpleText = tw(SmallPurpleText)`lowercase`;
 const MatchesSmallWhiteText = tw(SmallWhiteText)``;
 
 const Matches = () => {

@@ -7,6 +7,7 @@ import SmallWhiteText from '../../styles/components/small-white-text';
 
 const SkillOrderStyles = tw(FlexCol)``;
 const SkillOrderSmallWhiteText = tw(SmallWhiteText)`uppercase`;
+const SkillOrderRow = tw(FlexRow)`pt-3`;
 
 const SkillOrder = () => {
 
@@ -23,10 +24,11 @@ const SkillOrder = () => {
     return (
         <SkillOrderStyles>
             <SkillOrderSmallWhiteText>Skill order</SkillOrderSmallWhiteText>
-            <FlexRow>
+            <SkillOrderRow>
                 {/* <p>DEV – Skills map: {JSON.stringify(skillsMap)}</p>
                 <p>DEV - Skills order: {JSON.stringify(abilities)}</p> */}
-            </FlexRow>
+                ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+            </SkillOrderRow>
         </SkillOrderStyles>
     );
 };
