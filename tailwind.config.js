@@ -57,6 +57,7 @@ module.exports = {
                     light: 'hsl(248, 34%, 23%)',
                     DEFAULT: 'hsl(248, 37%, 20%)',
                     border: 'hsl(250, 37%, 29%)',
+                    overlay: `hsla(251, 29%, 36%, 1)`,
                     'skeleton-text': 'hsla(229, 24%, 63%, 1)',
                     text: 'hsl(245, 14%, 47%)',
                     'line': 'hsla(233, 92%, 80%, 1)',

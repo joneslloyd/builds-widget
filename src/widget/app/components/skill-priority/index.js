@@ -1,5 +1,5 @@
 import SpellItem from '../spell-item';
-import Overlay from '../overlay';
+import LetterOverlay from '../overlay';
 import RightArrow from '../right-arrow';
 import { useContext } from 'preact/hooks';
 import { BuildContext } from '../../lib/context';
@@ -40,9 +40,11 @@ const SkillPriority = () => {
                     const { activationKey = false, slug = false } = flatData;
 
                     const overlay = activationKey ? (
-                        <Overlay letter={activationKey} />
+                        <LetterOverlay key={activationKey} letter={activationKey}>
+                            {activationKey}
+                        </LetterOverlay>
                     ) : false;
-
+                    console.log(activationKey, overlay);
                     return (
                         <>
                             <SpellItem key={activationKey} overlay={overlay} slug={slug} wh={32} type="skill" />

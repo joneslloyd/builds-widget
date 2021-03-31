@@ -3,7 +3,7 @@ import { summonerSpellIcon, gameItemIcon, getSkillIcon } from '../../lib/helpers
 import tw, { styled } from 'twin.macro';
 
 const SpellItemStyles = styled('div')(({ leftSpace, wh }) => [
-    tw``,
+    tw`relative`,
     'large' === leftSpace ? tw`ml-4!` : tw``,
     'normal' === leftSpace ? tw`ml-3.5!` : tw``,
     'small' === leftSpace ? tw`ml-2!` : tw``,
@@ -19,7 +19,7 @@ const SpellItem = ({ slug, wh = 36, type = 'item', leftSpace = false, overlay = 
     return (
         <SpellItemStyles leftSpace={leftSpace} wh={wh}>
             <Image src={src} width={wh} height={wh} bgColor={false} />
-            {overlay && ({ overlay })}
+            {overlay}
         </SpellItemStyles>
     );
 };

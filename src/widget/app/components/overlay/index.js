@@ -1,7 +1,7 @@
 import tw, { styled } from 'twin.macro';
 
-const OverlayStyles = styled('div')(({ wh = 16, letter = false }) => [
-    tw`text-white`,
+const LetterOverlayStyles = styled('div')(({ wh = 16, letter = false }) => [
+    tw`text-white font-bold text-xs bg-widget-purple-overlay rounded-sm flex justify-center absolute bottom-0 right-0`,
     'W' === letter ? tw`text-widget-keys-W!` : tw``,
     'Q' === letter ? tw`text-widget-keys-Q!` : tw``,
     'E' === letter ? tw`text-widget-keys-E!` : tw``,
@@ -9,13 +9,15 @@ const OverlayStyles = styled('div')(({ wh = 16, letter = false }) => [
     { width: `${wh}px`, height: `${wh}px` }
 ]);
 
-const Overlay = ({ letter = false, wh = 16 }) => {
+const LetterOverlayLetterSpan = tw.span`text-center`;
+
+const LetterOverlay = ({ letter = false, wh = 16, children }) => {
 
     return (
-        <OverlayStyles letter={letter} wh={wh}>
-            {letter}
-        </OverlayStyles>
+        <LetterOverlayStyles letter={letter} wh={wh}>
+            <LetterOverlayLetterSpan>{children}</LetterOverlayLetterSpan>
+        </LetterOverlayStyles>
     );
 };
 
-export default Overlay;
+export default LetterOverlay;
