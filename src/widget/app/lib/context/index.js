@@ -4,7 +4,7 @@ import { getDataApiData, getSquidexApiData } from '../data';
 
 export const BuildContext = createContext(null);
 
-const Context = ({ children, champion = '' }) => {
+const Context = ({ children, champion = 'amumu' }) => {
 
     //Data API data
     const [dataApiBuildData, setDataApiBuildData] = useState({
