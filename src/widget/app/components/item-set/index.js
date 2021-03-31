@@ -21,7 +21,14 @@ const ItemSet = ({ name, items, loading = true, leftSpace = false }) => {
             <ItemSetSmallPurpleText loading={loading}>{name}</ItemSetSmallPurpleText>
             <FlexRow>
                 <ItemSetDisplayStyles>
-                    {items.map((c, i) => {
+                    {loading && (
+                        <>
+                            <SpellItem slug={false} />
+                            <SpellItem slug={false} leftSpace="small" />
+                            <SpellItem slug={false} leftSpace="small" />
+                        </>
+                    )}
+                    {!loading && items.map((c, i) => {
                         const leftSpace = 0 === i ? false : 'small';
                         return (
                             <SpellItem slug={c} key={c} leftSpace={leftSpace} />

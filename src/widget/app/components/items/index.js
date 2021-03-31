@@ -24,7 +24,7 @@ const Items = () => {
         dummyData,
     ] } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
 
-    const loading = isLoading || items.length === 0;
+    const loading = isLoading || items[0].items.length === 0;
 
     return (
         <ItemsStyles>

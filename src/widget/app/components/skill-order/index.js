@@ -1,3 +1,4 @@
+import RightArrow from '../right-arrow';
 import { useContext } from 'preact/hooks';
 import { BuildContext } from '../../lib/context';
 import tw from 'twin.macro';
@@ -18,7 +19,7 @@ const SkillOrder = () => {
         <SkillOrderStyles>
             <SkillOrderSmallWhiteText>Skill order</SkillOrderSmallWhiteText>
             <FlexRow>
-                <p>TEST</p>
+                <p>Test</p><RightArrow /><p>Test</p>
             </FlexRow>
         </SkillOrderStyles>
     );
