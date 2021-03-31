@@ -43,7 +43,7 @@
     "sass": "^1.32.8",
     "source-map-explorer": "^2.5.2",
     "tailwindcss": "^2.0.4",
-    "twin.macro": "^2.3.0",
+    "twin.macro": "^2.3.2",
     "util": "^0.12.3",
     "webpack": "^5.27.2",
     "webpack-cli": "^4.5.0",

@@ -7,7 +7,7 @@ import FlexRow from '../../styles/components/flex-row';
 import SmallPurpleText from '../../styles/components/small-purple-text';
 
 const RoleStyles = tw(FlexRow)`items-center`;
-const RoleSmallPurpleText = tw(SmallPurpleText)`pl-1.5`;
+const RoleSmallPurpleText = tw(SmallPurpleText)`ml-1.5!`;
 
 const Role = () => {
 

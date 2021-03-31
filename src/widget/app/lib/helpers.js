@@ -46,3 +46,8 @@ export const gameItemIcon = (id) => {
     const cdnUrl = getEnvVar('CDN_URL');
     return id ? `${cdnUrl}/assets/lol/images/dd/game-items/${id}.png` : false;
 }
+
+export const getSkillIcon = (slug) => {
+    const cdnUrl = getEnvVar('CDN_URL');
+    return slug ? `${cdnUrl}/assets/lol/images/dd/champions/abilities/${slug}.png` : false;
+};

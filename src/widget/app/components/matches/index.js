@@ -19,7 +19,7 @@ const Matches = () => {
 
     return (
         <MatchesStyles>
-            <MatchesSmallPurpleText loading={loading}>Based on <MatchesSmallWhiteText>{matchCount}</MatchesSmallWhiteText> matches</MatchesSmallPurpleText>
+            <MatchesSmallPurpleText loading={loading}>Based on <MatchesSmallWhiteText loading={loading}>{matchCount}</MatchesSmallWhiteText> matches</MatchesSmallPurpleText>
         </MatchesStyles>
     );
 };
