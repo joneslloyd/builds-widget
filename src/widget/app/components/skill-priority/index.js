@@ -44,7 +44,7 @@ const SkillPriority = () => {
                             {activationKey}
                         </LetterOverlay>
                     ) : false;
-                    console.log(activationKey, overlay);
+
                     return (
                         <>
                             <SpellItem key={activationKey} overlay={overlay} slug={slug} wh={32} type="skill" />
