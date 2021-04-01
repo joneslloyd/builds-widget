@@ -8,7 +8,7 @@ const ItemSetStyles = styled(FlexCol)(({ leftSpace }) => [
     tw`w-auto`,
     'large' === leftSpace ? tw`md:(ml-8)` : tw``,
     'normal' === leftSpace ? tw`md:(ml-7)` : tw``,
-    'small' === leftSpace ? tw`md:(ml-6)` : tw``,
+    'small' === leftSpace ? tw`md:(ml-5)` : tw``,
     'very-small' === leftSpace ? tw`md:(ml-3)` : tw``,
 ]);
 const ItemSetSmallPurpleText = tw(SmallPurpleText)`capitalize`;
@@ -30,9 +30,13 @@ const ItemSet = ({ name, items, loading = true, leftSpace = false }) => {
                     )}
                     {!loading && items.map((c, i) => {
                         const leftSpace = 0 === i ? false : 'small';
-                        return (
-                            <SpellItem slug={c} key={c} leftSpace={leftSpace} />
-                        );
+
+                        // ❗️We're intentionally only showing THREE here❗️
+                        if (i < 3) {
+                            return (
+                                <SpellItem slug={c} key={c} leftSpace={leftSpace} />
+                            );
+                        }
                     })}
                 </ItemSetDisplayStyles>
             </FlexRow>

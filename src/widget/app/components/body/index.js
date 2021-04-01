@@ -8,8 +8,8 @@ import FlexRow from '../../styles/components/flex-row';
 
 const BodyStyles = tw.div`flex flex-col bg-transparent divide-y divide-widget-white-line`;
 const BodyRowCol = styled(FlexRow)(({ pt = false }) => [
+    true === pt ? tw`md:(pt-5) lg:(pt-7)` : tw``,
     tw`p-3 flex-col items-start lg:(p-5) xl:(flex-row)`,
-    true === pt ? tw`pt-3 lg:(pt-5) xl:(pt-7)` : tw``,
 ]);
 
 const Body = () => {

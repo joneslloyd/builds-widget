@@ -18,7 +18,7 @@ const SpellItem = ({ slug, wh = 36, type = 'item', leftSpace = false, overlay = 
 
     return (
         <SpellItemStyles leftSpace={leftSpace} wh={wh}>
-            <Image src={src} width={wh} height={wh} bgColor={false} />
+            <Image src={src} width={wh} height={wh} bgColor={false} rounded={'md'} />
             {overlay}
         </SpellItemStyles>
     );

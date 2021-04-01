@@ -8,15 +8,15 @@ import FlexCol from '../../styles/components/flex-col';
 import SmallWhiteText from '../../styles/components/small-white-text';
 import RunesDisplay from '../../styles/components/runes-display';
 
-const RunesStyles = tw(FlexCol)`mr-0 xl:(mr-12 w-9/12)`;
+const RunesStyles = tw(FlexCol)`mr-0 xl:(mr-10 w-9/12)`;
 const RunesSmallWhiteText = tw(SmallWhiteText)`uppercase`;
 const RunesDisplayStyles = tw(RunesDisplay)`uppercase pt-3`;
 const RuneGroup = styled(RunesDisplay)(({ leftSpace, line = false, loading = true }) => [
     tw`items-center relative bg-transparent!`,
-    'large' === leftSpace ? tw`md:(ml-8)` : tw``,
-    'normal' === leftSpace ? tw`md:(ml-7)` : tw``,
-    'small' === leftSpace ? tw`md:(ml-6)` : tw``,
-    'very-small' === leftSpace ? tw`md:(ml-3)` : tw``,
+    'large' === leftSpace ? tw`xl:(ml-8)` : tw``,
+    'normal' === leftSpace ? tw`xl:(ml-7)` : tw``,
+    'small' === leftSpace ? tw`xl:(ml-6)` : tw``,
+    'very-small' === leftSpace ? tw`xl:(ml-3)` : tw``,
     (true === loading && 'gold' === line) ? tw`before:(absolute z-0 left-6 content block w-9/12 h-0.5 bg-widget-gold-line outline-widget-gold-outer-line animate-pulse)` : tw``,
     (false === loading && 'gold' === line) ? tw`before:(absolute z-0 left-6 content block w-9/12 h-0.5 bg-widget-gold-line outline-widget-gold-outer-line)` : tw``,
     (true === loading && 'blue' === line) ? tw`before:(absolute z-0 left-7 content block w-9/12 h-0.5 bg-widget-blue-line outline-widget-blue-outer-line animate-pulse)` : tw``,

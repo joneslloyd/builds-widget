@@ -22,7 +22,7 @@ const Avatar = () => {
     return (
         <AvatarStyles>
             <RoundedGoldBorder>
-                <Image src={avatarUrl} rounded={true} width={36} height={36} title={altTitle} alt={altTitle} />
+                <Image src={avatarUrl} rounded="full" width={36} height={36} title={altTitle} alt={altTitle} />
             </RoundedGoldBorder>
         </AvatarStyles>
     );
