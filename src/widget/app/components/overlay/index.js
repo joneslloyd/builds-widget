@@ -1,21 +1,13 @@
-import tw, { styled } from 'twin.macro';
+import tw from 'twin.macro';
+import ContentSquareStyles from '../../styles/components/content-square';
 
-const LetterOverlayStyles = styled('div')(({ wh = 16, letter = false }) => [
-    tw`text-white font-bold text-xs bg-widget-purple-overlay rounded-sm flex justify-center absolute bottom-0 right-0`,
-    'W' === letter ? tw`text-widget-keys-W!` : tw``,
-    'Q' === letter ? tw`text-widget-keys-Q!` : tw``,
-    'E' === letter ? tw`text-widget-keys-E!` : tw``,
-    'R' === letter ? tw`text-widget-keys-R!` : tw``,
-    { width: `${wh}px`, height: `${wh}px` }
-]);
+const LetterOverlayStyles = tw(ContentSquareStyles)`flex! justify-center! absolute! bottom-0! right-0!`;
 
-const LetterOverlayLetterSpan = tw.span`text-center`;
-
-const LetterOverlay = ({ letter = false, wh = 16, children }) => {
+const LetterOverlay = ({ letter = false, wh = 16, children, loading = true }) => {
 
     return (
-        <LetterOverlayStyles letter={letter} wh={wh}>
-            <LetterOverlayLetterSpan>{children}</LetterOverlayLetterSpan>
+        <LetterOverlayStyles wh={wh} letter={letter} loading={loading}>
+            {children}
         </LetterOverlayStyles>
     );
 };

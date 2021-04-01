@@ -40,7 +40,7 @@ const SkillPriority = () => {
                     const { activationKey = false, slug = false } = flatData;
 
                     const overlay = activationKey ? (
-                        <LetterOverlay key={activationKey} letter={activationKey}>
+                        <LetterOverlay key={activationKey} letter={activationKey} loading={false}>
                             {activationKey}
                         </LetterOverlay>
                     ) : false;
