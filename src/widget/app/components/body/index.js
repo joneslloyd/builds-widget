@@ -7,27 +7,26 @@ import tw, { styled } from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
 
 const BodyStyles = tw.div`flex flex-col bg-transparent divide-y divide-widget-white-line`;
+const BodyRowCol = styled(FlexRow)(({ pt = false }) => [
+    tw`p-3 flex-col items-start lg:(p-5) xl:(flex-row)`,
+    true === pt ? tw`pt-3 lg:(pt-5) xl:(pt-7)` : tw``,
+]);
 
 const Body = () => {
 
-    const BodyRow = styled(FlexRow)(({ pt = false }) => [
-        tw`p-5`,
-        true === pt ? tw`pt-7` : tw``,
-    ]);
-
     return (
         <BodyStyles>
-            <BodyRow>
+            <BodyRowCol>
                 <Runes />
                 <Spells />
-            </BodyRow>
-            <BodyRow pt={true}>
+            </BodyRowCol>
+            <BodyRowCol pt={true}>
                 <Items />
-            </BodyRow>
-            <BodyRow pt={true}>
+            </BodyRowCol>
+            <BodyRowCol pt={true}>
                 <SkillPriority />
                 <SkillOrder />
-            </BodyRow>
+            </BodyRowCol>
         </BodyStyles>
     );
 };

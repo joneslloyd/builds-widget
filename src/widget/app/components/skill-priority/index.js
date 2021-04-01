@@ -8,7 +8,7 @@ import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
 import SmallWhiteText from '../../styles/components/small-white-text';
 
-const SkillPriorityStyles = tw(FlexCol)`pr-0 md:(pr-10)`;
+const SkillPriorityStyles = tw(FlexCol)`mr-0 xl:(mr-12)`;
 const SkillPrioritySmallWhiteText = tw(SmallWhiteText)`uppercase`;
 const SkillPriorityRow = tw(FlexRow)`pt-3`;
 const RightArrowStyles = tw(RightArrow)`mx-2`;

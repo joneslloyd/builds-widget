@@ -100,6 +100,12 @@ module.exports = {
             'widget-purple-outer-line': [`1px solid ${theme('colors.widget-purple.outer-line')}`, '1px'],
             'widget-red-outer-line': [`1px solid ${theme('colors.widget-red.outer-line')}`, '1px'],
         }),
+        screens: {
+            'sm': '300px',
+            'md': '560px',
+            'lg': '600px',
+            'xl': '740px',
+        },
         stroke: theme => ({
             current: 'currentColor',
             'widget-gold': theme('colors.widget-gold'),

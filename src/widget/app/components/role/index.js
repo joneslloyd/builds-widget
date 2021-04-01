@@ -11,7 +11,7 @@ const RoleSmallPurpleText = tw(SmallPurpleText)`ml-1.5!`;
 
 const Role = () => {
 
-    const { dataApiBuildData: { data: { lol: { champion: { build, build: { role: rawRole = 'XXX' } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
+    const { dataApiBuildData: { data: { lol: { champion: { build: { role: rawRole = 'XXX' } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
 
     const role = 'ADC' === rawRole ? 'bot' : rawRole.toLowerCase();
     const roleIcon = rolenameIcon(rawRole);

@@ -10,11 +10,15 @@
     html {
       box-sizing: border-box;
       font-size: 16px;
+      width: 100vw;
+      height: 100vh;
     }
 
     body {
       color: white;
       background-color: #1D1546;
+      width: 100%;
+      height: 100%;
     }
 
     *,
@@ -48,12 +52,6 @@
       height: auto;
     }
 
-    html,
-    body {
-      width: 100%;
-      height: auto;
-    }
-
     main {
       width: 100%;
       height: 100%;
@@ -69,11 +67,11 @@
       justify-content: center;
       width: 100%;
       height: 100%;
-      max-width: 800px;
       padding: 3rem 0rem;
     }
 
     article {
+      margin: 0 auto;
       padding-top: 1rem;
     }
   </style>
@@ -87,7 +85,8 @@
       <article data-moba-widget="build">
         <script type="application/json">
                 {
-                  "champion": "amumu"
+                  "champion": "amumu",
+                  "layout": "compact"
                 }
               </script>
       </article>

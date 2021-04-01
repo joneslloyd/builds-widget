@@ -8,7 +8,7 @@ import FlexCol from '../../styles/components/flex-col';
 import SmallWhiteText from '../../styles/components/small-white-text';
 import RunesDisplay from '../../styles/components/runes-display';
 
-const RunesStyles = tw(FlexCol)`pr-0 md:(pr-10 w-9/12)`;
+const RunesStyles = tw(FlexCol)`mr-0 xl:(mr-12 w-9/12)`;
 const RunesSmallWhiteText = tw(SmallWhiteText)`uppercase`;
 const RunesDisplayStyles = tw(RunesDisplay)`uppercase pt-3`;
 const RuneGroup = styled(RunesDisplay)(({ leftSpace, line = false, loading = true }) => [

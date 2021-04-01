@@ -6,7 +6,7 @@ import FlexCol from '../../styles/components/flex-col';
 import SmallWhiteText from '../../styles/components/small-white-text';
 import SkillOrderDisplay from '../skill-order-display';
 
-const SkillOrderStyles = tw(FlexCol)``;
+const SkillOrderStyles = tw(FlexCol)`pt-4 lg:(pt-5) xl:(pt-0)`;
 const SkillOrderSmallWhiteText = tw(SmallWhiteText)`uppercase`;
 const SkillOrderRow = tw(FlexRow)`pt-3`;
 

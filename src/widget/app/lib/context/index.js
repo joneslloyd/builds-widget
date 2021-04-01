@@ -4,7 +4,7 @@ import { getDataApiData, getSquidexApiData } from '../data';
 
 export const BuildContext = createContext(null);
 
-const Context = ({ children, champion = 'amumu' }) => {
+const Context = ({ children, champion = 'amumu', layout = 'full' }) => {
 
     //Data API data
     const [dataApiBuildData, setDataApiBuildData] = useState({
@@ -24,6 +24,7 @@ const Context = ({ children, champion = 'amumu' }) => {
     const [loading, setLoading] = useState(false);
 
     const store = {
+        layout,
         dataApiBuildData,
         setDataApiBuildData,
         squidexApiBuildData,

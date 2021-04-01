@@ -7,7 +7,7 @@ import FlexRow from '../../styles/components/flex-row';
 import SmallWhiteText from '../../styles/components/small-white-text';
 import SpellsDisplay from '../../styles/components/spells-display';
 
-const SpellsStyles = tw(FlexCol)`w-full`;
+const SpellsStyles = tw(FlexCol)`w-full pt-4 lg:(pt-5) xl:(pt-0)`;
 const SpellsSmallWhiteText = tw(SmallWhiteText)`uppercase`;
 const SpellsDisplayStyles = tw(SpellsDisplay)`uppercase pt-3`;
 
