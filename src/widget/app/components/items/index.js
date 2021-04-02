@@ -9,7 +9,7 @@ import ItemsDisplay from '../../styles/components/items-display';
 
 const ItemsStyles = tw(FlexCol)``;
 const ItemsSmallWhiteText = tw(SmallWhiteText)`uppercase`;
-const ItemsDisplayStyles = tw(ItemsDisplay)`capitalize pt-3`;
+const ItemsDisplayStyles = tw(ItemsDisplay)`capitalize pt-2.5 pb-1`;
 
 const Items = () => {
 

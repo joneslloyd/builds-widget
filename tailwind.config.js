@@ -98,6 +98,9 @@ module.exports = {
                     line: 'hsla(0, 0%, 100%, 0.05)'
                 },
             },
+            inset: {
+                '53p': '53%',
+            },
         },
         fill: theme => ({
             current: 'currentColor',

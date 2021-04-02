@@ -10,7 +10,7 @@ import SmallWhiteText from '../../styles/components/small-white-text';
 
 const SkillPriorityStyles = tw(FlexCol)`mr-0 xl:(mr-10)`;
 const SkillPrioritySmallWhiteText = tw(SmallWhiteText)`uppercase`;
-const SkillPriorityRow = tw(FlexRow)`pt-3`;
+const SkillPriorityRow = tw(FlexRow)`pt-2.5`;
 const RightArrowStyles = tw(RightArrow)`mx-2`;
 
 const SkillPriority = () => {
