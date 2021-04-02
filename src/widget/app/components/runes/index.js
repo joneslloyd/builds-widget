@@ -47,19 +47,19 @@ const Runes = () => {
                     <RuneGroup line={primaryLine} loading={loading}>
                         <Rune id={primaryId} wh={36} rounded={false} />
                         <Rune id={iDs[0]} wh={48} rounded={false} leftSpace="smallest" />
-                        <Rune id={iDs[1]} wh={32} rounded={true} gold={true} leftSpace="small" />
-                        <Rune id={iDs[2]} wh={32} rounded={true} gold={true} leftSpace="normal" />
-                        <Rune id={iDs[3]} wh={32} rounded={true} gold={true} leftSpace="normal" />
+                        <Rune id={iDs[1]} wh={32} rounded="full" gold={true} leftSpace="small" />
+                        <Rune id={iDs[2]} wh={32} rounded="full" gold={true} leftSpace="normal" />
+                        <Rune id={iDs[3]} wh={32} rounded="full" gold={true} leftSpace="normal" />
                     </RuneGroup>
                     <RuneGroup leftSpace="large" line={secondaryLine} loading={loading}>
                         <Rune id={secondaryId} wh={36} rounded={false} />
-                        <Rune id={iDs[4]} wh={32} rounded={true} gold={true} leftSpace="normal" />
-                        <Rune id={iDs[5]} wh={32} rounded={true} gold={true} leftSpace="normal" />
+                        <Rune id={iDs[4]} wh={32} rounded="full" gold={true} leftSpace="normal" />
+                        <Rune id={iDs[5]} wh={32} rounded="full" gold={true} leftSpace="normal" />
                     </RuneGroup>
                     <RuneGroup leftSpace="small" loading={loading}>
-                        <Rune id={iDs[6]} wh={24} rounded={true} gold={true} borderWidth="1px" />
-                        <Rune id={iDs[7]} wh={24} rounded={true} gold={true} leftSpace="large" borderWidth="1px" />
-                        <Rune id={iDs[8]} wh={24} rounded={true} gold={true} leftSpace="large" borderWidth="1px" />
+                        <Rune id={iDs[6]} wh={24} rounded="full" gold={true} borderWidth="1px" />
+                        <Rune id={iDs[7]} wh={24} rounded="full" gold={true} leftSpace="large" borderWidth="1px" />
+                        <Rune id={iDs[8]} wh={24} rounded="full" gold={true} leftSpace="large" borderWidth="1px" />
                     </RuneGroup>
                 </RunesDisplayStyles>
             </FlexRow>
