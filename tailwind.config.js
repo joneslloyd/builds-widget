@@ -28,7 +28,7 @@ module.exports = {
         },
         fontFamily: {
             sans: [
-                'RobotoSlab',
+                'RobotoMoba',
                 ...defaultTheme.fontFamily.sans,
             ],
         },

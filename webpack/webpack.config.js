@@ -7,7 +7,7 @@ const chalk = require('chalk');
 module.exports = (env) => {
 
   //Grab vars from package.json
-  const { NODE_ENV = 'development', mode = 'dev', devServerPort = 3000, DATA_API = 'https://api.int.mobalytics.gg/lol/graphql/v1/query', SQUIDEX_API = 'https://app.mobalytics.gg/api/league/gql/static/v1' } = env || {};
+  const { NODE_ENV = 'development', mode = 'dev', devServerPort = 3000 } = env || {};
 
   //Grab Env vars
   const envVarsRaw = dotenv.config().parsed;
@@ -78,7 +78,14 @@ module.exports = (env) => {
             loader: 'babel-loader',
             options: {},
           },
-        }
+        },
+        {
+          test: /\.(woff|woff2|ttf)$/,
+          exclude: /(node_modules)/,
+          use: {
+            loader: 'file-loader?name=fonts/[name].[ext]',
+          },
+        },
       ],
     },
     plugins,
