@@ -10,7 +10,7 @@ import FlexRow from '../../styles/components/flex-row';
 
 const BodyStyles = styled('div')(({ layout = false }) => [
     tw`flex flex-col bg-transparent divide-y divide-widget-white-line`,
-    'full' === layout ? tw`md:(bg-full-body bg-no-repeat bg-right-top bg-contain)` : tw``
+    'full' === layout ? tw`md:(bg-full-body bg-no-repeat bg-right-top bg-auto)` : tw``
 ]);
 
 const BodyRowCol = styled(FlexRow)(({ pt = false }) => [

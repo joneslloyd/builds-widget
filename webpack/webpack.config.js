@@ -89,10 +89,12 @@ module.exports = (env) => {
           use: {
             loader: 'file-loader?name=fonts/[name].[ext]',
             options: {
-              name: () => {
-                if (NODE_ENV === 'development') {
+              name: (resourcePath) => {
+
+                if (/\.(svg)$/.test(resourcePath) || NODE_ENV === 'development') {
                   return '[path][name].[ext]';
                 }
+
                 return '[name]_[hash].[ext]';
               },
               outputPath: (url, resourcePath) => {
