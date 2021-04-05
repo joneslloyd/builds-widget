@@ -48,9 +48,9 @@ module.exports = {
             '7xl': '5rem',
         },
         extend: {
-            lineHeight: {
-                'line-4.5': '1.125',
-            },
+            backgroundImage: theme => ({
+                'full-body': "url('/images/src/widget/app/images/background.svg')",
+            }),
             colors: {
                 mobalytics: {
                     light: 'hsl(253, 54%, 25%)',
@@ -100,6 +100,9 @@ module.exports = {
             },
             inset: {
                 '53p': '53%',
+            },
+            lineHeight: {
+                'line-4.5': '1.125',
             },
         },
         fill: theme => ({

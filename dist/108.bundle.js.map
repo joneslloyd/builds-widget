@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://mobalytics-builds-widget/./src/widget/app/images/background.svg"],"names":[],"mappings":"gKAAA,QAAe,IAA0B","file":"108.bundle.js","sourcesContent":["export default __webpack_public_path__ + \"images/background_8ce6d2cc8cbd68e4857b4b069645135a.svg\";"],"sourceRoot":""}

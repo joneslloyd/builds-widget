@@ -80,7 +80,11 @@ module.exports = (env) => {
           },
         },
         {
-          test: /\.(woff|woff2|ttf|png|jp(e*)g|ico|gif|bmp|webp)$/,
+          //We only make an exception for background.svg here, as we're using it
+          //like a normal image (it's a background image).
+          //The others are dynamically imported and inlined, through
+          //the "preact-svg-loader" below this entry...
+          test: /background\.svg|\.(woff|woff2|ttf|png|jp(e*)g|ico|gif|bmp|webp)$/,
           exclude: /(node_modules)/,
           use: {
             loader: 'file-loader?name=fonts/[name].[ext]',
@@ -101,7 +105,7 @@ module.exports = (env) => {
                   return `fonts/${url}`;
                 }
 
-                if (/\.(png|jp(e*)g|ico|gif|bmp|webp)$/.test(resourcePath)) {
+                if (/\.(png|jp(e*)g|ico|gif|bmp|webp|svg)$/.test(resourcePath)) {
                   return `images/${url}`;
                 }
 
@@ -112,6 +116,7 @@ module.exports = (env) => {
         },
         {
           test: /\.svg$/,
+          exclude: /background\.svg$/,
           use: ['preact-svg-loader'],
         }
       ],
