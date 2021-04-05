@@ -9,6 +9,7 @@ const ItemSetStyles = styled(FlexCol)(({ leftSpace }) => [
     'large' === leftSpace ? tw`ml-8` : tw``,
     'normal' === leftSpace ? tw`ml-7` : tw``,
     'small' === leftSpace ? tw`ml-5` : tw``,
+    'baseNoneMdSmall' === leftSpace ? tw`ml-0 md:(ml-5)` : tw``,
     'very-small' === leftSpace ? tw`ml-3` : tw``,
 ]);
 const ItemSetSmallPurpleText = tw(SmallPurpleText)`capitalize`;
