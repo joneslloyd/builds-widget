@@ -9,7 +9,7 @@ import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
 
 const HeaderStyles = tw(FlexRow)`bg-widget-purple rounded-t-md px-3 py-2.5 border-b border-widget-purple-border`;
-const NamePatchStyles = tw(FlexCol)`md:pl-2`;
+const NamePatchStyles = tw(FlexCol)`pl-2`;
 
 const Header = () => {
     return (

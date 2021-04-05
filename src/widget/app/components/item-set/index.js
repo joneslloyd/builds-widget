@@ -6,10 +6,10 @@ import SmallPurpleText from '../../styles/components/small-purple-text';
 
 const ItemSetStyles = styled(FlexCol)(({ leftSpace }) => [
     tw`w-auto`,
-    'large' === leftSpace ? tw`md:(ml-8)` : tw``,
-    'normal' === leftSpace ? tw`md:(ml-7)` : tw``,
-    'small' === leftSpace ? tw`md:(ml-5)` : tw``,
-    'very-small' === leftSpace ? tw`md:(ml-3)` : tw``,
+    'large' === leftSpace ? tw`ml-8` : tw``,
+    'normal' === leftSpace ? tw`ml-7` : tw``,
+    'small' === leftSpace ? tw`ml-5` : tw``,
+    'very-small' === leftSpace ? tw`ml-3` : tw``,
 ]);
 const ItemSetSmallPurpleText = tw(SmallPurpleText)`capitalize`;
 const ItemSetDisplayStyles = tw(FlexRow)`uppercase pt-1.5`;

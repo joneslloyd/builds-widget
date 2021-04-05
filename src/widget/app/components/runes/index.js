@@ -10,13 +10,14 @@ import RunesDisplay from '../../styles/components/runes-display';
 
 const RunesStyles = tw(FlexCol)`mr-0 xl:(mr-10 w-9/12)`;
 const RunesSmallWhiteText = tw(SmallWhiteText)`uppercase`;
-const RunesDisplayStyles = tw(RunesDisplay)`uppercase pt-2.5`;
+const RunesDisplayStyles = tw(RunesDisplay)`flex flex-col uppercase pt-2.5 md:(flex-row)`;
 const RuneGroup = styled(RunesDisplay)(({ leftSpace, line = false, loading = true }) => [
     tw`items-center relative bg-transparent!`,
-    'large' === leftSpace ? tw`xl:(ml-8)` : tw``,
-    'normal' === leftSpace ? tw`xl:(ml-7)` : tw``,
-    'small' === leftSpace ? tw`xl:(ml-6)` : tw``,
-    'very-small' === leftSpace ? tw`xl:(ml-3)` : tw``,
+    'large' === leftSpace ? tw`ml-8` : tw``,
+    'largeMd' === leftSpace ? tw`md:ml-8` : tw``,
+    'normal' === leftSpace ? tw`ml-7` : tw``,
+    'small' === leftSpace ? tw`ml-6` : tw``,
+    'very-small' === leftSpace ? tw`ml-3` : tw``,
     (true === loading && 'gold' === line) ? tw`before:(absolute z-0 inset-53p left-6 content block w-9/12 h-0.5 bg-widget-gold-line outline-widget-gold-outer-line animate-pulse)` : tw``,
     (false === loading && 'gold' === line) ? tw`before:(absolute z-0 inset-53p left-6 content block w-9/12 h-0.5 bg-widget-gold-line outline-widget-gold-outer-line)` : tw``,
     (true === loading && 'blue' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-blue-line outline-widget-blue-outer-line animate-pulse)` : tw``,
@@ -28,6 +29,9 @@ const RuneGroup = styled(RunesDisplay)(({ leftSpace, line = false, loading = tru
     (true === loading && 'purple' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-purple-line outline-widget-purple-outer-line animate-pulse)` : tw``,
     (false === loading && 'purple' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-purple-line outline-widget-purple-outer-line)` : tw``,
 ]);
+
+const FirstRuneGroup = tw(RuneGroup)`before:(w-8/12) md:(before:(w-9/12))`;
+const LastRuneGroups = tw.div`flex pt-2.5 md:(pt-0)`;
 
 const Runes = () => {
 
@@ -44,23 +48,25 @@ const Runes = () => {
             <RunesSmallWhiteText>Runes</RunesSmallWhiteText>
             <FlexRow>
                 <RunesDisplayStyles>
-                    <RuneGroup line={primaryLine} loading={loading}>
+                    <FirstRuneGroup line={primaryLine} loading={loading}>
                         <Rune id={primaryId} wh={36} rounded={false} />
                         <Rune id={iDs[0]} wh={48} rounded={false} leftSpace="smallest" />
                         <Rune id={iDs[1]} wh={32} rounded="full" gold={true} leftSpace="small" />
                         <Rune id={iDs[2]} wh={32} rounded="full" gold={true} leftSpace="large" />
                         <Rune id={iDs[3]} wh={32} rounded="full" gold={true} leftSpace="large" />
-                    </RuneGroup>
-                    <RuneGroup leftSpace="large" line={secondaryLine} loading={loading}>
-                        <Rune id={secondaryId} wh={36} rounded={false} />
-                        <Rune id={iDs[4]} wh={32} rounded="full" gold={true} leftSpace="large" />
-                        <Rune id={iDs[5]} wh={32} rounded="full" gold={true} leftSpace="large" />
-                    </RuneGroup>
-                    <RuneGroup leftSpace="small" loading={loading}>
-                        <Rune id={iDs[6]} wh={24} rounded="full" gold={true} borderWidth="1px" />
-                        <Rune id={iDs[7]} wh={24} rounded="full" gold={true} leftSpace="large" borderWidth="1px" />
-                        <Rune id={iDs[8]} wh={24} rounded="full" gold={true} leftSpace="large" borderWidth="1px" />
-                    </RuneGroup>
+                    </FirstRuneGroup>
+                    <LastRuneGroups>
+                        <RuneGroup leftSpace="largeMd" line={secondaryLine} loading={loading}>
+                            <Rune id={secondaryId} wh={36} rounded={false} />
+                            <Rune id={iDs[4]} wh={32} rounded="full" gold={true} leftSpace="normal" />
+                            <Rune id={iDs[5]} wh={32} rounded="full" gold={true} leftSpace="large" />
+                        </RuneGroup>
+                        <RuneGroup leftSpace="small" loading={loading}>
+                            <Rune id={iDs[6]} wh={24} rounded="full" gold={true} borderWidth="1px" />
+                            <Rune id={iDs[7]} wh={24} rounded="full" gold={true} leftSpace="large" borderWidth="1px" />
+                            <Rune id={iDs[8]} wh={24} rounded="full" gold={true} leftSpace="large" borderWidth="1px" />
+                        </RuneGroup>
+                    </LastRuneGroups>
                 </RunesDisplayStyles>
             </FlexRow>
         </RunesStyles>
