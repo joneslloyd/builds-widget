@@ -2,7 +2,8 @@
   "root": true,
   "parserOptions": {
     "ecmaVersion": 2019,
-    "sourceType": "module"
+    "sourceType": "module",
+    "allowImportExportEverywhere": true,
   },
   "ignorePatterns": [
     "/node_modules/*"

@@ -80,12 +80,40 @@ module.exports = (env) => {
           },
         },
         {
-          test: /\.(woff|woff2|ttf)$/,
+          test: /\.(woff|woff2|ttf|png|jp(e*)g|ico|gif|bmp|webp)$/,
           exclude: /(node_modules)/,
           use: {
             loader: 'file-loader?name=fonts/[name].[ext]',
+            options: {
+              name: () => {
+                if (NODE_ENV === 'development') {
+                  return '[path][name].[ext]';
+                }
+                return '[name]_[hash].[ext]';
+              },
+              outputPath: (url, resourcePath) => {
+
+                // To get relative path if needed we can use:
+                // const relativePath = path.relative(context, resourcePath);
+                // 'context' is the optional third parameter to this function (outputPath)
+
+                if (/\.(woff|woff2|ttf)$/.test(resourcePath)) {
+                  return `fonts/${url}`;
+                }
+
+                if (/\.(png|jp(e*)g|ico|gif|bmp|webp)$/.test(resourcePath)) {
+                  return `images/${url}`;
+                }
+
+                return `public_path/${url}`;
+              },
+            },
           },
         },
+        {
+          test: /\.svg$/,
+          use: ['preact-svg-loader'],
+        }
       ],
     },
     plugins,

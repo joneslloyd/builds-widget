@@ -7,8 +7,8 @@ import SmallWhiteText from '../../styles/components/small-white-text';
 
 const MoreBuildsStyles = tw(FlexRow)``;
 const MoreBuildsLoading = tw(SmallWhiteText)`ml-6`;
-const MoreBuildsSmallGoldText = tw(SmallWhiteText)`pl-6 flex items-center text-xs! font-medium text-widget-gold normal-case transition-all hover:text-widget-gold-light all:(transition-all fill-widget-gold) hover:(all:(fill-widget-gold-light))`;
-const MoreBuildsIconStyled = tw(MoreBuildsIcon)`ml-1.5`;
+const MoreBuildsSmallGoldText = tw(SmallWhiteText)`pl-6 flex items-center text-xs! font-medium text-widget-gold normal-case transition-all hover:text-widget-gold-light svg:all:(transition-all fill-widget-gold) hover:(svg:all:(fill-widget-gold-light))`;
+const MoreBuildsIconStyled = tw(MoreBuildsIcon)`ml-1.5 fill-widget-gold`;
 
 
 const MoreBuilds = () => {
