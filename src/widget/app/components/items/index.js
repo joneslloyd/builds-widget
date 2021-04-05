@@ -13,6 +13,7 @@ const ItemsSmallWhiteText = tw(SmallWhiteText)`uppercase`;
 const ItemsDisplayStyles = tw(ItemsDisplay)`flex flex-col w-full capitalize pt-2.5 pb-1 md:(flex-row)`;
 const ItemSetGroup = styled('div')(({ leftSpace = false, paddingTop = false }) => [
     tw`flex flex-row w-full md:(w-auto)`,
+    'small' === leftSpace ? tw`ml-5` : tw``,
     'largeMd' === leftSpace ? tw`md:(ml-8)` : tw``,
     'normalMd' === leftSpace ? tw`md:(ml-7)` : tw``,
     'smallMd' === leftSpace ? tw`md:(ml-5)` : tw``,
@@ -44,7 +45,7 @@ const Items = () => {
                         <ItemSet name={items[0].type} items={items[0].items} loading={loading} />
                         <ItemSet name={`${items[1].type} items`} items={items[1].items} loading={loading} leftSpace="small" />
                     </ItemSetGroup>
-                    <ItemSetGroup leftSpace="smallMd" paddingTop="smallMd">
+                    <ItemSetGroup leftSpace="smallMd" paddingTop="small">
                         <ItemSet name={`${items[2].type} items`} items={items[2].items} loading={loading} />
                         <ItemSet name={`${items[3].type} items`} items={items[3].items} loading={loading} leftSpace="small" />
                     </ItemSetGroup>

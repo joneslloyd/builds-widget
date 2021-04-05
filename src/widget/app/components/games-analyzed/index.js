@@ -7,8 +7,9 @@ import FlexRow from '../../styles/components/flex-row';
 import SmallPurpleText from '../../styles/components/small-purple-text';
 
 const GamesAnalyzedStyles = tw(FlexRow)``;
-const GamesAnalyzedSmallLightestPurpleText = tw(SmallPurpleText)`text-widget-purple-lightest pr-1.5 lowercase`;
-const GamesAnalyzedSmallPurpleText = tw(SmallPurpleText)`pl-1 normal-case`;
+const GamesAnalyzedSmallLightestPurpleText = tw(SmallPurpleText)`text-widget-purple-lightest lowercase pr-0.5 lg:(pr-1.5)`;
+const GamesAnalyzedSmallPurpleTextSmaller = tw(SmallPurpleText)`flex normal-case pl-0.5 lg:(hidden) lg:(pl-1)`;
+const GamesAnalyzedSmallPurpleTextLarger = tw(SmallPurpleText)`hidden normal-case pl-0.5 lg:(flex) lg:(pl-1)`;
 
 const GamesAnalyzed = () => {
 
@@ -22,7 +23,8 @@ const GamesAnalyzed = () => {
             <GamesAnalyzedSmallLightestPurpleText loading={loading}>2,031,593</GamesAnalyzedSmallLightestPurpleText>
             <FlexRow>
                 <PlatinumPlusIcon />
-                <GamesAnalyzedSmallPurpleText>Platinum+ games analyzed</GamesAnalyzedSmallPurpleText>
+                <GamesAnalyzedSmallPurpleTextSmaller>games analyzed</GamesAnalyzedSmallPurpleTextSmaller>
+                <GamesAnalyzedSmallPurpleTextLarger>Platinum+ games analyzed</GamesAnalyzedSmallPurpleTextLarger>
             </FlexRow>
         </GamesAnalyzedStyles>
     );
