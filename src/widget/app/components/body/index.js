@@ -1,8 +1,7 @@
 import Runes from '../runes';
 import Spells from '../spells';
 import Items from '../items';
-import SkillPriority from '../skill-priority';
-import SkillOrder from '../skill-order';
+import Skills from '../skills';
 import { championPosterImage } from '../../lib/helpers';
 import { useContext } from 'preact/hooks';
 import { BuildContext } from '../../lib/context';
@@ -42,8 +41,7 @@ const Body = () => {
                 <Items />
             </BodyRowCol>
             <BodyRowCol pt={true}>
-                <SkillPriority />
-                <SkillOrder />
+                <Skills />
             </BodyRowCol>
         </BodyStyles>
     );

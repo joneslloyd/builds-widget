@@ -8,21 +8,21 @@ import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
 import SmallWhiteText from '../../styles/components/small-white-text';
 
-const SkillPriorityStyles = tw(FlexCol)`mr-0 xl:(mr-10)`;
-const SkillPrioritySmallWhiteText = tw(SmallWhiteText)`uppercase`;
-const SkillPriorityRow = tw(FlexRow)`pt-2.5`;
+const CompactSkillPriorityStyles = tw(FlexCol)`mr-0 xl:(mr-10)`;
+const CompactSkillPrioritySmallWhiteText = tw(SmallWhiteText)`uppercase`;
+const CompactSkillPriorityRow = tw(FlexRow)`pt-2.5`;
 const RightArrowStyles = tw(RightArrow)`mx-2`;
 
-const SkillPriority = () => {
+const CompactSkillPriority = () => {
 
     const { squidexApiBuildData: { data: { championCommonInfo: [{ flatData: { abilities: abilitiesRaw = [] } = {} } = {}] = [] } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
     const abilities = abilitiesRaw.filter(a => a.flatData.activationKey !== 'PASSIVE');
     const loading = isLoading || abilities.length === 0;
 
     return (
-        <SkillPriorityStyles>
-            <SkillPrioritySmallWhiteText>Skill priority</SkillPrioritySmallWhiteText>
-            <SkillPriorityRow>
+        <CompactSkillPriorityStyles>
+            <CompactSkillPrioritySmallWhiteText>Skill priority</CompactSkillPrioritySmallWhiteText>
+            <CompactSkillPriorityRow>
                 {loading && (
                     <>
                         <SpellItem slug={false} wh={32} type="skill" />
@@ -54,9 +54,9 @@ const SkillPriority = () => {
                         </>
                     );
                 })}
-            </SkillPriorityRow>
-        </SkillPriorityStyles>
+            </CompactSkillPriorityRow>
+        </CompactSkillPriorityStyles>
     );
 };
 
-export default SkillPriority;
+export default CompactSkillPriority;
