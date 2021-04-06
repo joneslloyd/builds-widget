@@ -48,9 +48,6 @@ module.exports = {
             '7xl': '5rem',
         },
         extend: {
-            backgroundImage: theme => ({
-                'full-body': "url('/images/src/widget/app/images/background.svg')",
-            }),
             colors: {
                 mobalytics: {
                     light: 'hsl(253, 54%, 25%)',
@@ -79,13 +76,15 @@ module.exports = {
                     'R': 'hsla(338, 100%, 57%, 1)',
                 },
                 'widget-purple': {
-                    lightest: 'hsl(238, 24%, 76%)',
-                    light: 'hsl(248, 34%, 23%)',
-                    DEFAULT: 'hsl(248, 37%, 20%)',
-                    border: 'hsl(250, 37%, 29%)',
+                    lightest: 'hsla(238, 24%, 76%, 1)',
+                    light: 'hsla(248, 34%, 23%, 1)',
+                    'light-50': 'hsla(248, 34%, 23%, 0.5)',
+                    'light-65': 'hsla(248, 34%, 23%, 0.65)',
+                    DEFAULT: 'hsla(248, 37%, 20%, 1)',
+                    border: 'hsla(250, 37%, 29%, 1)',
                     overlay: `hsla(251, 29%, 36%, 1)`,
                     'skeleton-text': 'hsla(229, 24%, 63%, 1)',
-                    text: 'hsl(245, 14%, 47%)',
+                    text: 'hsla(245, 14%, 47%, 1)',
                     'line': 'hsla(233, 92%, 80%, 1)',
                     'outer-line': 'hsla(233, 92%, 80%, 0.4)',
                 },
