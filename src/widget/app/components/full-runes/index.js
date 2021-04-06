@@ -17,7 +17,7 @@ const FullRunesRuneGroup = styled(FullRunesDisplay)(({ leftSpace = false }) => [
     'normal' === leftSpace ? tw`mt-10 lg:(mt-0 ml-16)` : tw``,
 ]);
 const FullRunesTitle = tw('div')`flex flex-row items-center justify-center`;
-const FullRunesRuneTitle = tw('span')`text-widget-purple-full-runes-text capitalize text-sm font-black pl-2`;
+const FullRunesRuneTitle = tw(SmallWhiteText)`text-widget-purple-full-runes-text capitalize text-sm font-black ml-2`;
 const FullRunesBody = tw('div')`flex flex-col items-center pt-5`;
 const FullRunesBodyRow = styled('div')(({ topSpace = false, justifyContentSpaceBetween = false }) => [
     tw`flex flex-row w-full justify-center`,
@@ -45,11 +45,11 @@ const FullRunes = () => {
     })[0];
 
     //Primary rune title
-    const { title: { label: primaryTitle } = {}, slots: primarySlots } = primaryRuneSlot || {};
+    const { title: { label: primaryTitle = 'xxxxxxx' } = {}, slots: primarySlots } = primaryRuneSlot || {};
 
     //Primary rune slots
     const primaryRunes = primarySlots ? primarySlots.map((s, i) => {
-        const hasCircle = i !== 0;
+        const hasCircle = i !== 0 ? 'full' : false;
         const runes = s.map(r => {
             const hasRune = iDs.includes(r);
             return {
@@ -61,7 +61,44 @@ const FullRunes = () => {
             hasCircle,
             runes
         }
-    }) : false;
+    }) : [
+        {
+            runes: [
+                { rune: false },
+                { rune: false },
+                { rune: false },
+                { rune: false },
+            ],
+            hasCircle: false
+        },
+        {
+            runes: [
+                { rune: false },
+                { rune: false },
+                { rune: false },
+                { rune: false },
+            ],
+            hasCircle: 'full'
+        },
+        {
+            runes: [
+                { rune: false },
+                { rune: false },
+                { rune: false },
+                { rune: false },
+            ],
+            hasCircle: 'full'
+        },
+        {
+            runes: [
+                { rune: false },
+                { rune: false },
+                { rune: false },
+                { rune: false },
+            ],
+            hasCircle: 'full'
+        },
+    ];
 
     //Secondary rune data
     const secondaryRuneSlot = RunesSlotsMap.filter(r => {
@@ -70,7 +107,7 @@ const FullRunes = () => {
     })[0];
 
     //Secondary rune title
-    const { title: { label: secondaryTitle } = {}, slots: secondarySlots } = secondaryRuneSlot || {};
+    const { title: { label: secondaryTitle = 'xxxxxxx' } = {}, slots: secondarySlots } = secondaryRuneSlot || {};
 
     //Secondary rune slots
     const secondaryRunes = secondarySlots ? secondarySlots.map((s, i) => {
@@ -86,9 +123,47 @@ const FullRunes = () => {
             hasCircle,
             runes
         }
-    }) : false;
+    }) : [
+        {
+            runes: [
+                { rune: false },
+                { rune: false },
+                { rune: false },
+                { rune: false },
+            ],
+            hasCircle: 'full'
+        },
+        {
+            runes: [
+                { rune: false },
+                { rune: false },
+                { rune: false },
+                { rune: false },
+            ],
+            hasCircle: 'full'
+        },
+        {
+            runes: [
+                { rune: false },
+                { rune: false },
+                { rune: false },
+                { rune: false },
+            ],
+            hasCircle: 'full'
+        },
+        {
+            runes: [
+                { rune: false },
+                { rune: false },
+                { rune: false },
+                { rune: false },
+            ],
+            hasCircle: 'full'
+        },
+    ];
+    ;
 
-    const loading = isLoading || (!primaryId);
+    const loading = isLoading || (primaryTitle === 'xxxxxxx');
 
     return (
         <FullRunesStyles>
@@ -98,7 +173,7 @@ const FullRunes = () => {
                     <FullRunesRuneGroup>
                         <FullRunesTitle>
                             <Rune id={primaryId} wh={36} rounded={false} />
-                            <FullRunesRuneTitle>{primaryTitle}</FullRunesRuneTitle>
+                            <FullRunesRuneTitle loading={loading}>{primaryTitle}</FullRunesRuneTitle>
                         </FullRunesTitle>
                         <FullRunesBody>
                             {primaryRunes && primaryRunes.map((row, rowIndex) => {
@@ -128,7 +203,7 @@ const FullRunes = () => {
                     <FullRunesRuneGroup leftSpace="normal">
                         <FullRunesTitle>
                             <Rune id={secondaryId} wh={36} rounded={false} />
-                            <FullRunesRuneTitle>{secondaryTitle}</FullRunesRuneTitle>
+                            <FullRunesRuneTitle loading={loading}>{secondaryTitle}</FullRunesRuneTitle>
                         </FullRunesTitle>
                         <FullRunesBody>
                             {secondaryRunes && secondaryRunes.map((row, rowIndex) => {
