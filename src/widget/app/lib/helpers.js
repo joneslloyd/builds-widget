@@ -57,8 +57,8 @@ export const championPosterImage = (slug) => {
     return slug ? `${cdnUrl}/assets/lol/images/dd/champions/backgrounds/${slug.toLowerCase()}.jpg` : false;
 };
 
-export const RunesSlotsMap = {
-    Precision: {
+export const RunesSlotsMap = [
+    {
         title: {
             label: 'Precision',
             icon: 8000,
@@ -70,7 +70,7 @@ export const RunesSlotsMap = {
             [8014, 8017, 8299],
         ],
     },
-    Domination: {
+    {
         title: {
             label: 'Domination',
             icon: 8100,
@@ -82,7 +82,7 @@ export const RunesSlotsMap = {
             [8135, 8134, 8105, 8106],
         ],
     },
-    Sorcery: {
+    {
         title: {
             label: 'Sorcery',
             icon: 8200,
@@ -94,7 +94,7 @@ export const RunesSlotsMap = {
             [8237, 8232, 8236],
         ],
     },
-    Inspiration: {
+    {
         title: {
             label: 'Inspiration',
             icon: 8300,
@@ -106,7 +106,7 @@ export const RunesSlotsMap = {
             [8347, 8410, 8352],
         ],
     },
-    Resolve: {
+    {
         title: {
             label: 'Resolve',
             icon: 8400,
@@ -118,7 +118,7 @@ export const RunesSlotsMap = {
             [8451, 8453, 8242],
         ],
     },
-    Shards: {
+    {
         title: {
             label: 'Shards',
             icon: null,
@@ -129,4 +129,4 @@ export const RunesSlotsMap = {
             [5001, 5002, 5003],
         ],
     },
-};
+];

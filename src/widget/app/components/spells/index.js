@@ -1,13 +1,15 @@
 import SpellItem from '../spell-item';
 import { useContext } from 'preact/hooks';
 import { BuildContext } from '../../lib/context';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import FlexCol from '../../styles/components/flex-col';
 import FlexRow from '../../styles/components/flex-row';
 import SmallWhiteText from '../../styles/components/small-white-text';
 import SpellsDisplay from '../../styles/components/spells-display';
 
-const SpellsStyles = tw(FlexCol)`w-full pt-4 lg:(pt-5) xl:(pt-0)`;
+const SpellsStyles = styled(FlexCol)(() => [
+    tw`w-full pt-4 lg:(pt-5) xl:(pt-0)`
+]);
 const SpellsSmallWhiteText = tw(SmallWhiteText)`uppercase`;
 const SpellsDisplayStyles = tw(SpellsDisplay)`uppercase pt-3`;
 

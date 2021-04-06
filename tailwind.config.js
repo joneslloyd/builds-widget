@@ -48,24 +48,30 @@ module.exports = {
             '7xl': '5rem',
         },
         extend: {
+            backgroundPosition: {
+                'x183y-36': '183px -36px'
+            },
+            backgroundSize: {
+                'x100y100': '100% 100%'
+            },
             colors: {
                 mobalytics: {
-                    light: 'hsl(253, 54%, 25%)',
-                    DEFAULT: 'hsl(253, 54%, 15%)',
+                    light: 'hsla(253, 54%, 25%, 1)',
+                    DEFAULT: 'hsla(253, 54%, 15%, 1)',
                 },
                 'widget-blue': {
-                    DEFAULT: 'hsl(231, 90%, 80%)',
+                    DEFAULT: 'hsla(231, 90%, 80%, 1)',
                     'line': 'hsla(188, 44%, 51%, 1)',
                     'outer-line': 'hsla(188, 44%, 51%, 0.4)',
                 },
                 'widget-gold': {
-                    light: 'hsl(41, 43%, 70%)',
-                    DEFAULT: 'hsl(41, 43%, 55%)',
+                    light: 'hsla(41, 43%, 70%, 1)',
+                    DEFAULT: 'hsla(41, 43%, 55%, 1)',
                     'line': 'hsla(40, 45%, 61%, 1)',
                     'outer-line': 'hsla(40, 45%, 61%, 0.4)',
                 },
                 'widget-green': {
-                    DEFAULT: 'hsl(165, 72%, 45%)',
+                    DEFAULT: 'hsla(165, 72%, 45%, 1)',
                     'line': 'hsla(99, 48%, 68%, 1 )',
                     'outer-line': 'hsla(99, 48%, 68%, 0.4 )',
                 },
@@ -85,11 +91,12 @@ module.exports = {
                     overlay: `hsla(251, 29%, 36%, 1)`,
                     'skeleton-text': 'hsla(229, 24%, 63%, 1)',
                     text: 'hsla(245, 14%, 47%, 1)',
+                    'full-runes-text': 'hsla(238, 24%, 76%, 1)',
                     'line': 'hsla(233, 92%, 80%, 1)',
                     'outer-line': 'hsla(233, 92%, 80%, 0.4)',
                 },
                 'widget-red': {
-                    DEFAULT: 'hsl(355, 76%, 55%)',
+                    DEFAULT: 'hsla(355, 76%, 55%, 1)',
                     'line': 'hsla(360, 57%, 52%, 1)',
                     'outer-line': 'hsla(360, 57%, 52%, 0.4)',
                 },

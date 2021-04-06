@@ -6,7 +6,7 @@ import tw, { styled } from 'twin.macro';
 const RoundedGoldBorderStyles = tw(RoundedGoldBorder)``;
 const NoWrapStyles = tw.div``;
 
-const Rune = ({ id, wh = 32, rounded = false, gold = false, leftSpace = false, borderWidth = false }) => {
+const Rune = ({ id, wh = 32, rounded = false, gold = false, leftSpace = false, borderWidth = false, greyed = false }) => {
 
     const wrapComponents = {
         gold: RoundedGoldBorderStyles,
@@ -20,13 +20,17 @@ const Rune = ({ id, wh = 32, rounded = false, gold = false, leftSpace = false, b
         'small' === leftSpace ? tw`ml-2!` : tw``,
         'smaller' === leftSpace ? tw`ml-1!` : tw``,
         'smallest' === leftSpace ? tw`ml-0.5!` : tw``,
-        { width: `${wh}px`, height: `${wh}px` }
+        { width: `${wh}px`, height: `${wh}px` },
+        true === greyed && {
+            'opacity': '0.5',
+            'mix-blend-mode': 'luminosity'
+        },
     ]);
 
     const src = perkImage(id);
 
     return (
-        <WrapComponentStyles leftSpace={leftSpace} borderWidth={borderWidth}>
+        <WrapComponentStyles leftSpace={leftSpace} borderWidth={borderWidth} greyed={greyed}>
             <Image src={src} rounded={rounded} width={wh} height={wh} bgColor={false} leftSpace={leftSpace} />
         </WrapComponentStyles>
     );
