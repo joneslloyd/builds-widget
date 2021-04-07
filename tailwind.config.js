@@ -130,6 +130,9 @@ module.exports = {
             lineHeight: {
                 'line-4.5': '1.125',
             },
+            margin: {
+                '0-76': '0.19rem'
+            },
             width: {
                 '0.25': '0.0625rem',
             },
