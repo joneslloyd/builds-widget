@@ -10,7 +10,7 @@ const FullSkillOrderAbilities = ({ loading = true, abilities = [] }) => {
             {
                 loading && (
                     <>
-                        <SpellItem slug={false} wh={24} topSpace="normal" bottomSpace="small" type="skill" />
+                        <SpellItem slug={false} wh={24} topSpace="large" bottomSpace="small" type="skill" />
                         <SpellItem slug={false} wh={24} bottomSpace="small" type="skill" />
                         <SpellItem slug={false} wh={24} bottomSpace="small" type="skill" />
                         <SpellItem slug={false} wh={24} bottomSpace="small" type="skill" />
