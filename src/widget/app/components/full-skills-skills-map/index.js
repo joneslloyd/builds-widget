@@ -11,7 +11,9 @@ const FullSkillOrderContentSquareStyles = styled(ContentSquare)(({ leftSpace = f
 
 const FullSkillOrderSkillsMap = ({ skillMap: rawSkillMap = [], loading = true }) => {
 
-    const skillMap = rawSkillMap.filter(s => s !== 'R');
+    const skillMap = rawSkillMap.length > 0 ? rawSkillMap.filter(s => s !== 'R') : [
+        0, 1, 2
+    ];
 
     return (
         <FullSkillOrderSkillsMapStyles>
