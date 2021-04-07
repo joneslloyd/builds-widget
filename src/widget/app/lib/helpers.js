@@ -54,7 +54,7 @@ export const getSkillIcon = (slug) => {
 
 export const championPosterImage = (slug) => {
     const cdnUrl = getEnvVar('CDN_URL');
-    return slug ? `${cdnUrl}/assets/lol/images/dd/champions/backgrounds/${slug.toLowerCase()}.jpg` : false;
+    return slug ? `${cdnUrl}/assets/lol/images/dd/champions/backgrounds/${slug.toLowerCase().replace(/\s/g, '')}.jpg` : false;
 };
 
 export const RunesSlotsMap = [
