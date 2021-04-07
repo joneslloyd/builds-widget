@@ -14,15 +14,16 @@ const BodyStyles = styled('div')(({ layout = false, posterUrl = false }) => [
         [`@media (min-width: ${theme('screens.lg')})`]: {
             'background-repeat': 'no-repeat',
             'background-position': '183px -36px',
-            'background-size': '100% 100%',
+            'background-size': '100% auto',
             'background-image': `radial-gradient(circle at 61% 153px, ${theme('colors.widget-purple.light-65')}, ${theme('colors.widget-purple.light')} 30%), url('${posterUrl}')`,
         },
     },
 ]);
 
-const BodyRowCol = styled(FlexRow)(({ pt = false, layout = false }) => [
+const BodyRowCol = styled(FlexRow)(({ pt = false, layout = false, hiddenBelowMd = false }) => [
     true === pt ? tw`md:(pt-5) lg:(pt-7)` : tw``,
-    'full' === layout ? tw`p-3 flex-col items-start lg:(p-5) xl:(flex-row items-end)` : tw`p-3 flex-col items-start lg:(p-5) xl:(flex-row)`
+    'full' === layout ? tw`p-3 flex-col items-start lg:(p-5) xl:(flex-row items-end)` : tw`p-3 flex-col items-start lg:(p-5) xl:(flex-row)`,
+    true === hiddenBelowMd ? tw`hidden md:(flex)` : tw``,
 ]);
 
 const Body = () => {
@@ -40,7 +41,7 @@ const Body = () => {
             <BodyRowCol pt={true}>
                 <Items />
             </BodyRowCol>
-            <BodyRowCol pt={true}>
+            <BodyRowCol pt={true} hiddenBelowMd={'full' === layout}>
                 <Skills />
             </BodyRowCol>
         </BodyStyles>

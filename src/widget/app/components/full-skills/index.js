@@ -1,11 +1,11 @@
 import FullSkillOrderSkillsMap from '../full-skills-skills-map';
+import FullSkillOrderDisplay from '../full-skill-order-display';
 import { useContext } from 'preact/hooks';
 import { BuildContext } from '../../lib/context';
 import tw, { styled } from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
 import SmallWhiteText from '../../styles/components/small-white-text';
-import FullSkillOrderDisplay from '../skill-order-display';
 
 const FullSkillOrderStyles = tw(FlexCol)`hidden md:(flex pt-4) lg:(pt-5) xl:(pt-0)`;
 const FullSkillOrderSmallWhiteText = tw(SmallWhiteText)`uppercase`;
@@ -33,7 +33,7 @@ const FullSkills = () => {
                 <FullSkillOrderSkillsMap skillMap={skillMap} loading={loading} />
             </FullSkillOrderRow>
             <FullSkillOrderRow pt="normal">
-                <FullSkillOrderDisplay skillMap={skillMap} skillOrder={skillOrder} loading={loading} />
+                <FullSkillOrderDisplay abilities={abilities} skillOrder={skillOrder} skillMap={skillMap} loading={loading} />
             </FullSkillOrderRow>
         </FullSkillOrderStyles>
     );

@@ -4,7 +4,7 @@ import tw from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
 import SmallWhiteText from '../../styles/components/small-white-text';
-import CompactSkillOrderDisplay from '../skill-order-display';
+import CompactSkillOrderDisplay from '../compact-skill-order-display';
 
 const CompactSkillOrderStyles = tw(FlexCol)`hidden md:(flex pt-4) lg:(pt-5) xl:(pt-0)`;
 const CompactSkillOrderSmallWhiteText = tw(SmallWhiteText)`uppercase`;
