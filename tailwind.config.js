@@ -133,6 +133,10 @@ module.exports = {
             margin: {
                 '0-76': '0.19rem'
             },
+            minHeight: {
+                '808': '808px',
+                '914': '914px',
+            },
             width: {
                 '0.25': '0.0625rem',
             },
