@@ -6,6 +6,7 @@ import FlexCol from '../../styles/components/flex-col';
 import FlexRow from '../../styles/components/flex-row';
 import SmallWhiteText from '../../styles/components/small-white-text';
 import SpellsDisplay from '../../styles/components/spells-display';
+import { SummonerSpellTooltipWrapper } from '../tooltips/summoner-spell-tooltip-wrapper';
 
 const SpellsStyles = styled(FlexCol)(() => [
     tw`w-full pt-4 lg:(pt-5) xl:(pt-0)`
@@ -30,6 +31,9 @@ const Spells = () => {
         }
     ];
 
+    const firstSlug = spellData[0].flatData.slug;
+    const secondSlug = spellData[1].flatData.slug;
+
     const loading = isLoading || (0 === spells.length || 0 === squidexSpells.length);
 
     return (
@@ -37,8 +41,12 @@ const Spells = () => {
             <SpellsSmallWhiteText>Spells</SpellsSmallWhiteText>
             <FlexRow>
                 <SpellsDisplayStyles>
-                    <SpellItem slug={spellData[0].flatData.slug} type="spell" />
-                    <SpellItem slug={spellData[1].flatData.slug} type="spell" leftSpace="small" />
+                    <SummonerSpellTooltipWrapper slug={firstSlug}>
+                        <SpellItem slug={firstSlug} type="spell" />
+                    </SummonerSpellTooltipWrapper>
+                    <SummonerSpellTooltipWrapper slug={secondSlug}>
+                        <SpellItem slug={secondSlug} type="spell" leftSpace="small" />
+                    </SummonerSpellTooltipWrapper>
                 </SpellsDisplayStyles>
             </FlexRow>
         </SpellsStyles>

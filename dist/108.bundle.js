@@ -1,2 +1,2 @@
-(self.webpackChunkmobalytics_builds_widget=self.webpackChunkmobalytics_builds_widget||[]).push([[108],{108:(s,e,i)=>{"use strict";i.r(e),i.d(e,{default:()=>a});const a=i.p+"images/src/widget/app/images/background.svg"}}]);
+(self.webpackChunkmobalytics_builds_widget=self.webpackChunkmobalytics_builds_widget||[]).push([[108],{2108:(s,e,i)=>{"use strict";i.r(e),i.d(e,{default:()=>a});const a=i.p+"images/src/widget/app/images/background.svg"}}]);
 //# sourceMappingURL=108.bundle.js.map

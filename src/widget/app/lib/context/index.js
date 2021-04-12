@@ -1,6 +1,7 @@
 import { createContext } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 import { getDataApiData, getSquidexApiData } from '../data';
+import { addTooltip, getTooltip, setTooltipsLoading, setTooltipsError } from '../tooltips';
 
 export const BuildContext = createContext(null);
 
@@ -23,6 +24,13 @@ const Context = ({ children, champion = 'amumu', layout = 'full' }) => {
     //General "loading" flag for both
     const [loading, setLoading] = useState(false);
 
+    //Tooltips
+    const [tooltips, setTooltips] = useState({
+        tooltips: [],
+        loading: false,
+        error: false,
+    });
+
     const store = {
         layout,
         dataApiBuildData,
@@ -30,7 +38,13 @@ const Context = ({ children, champion = 'amumu', layout = 'full' }) => {
         squidexApiBuildData,
         setSquidexApiBuildData,
         loading,
-        setLoading
+        setLoading,
+        tooltips,
+        setTooltips,
+        addTooltip,
+        getTooltip,
+        setTooltipsLoading,
+        setTooltipsError
     };
 
     useEffect(() => {

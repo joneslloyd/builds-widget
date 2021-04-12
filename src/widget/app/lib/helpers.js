@@ -130,3 +130,44 @@ export const RunesSlotsMap = [
         ],
     },
 ];
+
+export function firstItem(list) {
+    return list?.length ? list[0] || null : null;
+}
+
+export function secondItem(list) {
+    if (list && list.length > 1) {
+        return list[1];
+    }
+    return null;
+}
+
+export function isDef(value) {
+    return value !== null && value !== undefined;
+}
+
+export function isDefAndNotEmpty(value) {
+    return !!(value && value.length);
+}
+
+export function isDefAndMoreThenZero(value) {
+    return isDef(value) && value > 0;
+}
+
+const allowedTags = ['li', 'br', 'div', 'span', 'i', 'a', 'font'];
+
+/**
+ * Replaces tags like rarityMythic to raritymythic, camle case tags are not stylable
+ * @param markdown
+ */
+export const processCustomHtmlTags = (markdown) => {
+    return markdown.replace(
+        /<(\/?)([a-z-]+)([\s>])/gi,
+        (match, closeTagSymbol, tagName, closeMatchSymbol) => {
+            if (!allowedTags.includes(tagName)) {
+                return closeTagSymbol ? `</div${closeMatchSymbol}` : `<div class="custom ${tagName}"${closeMatchSymbol}`;
+            }
+            return match;
+        }
+    );
+}

@@ -424,3 +424,30 @@ export const SQUIDEX_API_CHAMPION_QUERY = `
         __typename
     }
 `;
+
+export const SPELL_BY_SLUG = `
+    query LolSummonerSpellBySlug($filter: String!) {
+        spells: querySummonersSpellsV1Contents(filter: $filter) {
+            flatData {
+                ...SummonerSpellFragment
+                __typename
+            }
+            __typename
+        }
+    }
+
+    fragment SummonerSpellFragment on SummonersSpellsV1DataFlatDto {
+        riotId
+        slug
+        name
+        description
+        tooltip
+        stats {
+            slug
+            name
+            value
+            __typename
+        }
+        __typename
+    }
+`;

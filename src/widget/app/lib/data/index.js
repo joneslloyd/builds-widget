@@ -1,5 +1,7 @@
 import { dataApiClient, squidexApiClient } from '../graphql/client';
-import { DATA_API_CHAMPION_QUERY, SQUIDEX_API_CHAMPION_QUERY } from '../graphql/queries';
+import { DATA_API_CHAMPION_QUERY, SQUIDEX_API_CHAMPION_QUERY, SPELL_BY_SLUG } from '../graphql/queries';
+import { setTooltipsLoading, setTooltipsError, addTooltip } from '../tooltips';
+import { firstItem } from '../helpers';
 
 export const getDataApiData = (champion, buildData, setBuildData, loading, setLoading) => {
 
@@ -60,5 +62,19 @@ export const getSquidexApiData = (champion, buildData, setBuildData, loading, se
             error: error ? error : false
         });
         setLoading(false);
+    });
+};
+
+export const getSquidexTooltipBySlug = (identifier, tooltips, setTooltips) => {
+
+    //Set loading
+    setTooltipsLoading(true, tooltips, setTooltips);
+
+    //Get the data
+    return squidexApiClient.query(SPELL_BY_SLUG, {
+        filter: `data/slug/iv eq '${identifier}' `,
+    }).toPromise().then(result => {
+
+        return result;
     });
 };

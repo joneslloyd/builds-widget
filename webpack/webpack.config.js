@@ -120,7 +120,11 @@ module.exports = (env) => {
           test: /\.svg$/,
           exclude: /background\.svg$/,
           use: ['preact-svg-loader'],
-        }
+        },
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
       ],
     },
     plugins,
@@ -151,7 +155,9 @@ module.exports = (env) => {
     },
     resolve: {
       alias: {
-        process: require.resolve('process')
+        process: require.resolve('process'),
+        react: 'preact/compat',
+        'react-dom': 'preact/compat'
       },
       fallback: {
         fs: false,
