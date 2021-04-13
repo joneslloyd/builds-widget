@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import tw from 'twin.macro';
 import ContentSquareStyles from '../../styles/components/content-square';
 
@@ -12,4 +13,4 @@ const LetterOverlay = ({ letter = false, wh = 16, children, loading = true }) =>
     );
 };
 
-export default LetterOverlay;
+export default memo(LetterOverlay);

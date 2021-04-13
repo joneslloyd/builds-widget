@@ -1,7 +1,8 @@
+import { memo } from 'preact/compat';
+import { useDataApi } from '../../lib/context/data-api';
+import { useSquidexApi } from '../../lib/context/squidex-api';
 import RoundedGoldBorder from '../rounded-gold-border';
 import Image from '../image';
-import { useContext } from 'preact/hooks';
-import { BuildContext } from '../../lib/context';
 import { championImage } from '../../lib/helpers';
 import tw from 'twin.macro';
 
@@ -9,7 +10,9 @@ const AvatarStyles = tw.div`flex`;
 
 const Avatar = () => {
 
-    const { dataApiBuildData: { data: { lol: { champion: { build: { championSlug = '' } = {} } = {} } = {} } = {} } = {}, squidexApiBuildData: { data: squidexData = {} } } = useContext(BuildContext);
+    const { daData: { data: { lol: { champion: { build: { championSlug = '' } = {} } = {} } = {} } = {} } = {} } = useDataApi();
+    const { sqData: { data: squidexData = {} } } = useSquidexApi();
+
     const { championCommonInfo = [] } = squidexData;
     const { flatData: { name = '', title = '' } = {} } = championCommonInfo[0] || {};
 
@@ -28,4 +31,4 @@ const Avatar = () => {
     );
 };
 
-export default Avatar;
+export default memo(Avatar);

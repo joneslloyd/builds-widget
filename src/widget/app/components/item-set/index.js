@@ -31,11 +31,11 @@ const ItemSet = ({ name, items, loading = true, leftSpace = false }) => {
                     )}
                     {!loading && items.map((c, i) => {
                         const leftSpace = 0 === i ? false : 'small';
-
+                        const key = `${c}-${i}`;
                         // ❗️We're intentionally only showing THREE here❗️
                         if (i < 3) {
                             return (
-                                <SpellItem slug={c} key={c} leftSpace={leftSpace} />
+                                <SpellItem slug={c} key={key} leftSpace={leftSpace} />
                             );
                         }
                     })}

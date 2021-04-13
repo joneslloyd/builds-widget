@@ -1,12 +1,14 @@
+import { memo } from 'preact/compat';
+import { useMemo } from 'preact/hooks';
+import { useSquidexApi } from '../../lib/context/squidex-api';
 import Runes from '../runes';
 import Spells from '../spells';
 import Items from '../items';
 import Skills from '../skills';
 import { championPosterImage } from '../../lib/helpers';
-import { useContext } from 'preact/hooks';
-import { BuildContext } from '../../lib/context';
 import tw, { styled, theme } from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
+import { useStaticGlobalProps } from '../../lib/context/static-global-props';
 
 const BodyStyles = styled('div')(({ layout = false, posterUrl = false }) => [
     tw`flex flex-col bg-transparent divide-y divide-widget-white-line`,
@@ -28,9 +30,14 @@ const BodyRowCol = styled(FlexRow)(({ pt = false, layout = false, hiddenBelowMd 
 
 const Body = () => {
 
-    const { squidexApiBuildData: { data: { championCommonInfo = [] } = {} }, layout = 'compact', loading = true } = useContext(BuildContext);
+    const { sqData: { data: { championCommonInfo = [] } = {} } } = useSquidexApi();
+    const { layout } = useStaticGlobalProps();
+
     const { flatData: { name = '' } = {} } = championCommonInfo[0] || {};
-    const posterUrl = championPosterImage(name);
+
+    const posterUrl = useMemo(() => {
+        return championPosterImage(name);
+    }, [name]);
 
     return (
         <BodyStyles layout={layout} posterUrl={posterUrl}>
@@ -48,4 +55,4 @@ const Body = () => {
     );
 };
 
-export default Body;
+export default memo(Body);

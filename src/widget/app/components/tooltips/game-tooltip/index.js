@@ -3,8 +3,10 @@ import tw, { styled } from 'twin.macro';
 import { GameItemTooltipRichText } from '../base-tooltip-rich-text';
 import { BaseTooltipWrapper } from '../../../styles/components/base-tooltip-wrapper';
 
-export const GameTooltop = props => {
+export const GameTooltip = props => {
+
   const { iconUrl, name, description, className } = props;
+
   return (
     <ItemWrapper className={className}>
       <ItemHeader>
@@ -41,4 +43,4 @@ const ItemTitle = styled('div')(() => [
   }
 ]);
 
-export const GameTooltopEmpty = tw(ItemWrapper)`h-4 opacity-0`;
+export const GameTooltipEmpty = tw(ItemWrapper)`h-4 opacity-0`;

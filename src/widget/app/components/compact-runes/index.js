@@ -1,7 +1,9 @@
+import { memo } from 'preact/compat';
+import { useDataApi } from '../../lib/context/data-api';
+import { useLoading } from '../../lib/context/loading';
+import { useCallback } from 'preact/hooks';
 import Rune from '../rune';
 import { getLineColorFromIcon } from '../../lib/helpers';
-import { useContext } from 'preact/hooks';
-import { BuildContext } from '../../lib/context';
 import tw, { styled } from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
@@ -35,11 +37,22 @@ const LastRuneGroups = tw.div`flex pt-2.5 md:(pt-0)`;
 
 const CompactRunes = () => {
 
-    const { dataApiBuildData: { data: { lol: { champion: { build: { perks = {} } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
+    const { data: { data: { lol: { champion: { build: { perks = {} } = {} } = {} } = {} } = {} } = {} } = useDataApi();
+    const { loading: isLoading = true } = useLoading();
+
     const { IDs: iDs = [], style: primaryId = false, subStyle: secondaryId = false } = perks;
 
-    const primaryLine = getLineColorFromIcon(primaryId);
-    const secondaryLine = getLineColorFromIcon(secondaryId);
+    const getPrimaryLine = useCallback(() => {
+        return getLineColorFromIcon(primaryId);
+    }, [primaryId]);
+
+    const primaryLine = getPrimaryLine();
+
+    const getSecondaryLine = useCallback(() => {
+        return getLineColorFromIcon(secondaryId);
+    }, [secondaryId]);
+
+    const secondaryLine = getSecondaryLine();
 
     const loading = isLoading || (!primaryId);
 
@@ -73,4 +86,4 @@ const CompactRunes = () => {
     );
 };
 
-export default CompactRunes;
+export default memo(CompactRunes);

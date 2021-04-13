@@ -1,5 +1,6 @@
-import { useContext } from 'preact/hooks';
-import { BuildContext } from '../../lib/context';
+import { memo } from 'preact/compat';
+import { useSquidexApi } from '../../lib/context/squidex-api';
+import { useLoading } from '../../lib/context/loading';
 import tw from 'twin.macro';
 import NormalText from '../../styles/components/normal-text';
 
@@ -7,7 +8,9 @@ const NameStyles = tw.div`flex`;
 
 const Name = () => {
 
-    const { squidexApiBuildData: { data: { championCommonInfo = [] } = {} }, loading = true } = useContext(BuildContext);
+    const { sqData: { data: { championCommonInfo = [] } = {} } } = useSquidexApi();
+    const { loading = true } = useLoading();
+
     const { flatData: { name = '' } = {} } = championCommonInfo[0] || {};
 
     const isLoading = loading || !name;
@@ -21,4 +24,4 @@ const Name = () => {
     );
 };
 
-export default Name;
+export default memo(Name);

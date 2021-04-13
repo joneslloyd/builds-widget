@@ -1,6 +1,7 @@
+import { memo } from 'preact/compat';
+import { useDataApi } from '../../lib/context/data-api';
+import { useLoading } from '../../lib/context/loading';
 import ItemSet from '../item-set';
-import { useContext } from 'preact/hooks';
-import { BuildContext } from '../../lib/context';
 import tw, { styled } from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
@@ -22,12 +23,14 @@ const Items = () => {
         type: 'items',
         items: []
     };
-    const { dataApiBuildData: { data: { lol: { champion: { build: { items = [
+
+    const { daData: { data: { lol: { champion: { build: { items = [
         dummyData,
         dummyData,
         dummyData,
         dummyData,
-    ] } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
+    ] } = {} } = {} } = {} } = {} } = {} } = useDataApi();
+    const { loading: isLoading = true } = useLoading();
 
     const loading = isLoading || items[0].items.length === 0;
 
@@ -50,4 +53,4 @@ const Items = () => {
     );
 };
 
-export default Items;
+export default memo(Items);

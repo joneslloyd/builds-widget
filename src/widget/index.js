@@ -1,8 +1,14 @@
 import habitat from 'preact-habitat';
 import GlobalStyles from './app/styles/global-styles';
 import App from './app';
-import Context from './app/lib/context'
+import AppProvider from './app/lib/context'
 import { setup } from 'goober';
+
+if (process.env.NODE_ENV === 'development') {
+    // Must use require here as import statements are only allowed
+    // to exist at top-level.
+    require("preact/debug");
+}
 
 /* eslint-disable no-undef */
 setup(h);
@@ -11,10 +17,10 @@ const Widget = (props) => {
 
     return (
         <>
-            <Context {...props}>
+            <AppProvider {...props}>
                 <GlobalStyles />
                 <App />
-            </Context>
+            </AppProvider>
         </>
     );
 };

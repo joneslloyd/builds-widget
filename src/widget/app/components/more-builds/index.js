@@ -1,6 +1,7 @@
+import { memo } from 'preact/compat';
+import { useSquidexApi } from '../../lib/context/squidex-api';
+import { useLoading } from '../../lib/context/loading';
 import MoreBuildsIcon from '../more-builds-icon';
-import { useContext } from 'preact/hooks';
-import { BuildContext } from '../../lib/context';
 import tw from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
 import SmallWhiteText from '../../styles/components/small-white-text';
@@ -13,7 +14,9 @@ const MoreBuildsIconStyled = tw(MoreBuildsIcon)`ml-1.5 fill-widget-gold`;
 
 const MoreBuilds = () => {
 
-    const { squidexApiBuildData: { data: { championCommonInfo = [] } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
+    const { sqData: { data: { championCommonInfo = [] } = {} } = {} } = useSquidexApi();
+    const { loading: isLoading = true } = useLoading();
+
     const { flatData: { name = 'xxxx', slug = '' } = {} } = championCommonInfo[0] || {};
 
     const moreBuildsLinkText = `See more ${name} builds`;
@@ -33,4 +36,4 @@ const MoreBuilds = () => {
     );
 };
 
-export default MoreBuilds;
+export default memo(MoreBuilds);

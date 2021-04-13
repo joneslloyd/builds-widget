@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import Image from '../image';
 import { summonerSpellIcon, gameItemIcon, getSkillIcon } from '../../lib/helpers';
 import tw, { styled } from 'twin.macro';
@@ -34,4 +35,4 @@ const SpellItem = ({ slug, wh = 36, type = 'item', leftSpace = false, bottomSpac
     );
 };
 
-export default SpellItem;
+export default memo(SpellItem);

@@ -1,5 +1,6 @@
-import { useContext } from 'preact/hooks';
-import { BuildContext } from '../../lib/context';
+import { memo } from 'preact/compat';
+import { useDataApi } from '../../lib/context/data-api';
+import { useLoading } from '../../lib/context/loading';
 import { commaNumber } from '../../lib/helpers';
 import tw from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
@@ -12,7 +13,9 @@ const MatchesSmallWhiteText = tw(SmallWhiteText)``;
 
 const Matches = () => {
 
-    const { dataApiBuildData: { data: { lol: { champion: { build: { stats: { matchCount: matchCountRaw = 'x,xxx' } = {} } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
+    const { daData: { data: { lol: { champion: { build: { stats: { matchCount: matchCountRaw = 'x,xxx' } = {} } = {} } = {} } = {} } = {} } = {} } = useDataApi();
+    const { loading: isLoading = true } = useLoading();
+
     const matchCount = 'x,xxx' !== matchCountRaw ? commaNumber(matchCountRaw) : matchCountRaw;
 
     const loading = isLoading || ('x,xxx' === matchCountRaw || !matchCount);
@@ -24,4 +27,4 @@ const Matches = () => {
     );
 };
 
-export default Matches;
+export default memo(Matches);

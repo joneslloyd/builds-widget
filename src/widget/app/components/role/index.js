@@ -1,5 +1,6 @@
-import { useContext } from 'preact/hooks';
-import { BuildContext } from '../../lib/context';
+import { memo } from 'preact/compat';
+import { useDataApi } from '../../lib/context/data-api';
+import { useLoading } from '../../lib/context/loading';
 import { rolenameIcon } from '../../lib/helpers';
 import Image from '../image';
 import tw from 'twin.macro';
@@ -11,7 +12,8 @@ const RoleSmallPurpleText = tw(SmallPurpleText)`ml-1.5!`;
 
 const Role = () => {
 
-    const { dataApiBuildData: { data: { lol: { champion: { build: { role: rawRole = 'XXX' } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
+    const { daData: { data: { lol: { champion: { build: { role: rawRole = 'XXX' } = {} } = {} } = {} } = {} } = {} } = useDataApi();
+    const { loading: isLoading = true } = useLoading();
 
     const role = 'ADC' === rawRole ? 'bot' : rawRole.toLowerCase();
     const roleIcon = rolenameIcon(rawRole);
@@ -26,4 +28,4 @@ const Role = () => {
     );
 };
 
-export default Role;
+export default memo(Role);

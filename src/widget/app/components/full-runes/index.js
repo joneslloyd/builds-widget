@@ -1,6 +1,7 @@
+import { memo } from 'preact/compat';
+import { useDataApi } from '../../lib/context/data-api';
+import { useLoading } from '../../lib/context/loading';
 import FullRunesRuneGroup from '../full-runes-rune-group';
-import { useContext } from 'preact/hooks';
-import { BuildContext } from '../../lib/context';
 import tw from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
@@ -14,7 +15,8 @@ const FullRunesDisplayStyles = tw(FullRunesDisplay)`flex uppercase pt-2.5 flex-c
 
 const FullRunes = () => {
 
-    const { dataApiBuildData: { data: { lol: { champion: { build: { perks = {} } = {} } = {} } = {} } = {} } = {}, loading = true } = useContext(BuildContext);
+    const { daData: { data: { lol: { champion: { build: { perks = {} } = {} } = {} } = {} } = {} } = {} } = useDataApi();
+    const { loading = true } = useLoading();
     const { IDs: iDs = [], style: primaryId = false, subStyle: secondaryId = false } = perks;
 
     return (
@@ -30,4 +32,4 @@ const FullRunes = () => {
     );
 };
 
-export default FullRunes;
+export default memo(FullRunes);

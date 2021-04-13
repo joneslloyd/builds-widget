@@ -4,6 +4,7 @@ import Markdown from 'preact-markdown';
 
 export const RichText = memo(props => {
   const { markdownText, children, className } = props;
+  console.log(markdownText)
   return (
     <Wrapper className={className}>
       {markdownText && <Markdown markdown={markdownText} />}

@@ -1,5 +1,8 @@
-import { useContext } from 'preact/hooks';
-import { BuildContext } from '../../lib/context';
+import { memo } from 'preact/compat';
+import { useMemo } from 'preact/hooks';
+import { useDataApi } from '../../lib/context/data-api';
+import { useSquidexApi } from '../../lib/context/squidex-api';
+import { useLoading } from '../../lib/context/loading';
 import tw from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
@@ -12,13 +15,20 @@ const CompactSkillOrderRow = tw(FlexRow)`pt-3`;
 
 const CompactSkillOrder = () => {
 
-    const { dataApiBuildData: { data: { lol: { champion: { build: { skillOrder = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17] } = {} } = {} } = {} } = {} } = {}, squidexApiBuildData: { data: { championCommonInfo: [{ flatData: { abilities: abilitiesRaw = [] } = {} } = {}] = [] } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
+    const { daData: { data: { lol: { champion: { build: { skillOrder = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17] } = {} } = {} } = {} } = {} } = {} } = useDataApi();
+    const { sqData: { data: { championCommonInfo: [{ flatData: { abilities: abilitiesRaw = [] } = {} } = {}] = [] } = {} } = {} } = useSquidexApi();
+    const { loading: isLoading = true } = useLoading();
 
-    const abilities = abilitiesRaw.filter(a => a.flatData.activationKey !== 'PASSIVE') || [];
-    const skillMap = abilities.length > 0 ? abilities.reduce((a, i) => {
-        a.push(i.flatData.activationKey);
-        return a;
-    }, []) : [];
+    const abilities = useMemo(() => {
+        return abilitiesRaw.filter(a => a.flatData.activationKey !== 'PASSIVE') || [];
+    }, [abilitiesRaw]);
+
+    const skillMap = useMemo(() => {
+        return abilities.length > 0 ? abilities.reduce((a, i) => {
+            a.push(i.flatData.activationKey);
+            return a;
+        }, []) : []
+    }, [abilities]);
 
     const loading = isLoading || (skillMap.length === 0);
 
@@ -33,4 +43,4 @@ const CompactSkillOrder = () => {
     );
 };
 
-export default CompactSkillOrder;
+export default memo(CompactSkillOrder);

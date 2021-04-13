@@ -1,38 +1,44 @@
+import { memo } from 'preact/compat';
+import { useCallback, useState, useEffect } from 'preact/hooks';
 import { summonerSpellIcon } from '../../../lib/helpers';
-import { useContext, useState, useEffect } from 'preact/hooks';
-import { BuildContext } from '../../../lib/context';
+import { useTooltips } from '../../../lib/context/tooltips';
 import { maybeFetchTooltip } from '../../../lib/tooltips';
 import {
-    GameTooltop,
-    GameTooltopEmpty,
+    GameTooltip,
+    GameTooltipEmpty,
 } from '../game-tooltip';
 
 export const SummonerSpellTooltip = ({ slug = false }) => {
 
-    const { tooltips, setTooltips } = useContext(BuildContext);
-    const [tooltip, setTooltip] = useState(false);
+    const { ttData, setTtData } = useTooltips();
+    const [mounted, setMounted] = useState(false);
+    const [localTooltip, setLocalTooltip] = useState(false);
 
-    useEffect(() => {
-        //Get the tooltip
-        const doTooltip = async () => {
-            const tooltip = await maybeFetchTooltip(slug, tooltips, setTooltips);
-            setTooltip(tooltip);
-        };
-
+    //Get the tooltip
+    const doTooltip = useCallback(async () => {
         //Only get it if there's a slug set
         if (slug) {
-            doTooltip();
+            const ttRes = await maybeFetchTooltip(slug, ttData, setTtData);
+            if (ttRes) {
+                setLocalTooltip(ttRes);
+            }
         }
     }, [slug]);
 
-    return tooltip ? (
-        <GameTooltop
-            name={tooltip.name}
-            iconName={tooltip.name}
+    useEffect(async () => {
+        await doTooltip();
+    }, [slug]);
+
+    return localTooltip ? (
+        <GameTooltip
+            name={localTooltip.name}
+            iconName={localTooltip.name}
             iconUrl={summonerSpellIcon(slug)}
-            description={tooltip.description}
+            description={localTooltip.description}
         />
     ) : (
-        <GameTooltopEmpty />
+        <GameTooltipEmpty />
     );
 };
+
+export default memo(SummonerSpellTooltip);

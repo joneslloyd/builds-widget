@@ -1,5 +1,6 @@
-import { useContext } from 'preact/hooks';
-import { BuildContext } from '../../lib/context';
+import { memo } from 'preact/compat';
+import { useDataApi } from '../../lib/context/data-api';
+import { useLoading } from '../../lib/context/loading';
 import tw from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
 import SmallPurpleText from '../../styles/components/small-purple-text';
@@ -11,7 +12,8 @@ const PatchSmallWhiteText = tw(SmallWhiteText)``;
 
 const Patch = () => {
 
-    const { dataApiBuildData: { data: { lol: { champion: { build: { patch = 'xx.x' } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
+    const { daData: { data: { lol: { champion: { build: { patch = 'xx.x' } = {} } = {} } = {} } = {} } = {} } = useDataApi();
+    const { loading: isLoading = true } = useLoading();
 
     const loading = isLoading || ('xx.x' === patch || !patch);
 
@@ -23,4 +25,4 @@ const Patch = () => {
     );
 };
 
-export default Patch;
+export default memo(Patch);

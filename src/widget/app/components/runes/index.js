@@ -1,10 +1,10 @@
+import { memo } from 'preact/compat';
+import { useStaticGlobalProps } from '../../lib/context/static-global-props';
 import { useState, useEffect, useRef } from 'preact/hooks';
-import { useContext } from 'preact/hooks';
-import { BuildContext } from '../../lib/context';
 
 const Runes = (props) => {
 
-    const { layout = 'compact' } = useContext(BuildContext);
+    const { layout } = useStaticGlobalProps();
     const RunesDisplayRef = useRef(null);
     const [loading, setLoading] = useState(false);
 
@@ -33,4 +33,4 @@ const Runes = (props) => {
     }
 };
 
-export default Runes;
+export default memo(Runes);

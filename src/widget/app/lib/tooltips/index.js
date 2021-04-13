@@ -2,8 +2,7 @@ import { getSquidexTooltipBySlug } from '../data';
 import { firstItem } from '../helpers';
 
 export const toolTipAlreadyFetched = (tooltip, by = 'slug', tooltips) => {
-
-    return !!tooltips?.tooltips.find(t => t[by] === tooltip[by]) || false;
+    return typeof tooltips?.tooltips.find(t => t[by] === tooltip[by]) !== 'undefined';
 };
 
 export const addTooltip = (tooltip, by = 'slug', tooltips, setTooltips) => {
@@ -55,7 +54,8 @@ export const setTooltipsError = (error = false, tooltips, setTooltips) => {
 
 export const maybeFetchTooltip = async (slug, tooltips, setTooltips) => {
 
-    const isFetched = toolTipAlreadyFetched({ slug }, tooltips);
+    const isFetched = toolTipAlreadyFetched({ slug }, 'slug', tooltips);
+
     let tooltip;
 
     if (!isFetched) {

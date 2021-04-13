@@ -1,5 +1,7 @@
-import { useContext } from 'preact/hooks';
-import { BuildContext } from '../../lib/context';
+import { memo } from 'preact/compat';
+import { useCallback } from 'preact/hooks';
+import { useDataApi } from '../../lib/context/data-api';
+import { useLoading } from '../../lib/context/loading';
 import { roundWinRate } from '../../lib/helpers';
 import tw from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
@@ -11,11 +13,18 @@ const WinRateSmallGreenText = tw(SmallPurpleText)`text-widget-green`;
 
 const WinRate = () => {
 
-    const { dataApiBuildData: { data, data: { lol: { champion: { stats: { winRateHistory = [] } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
+    const { daData: { data: { lol: { champion: { stats: { winRateHistory = [] } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const latestWinRateHistoryItem = winRateHistory ? winRateHistory[0] : {};
     const { value: winRateRaw = 'XX.X' } = latestWinRateHistoryItem || {};
 
-    const winRate = `${'XX.X' !== winRateRaw ? roundWinRate(winRateRaw) : 'XX.X'}%`;
+    const { loading: isLoading = true } = useLoading();
+
+
+    const winRateFunction = useCallback(() => {
+        return roundWinRate(winRateRaw);
+    }, [winRateRaw]);
+
+    const winRate = `${'XX.X' !== winRateRaw ? winRateFunction() : 'XX.X'}%`;
 
     const loading = isLoading || ('XX.X%' === winRate || !winRate);
 
@@ -27,4 +36,4 @@ const WinRate = () => {
     );
 };
 
-export default WinRate;
+export default memo(WinRate);

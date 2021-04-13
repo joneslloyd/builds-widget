@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import DynamicSvg from '../dynamic-svg';
 
 const RightArrow = ({ className }) => {
@@ -7,4 +8,4 @@ const RightArrow = ({ className }) => {
     );
 }
 
-export default RightArrow;
+export default memo(RightArrow);

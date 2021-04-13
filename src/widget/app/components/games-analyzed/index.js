@@ -1,5 +1,7 @@
-import { useContext } from 'preact/hooks';
-import { BuildContext } from '../../lib/context';
+import { memo } from 'preact/compat';
+import { useCallback } from 'preact/hooks';
+import { useDataApi } from '../../lib/context/data-api';
+import { useLoading } from '../../lib/context/loading';
 import { commaNumber } from '../../lib/helpers';
 import PlatinumPlusIcon from '../platinum-plus-icon';
 import tw from 'twin.macro';
@@ -13,8 +15,14 @@ const GamesAnalyzedSmallPurpleTextLarger = tw(SmallPurpleText)`hidden normal-cas
 
 const GamesAnalyzed = () => {
 
-    const { dataApiBuildData: { data: { lol: { champion: { build: { stats: { matchCount: matchCountRaw } = {} } = {} } = {} } = {} } = {} } = {}, loading: isLoading = true } = useContext(BuildContext);
-    const matchCount = commaNumber(matchCountRaw);
+    const { daData: { data: { lol: { champion: { build: { stats: { matchCount: matchCountRaw } = {} } = {} } = {} } = {} } = {} } = {} } = useDataApi();
+    const { loading: isLoading = true } = useLoading();
+
+    const getMatchCount = useCallback(() => {
+        return commaNumber(matchCountRaw);
+    }, [matchCountRaw]);
+
+    const matchCount = getMatchCount();
 
     const loading = isLoading || !matchCount;
 
@@ -30,4 +38,4 @@ const GamesAnalyzed = () => {
     );
 };
 
-export default GamesAnalyzed;
+export default memo(GamesAnalyzed);
