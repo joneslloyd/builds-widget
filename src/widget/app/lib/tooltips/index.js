@@ -1,4 +1,4 @@
-import { getSquidexTooltipBySlug } from '../data';
+import { getSquidexTooltipBySlug, getSquidexTooltipByRiotId } from '../data';
 import { firstItem } from '../helpers';
 
 export const toolTipAlreadyFetched = (tooltip, by = 'slug', tooltips) => {
@@ -52,20 +52,29 @@ export const setTooltipsError = (error = false, tooltips, setTooltips) => {
     });
 };
 
-export const maybeFetchTooltip = async (slug, tooltips, setTooltips) => {
+export const maybeFetchTooltip = async (type = 'spell', by = 'riotId', identifier, tooltips, setTooltips) => {
 
-    const isFetched = toolTipAlreadyFetched({ slug }, 'slug', tooltips);
+    let isFetchedOb = {};
+    isFetchedOb[by] = identifier;
+    const isFetched = toolTipAlreadyFetched(isFetchedOb, by, tooltips);
 
     let tooltip;
 
     if (!isFetched) {
 
-        const res = await getSquidexTooltipBySlug(slug, tooltips, setTooltips);
+        setTooltipsLoading(true, tooltips, setTooltips);
+
+        const getFunc = 'slug' === by ? getSquidexTooltipBySlug : ('riotId' === by ? getSquidexTooltipByRiotId : false);
+
+        const res = await getFunc(type, identifier, tooltips, setTooltips);
         const { data, error } = res;
 
+        setTooltipsLoading(false, tooltips, setTooltips);
+
         if (!error) {
-            tooltip = firstItem(data.spells).flatData;
-            addTooltip(tooltip, 'slug', tooltips, setTooltips);
+            const key = `${type}s`;
+            tooltip = firstItem(data[key]).flatData;
+            addTooltip(tooltip, by, tooltips, setTooltips);
             return tooltip;
         }
         else {
@@ -74,7 +83,7 @@ export const maybeFetchTooltip = async (slug, tooltips, setTooltips) => {
         }
     }
     else {
-        tooltip = getTooltip(slug, 'slug', tooltips);
+        tooltip = getTooltip(identifier, by, tooltips);
     }
 
     return tooltip;

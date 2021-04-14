@@ -9,6 +9,7 @@ import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
 import SmallWhiteText from '../../styles/components/small-white-text';
 import CompactRunesDisplay from '../../styles/components/compact-runes-display';
+import PerkTooltipWrapper from '../tooltips/perk-tooltip-wrapper';
 
 const CompactRunesStyles = tw(FlexCol)`mr-0 xl:(mr-10 w-9/12)`;
 const CompactRunesSmallWhiteText = tw(SmallWhiteText)`uppercase`;
@@ -62,22 +63,44 @@ const CompactRunes = () => {
             <FlexRow>
                 <CompactRunesDisplayStyles>
                     <FirstRuneGroup line={primaryLine} loading={loading}>
-                        <Rune id={primaryId} wh={36} rounded={false} />
-                        <Rune id={iDs[0]} wh={48} rounded={false} leftSpace="smallest" />
-                        <Rune id={iDs[1]} wh={32} rounded="full" gold={true} leftSpace="small" />
-                        <Rune id={iDs[2]} wh={32} rounded="full" gold={true} leftSpace="large" />
-                        <Rune id={iDs[3]} wh={32} rounded="full" gold={true} leftSpace="large" />
+                        <PerkTooltipWrapper by="riotId" identifier={primaryId}>
+                            <Rune cursor="help" id={primaryId} wh={36} rounded={false} />
+                        </PerkTooltipWrapper>
+                        <PerkTooltipWrapper by="riotId" identifier={iDs[0]}>
+                            <Rune cursor="help" id={iDs[0]} wh={48} rounded={false} leftSpace="smallest" />
+                        </PerkTooltipWrapper>
+                        <PerkTooltipWrapper by="riotId" identifier={iDs[1]}>
+                            <Rune cursor="help" id={iDs[1]} wh={32} rounded="full" gold={true} leftSpace="small" />
+                        </PerkTooltipWrapper>
+                        <PerkTooltipWrapper by="riotId" identifier={iDs[2]}>
+                            <Rune cursor="help" id={iDs[2]} wh={32} rounded="full" gold={true} leftSpace="large" />
+                        </PerkTooltipWrapper>
+                        <PerkTooltipWrapper by="riotId" identifier={iDs[3]}>
+                            <Rune cursor="help" id={iDs[3]} wh={32} rounded="full" gold={true} leftSpace="large" />
+                        </PerkTooltipWrapper>
                     </FirstRuneGroup>
                     <LastRuneGroups>
                         <RuneGroup leftSpace="largeMd" line={secondaryLine} loading={loading}>
-                            <Rune id={secondaryId} wh={36} rounded={false} />
-                            <Rune id={iDs[4]} wh={32} rounded="full" gold={true} leftSpace="normal" />
-                            <Rune id={iDs[5]} wh={32} rounded="full" gold={true} leftSpace="large" />
+                            <PerkTooltipWrapper by="riotId" identifier={secondaryId}>
+                                <Rune cursor="help" id={secondaryId} wh={36} rounded={false} />
+                            </PerkTooltipWrapper>
+                            <PerkTooltipWrapper by="riotId" identifier={iDs[4]}>
+                                <Rune cursor="help" id={iDs[4]} wh={32} rounded="full" gold={true} leftSpace="normal" />
+                            </PerkTooltipWrapper>
+                            <PerkTooltipWrapper by="riotId" identifier={iDs[4]}>
+                                <Rune cursor="help" id={iDs[4]} wh={32} rounded="full" gold={true} leftSpace="large" />
+                            </PerkTooltipWrapper>
                         </RuneGroup>
                         <RuneGroup leftSpace="small" loading={loading}>
-                            <Rune id={iDs[6]} wh={24} rounded="full" gold={true} borderWidth="1px" />
-                            <Rune id={iDs[7]} wh={24} rounded="full" gold={true} leftSpace="large" borderWidth="1px" />
-                            <Rune id={iDs[8]} wh={24} rounded="full" gold={true} leftSpace="large" borderWidth="1px" />
+                            <PerkTooltipWrapper by="riotId" identifier={iDs[6]}>
+                                <Rune cursor="help" id={iDs[6]} wh={24} rounded="full" gold={true} borderWidth="1px" />
+                            </PerkTooltipWrapper>
+                            <PerkTooltipWrapper by="riotId" identifier={iDs[7]}>
+                                <Rune cursor="help" id={iDs[7]} wh={24} rounded="full" gold={true} leftSpace="large" borderWidth="1px" />
+                            </PerkTooltipWrapper>
+                            <PerkTooltipWrapper by="riotId" identifier={iDs[8]}>
+                                <Rune cursor="help" id={iDs[8]} wh={24} rounded="full" gold={true} leftSpace="large" borderWidth="1px" />
+                            </PerkTooltipWrapper>
                         </RuneGroup>
                     </LastRuneGroups>
                 </CompactRunesDisplayStyles>

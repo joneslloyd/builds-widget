@@ -1,60 +1,24 @@
 import { squidexApiClient } from '../graphql/client';
-import { SQUIDEX_API_CHAMPION_QUERY, SPELL_BY_SLUG } from '../graphql/queries';
-import { setTooltipsLoading } from '../tooltips';
+import { SPELL_BY_SLUG, PERK_BY_FILTER } from '../graphql/queries';
 
-export const getSquidexApiData = (champion, buildData, setBuildData, setLoading) => {
-
-    //Set loading on the Squidex API context
-    setBuildData({
-        ...buildData,
-        loading: true
-    });
-
-    //Set loading globally on the app
-    setLoading(true);
-
-    //Get the data
-    squidexApiClient.query(SQUIDEX_API_CHAMPION_QUERY, {
-        championFilter: `data/slug/iv eq '${champion}' `,
-        roleDataFilter: `data/championSlug/iv eq '${champion}' `,
-        matchupsDataFilter: `data/enemyChampion/iv eq '${champion}' and data/matchupTips/en ne null `,
-        buildDataFilter: `data/champion/iv eq '${champion}'`,
-        comboFilter: `data/championSlug/iv eq '${champion}' and data/tags/iv in ('featured')`,
-        combosListFilter: `data/championSlug/iv eq '${champion}'`,
-        matchupSpecificDataFilter: `data/enemyChampion/iv eq '${champion}'  `,
-        withCommonData: true,
-        withBuildData: true,
-        withCountersData: false,
-        withCombosData: false,
-        withMatchupSpecificCountersData: false,
-        withProBuildsData: true
-    }).toPromise().then(result => {
-
-        const { data, error } = result;
-
-        //Set the response into the Squidex API context
-        setBuildData({
-            ...buildData,
-            data,
-            loading: false,
-            error: error ? error : false
-        });
-
-        //Set loading globally on the app
-        setLoading(false);
-    });
+const getDataByFilter = async (filter, query) => {
+    return await squidexApiClient.query(query, {
+        filter,
+    }).toPromise();
 };
 
-export const getSquidexTooltipBySlug = (identifier, tooltips, setTooltips) => {
+export const getSquidexTooltipBySlug = async (type = 'spell', identifier) => {
 
-    //Set loading on the Tooltips context
-    setTooltipsLoading(true, tooltips, setTooltips);
+    const tooltipQuery = 'spell' === type ? SPELL_BY_SLUG : ('perk' === type ? PERK_BY_FILTER : false);
+    const queryText = Number.isInteger(identifier) ? identifier : `'${identifier}'`;
 
-    //Get the data
-    return squidexApiClient.query(SPELL_BY_SLUG, {
-        filter: `data/slug/iv eq '${identifier}' `,
-    }).toPromise().then(result => {
+    return await getDataByFilter(`data/slug/iv eq ${queryText} `, tooltipQuery);
+};
 
-        return result;
-    });
+export const getSquidexTooltipByRiotId = async (type = 'spell', identifier) => {
+
+    const tooltipQuery = 'perk' === type ? PERK_BY_FILTER : false;
+    const queryText = Number.isInteger(identifier) ? identifier : `'${identifier}'`;
+
+    return await getDataByFilter(`data/riotId/iv eq ${queryText} `, tooltipQuery);
 };

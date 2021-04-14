@@ -451,3 +451,26 @@ export const SPELL_BY_SLUG = `
         __typename
     }
 `;
+
+export const PerkFragment = `
+    fragment PerkFragment on RunesV1DataFlatDto {
+        riotId
+        name
+        slug
+        shortDescription
+        longDescription
+        customDescription: customLongDescription
+        childRunes
+    }
+`;
+
+export const PERK_BY_FILTER = `
+    query LolPerkByFilter($filter: String!) {
+        perks: queryRunesV1Contents(filter: $filter) {
+            flatData {
+                ...PerkFragment
+            }
+        }
+    }
+    ${PerkFragment}
+`;

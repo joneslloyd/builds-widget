@@ -4,6 +4,7 @@ import { RunesSlotsMap } from '../../lib/helpers';
 import tw, { styled } from 'twin.macro';
 import SmallWhiteText from '../../styles/components/small-white-text';
 import FullRunesDisplay from '../../styles/components/full-runes-display';
+import PerkTooltipWrapper from '../tooltips/perk-tooltip-wrapper';
 
 const FullRunesRuneGroupStyles = styled(FullRunesDisplay)(({ leftSpace = false }) => [
     tw`flex-col`,
@@ -84,7 +85,9 @@ const FullRunesRuneGroup = ({ mainId, iDs = [], type = 'primary', loading: isLoa
     return (
         <FullRunesRuneGroupStyles leftSpace={outerLeftSpace}>
             <FullRunesTitle>
-                <Rune id={mainId} wh={36} rounded={false} />
+                <PerkTooltipWrapper by="riotId" identifier={mainId}>
+                    <Rune cursor="help" id={mainId} wh={36} rounded={false} />
+                </PerkTooltipWrapper>
                 <FullRunesRuneTitle loading={loading}>{theTitle}</FullRunesRuneTitle>
             </FullRunesTitle>
             <FullRunesBody>

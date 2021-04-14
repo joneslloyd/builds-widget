@@ -5,7 +5,7 @@ import Markdown from 'preact-markdown';
 export const RichText = memo(({ children, className, markdownText, ...rest }) => {
   return (
     <Wrapper className={className} {...rest}>
-      {markdownText && <Markdown markdown={markdownText} />}
+      {markdownText && <Markdown markdown={markdownText} type="html" />}
       {children}
     </Wrapper>
   );

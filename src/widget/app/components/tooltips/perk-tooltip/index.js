@@ -1,6 +1,6 @@
 import { memo } from 'preact/compat';
 import { useCallback, useState, useEffect } from 'preact/hooks';
-import { summonerSpellIcon } from '../../../lib/helpers';
+import { perkImage } from '../../../lib/helpers';
 import { useTooltips } from '../../../lib/context/tooltips';
 import { maybeFetchTooltip } from '../../../lib/tooltips';
 import {
@@ -8,36 +8,36 @@ import {
     GameTooltipEmpty,
 } from '../game-tooltip';
 
-export const SummonerSpellTooltip = ({ slug = false }) => {
+export const PerkTooltip = ({ by = 'riotId', identifier = false }) => {
 
     const { ttData, setTtData } = useTooltips();
     const [localTooltip, setLocalTooltip] = useState(false);
 
     //Get the tooltip
     const doTooltip = useCallback(async () => {
-        //Only get it if there's a slug set
-        if (slug) {
-            const ttRes = await maybeFetchTooltip('spell', 'slug', slug, ttData, setTtData);
+        //Only get it if there's a identifier set
+        if (identifier) {
+            const ttRes = await maybeFetchTooltip('perk', by, identifier, ttData, setTtData);
             if (ttRes) {
                 setLocalTooltip(ttRes);
             }
         }
-    }, [slug]);
+    }, [identifier]);
 
     useEffect(async () => {
         await doTooltip();
-    }, [slug]);
+    }, [identifier]);
 
     return localTooltip ? (
         <GameTooltip
             name={localTooltip.name}
             iconName={localTooltip.name}
-            iconUrl={summonerSpellIcon(slug)}
-            description={localTooltip.description}
+            iconUrl={perkImage(identifier)}
+            description={localTooltip.longDescription || localTooltip.shortDescription || localTooltip.customDescription}
         />
     ) : (
         <GameTooltipEmpty />
     );
 };
 
-export default memo(SummonerSpellTooltip);
+export default memo(PerkTooltip);

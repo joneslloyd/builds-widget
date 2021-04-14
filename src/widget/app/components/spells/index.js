@@ -16,7 +16,6 @@ const SpellsStyles = styled(FlexCol)(() => [
 ]);
 const SpellsSmallWhiteText = tw(SmallWhiteText)`uppercase`;
 const SpellsDisplayStyles = tw(SpellsDisplay)`uppercase pt-3`;
-const TooltippableSpellItem = tw(SpellItem)`cursor-help`;
 
 const Spells = () => {
 
@@ -50,10 +49,10 @@ const Spells = () => {
             <FlexRow>
                 <SpellsDisplayStyles>
                     <SummonerSpellTooltipWrapper slug={firstSlug}>
-                        <TooltippableSpellItem slug={firstSlug} type="spell" />
+                        <SpellItem cursor="help" slug={firstSlug} type="spell" />
                     </SummonerSpellTooltipWrapper>
                     <SummonerSpellTooltipWrapper slug={secondSlug}>
-                        <TooltippableSpellItem slug={secondSlug} type="spell" leftSpace="small" />
+                        <SpellItem cursor="help" slug={secondSlug} type="spell" leftSpace="small" />
                     </SummonerSpellTooltipWrapper>
                 </SpellsDisplayStyles>
             </FlexRow>

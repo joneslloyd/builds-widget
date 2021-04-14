@@ -1,5 +1,6 @@
 import Rune from '../rune';
 import tw, { styled } from 'twin.macro';
+import PerkTooltipWrapper from '../tooltips/perk-tooltip-wrapper';
 
 const FullRunesBodyRowStyles = styled('div')(({ topSpace = false, justifyContentSpaceBetween = false }) => [
     tw`flex flex-row w-full justify-center`,
@@ -32,7 +33,9 @@ const FullRunesBodyRow = ({ index = 0, data = {}, totalItems = 0, type = 'primar
 
                 return (
                     <FullRunesBodyRowRune leftSpace={leftSpace}>
-                        <Rune greyed={!hasRune} key={rune} id={rune} wh={runeSize} borderWidth={runeBorderWidth} rounded={hasCircle} gold={hasRune && hasCircle} />
+                        <PerkTooltipWrapper by="riotId" identifier={rune}>
+                            <Rune cursor="help" greyed={!hasRune} key={rune} id={rune} wh={runeSize} borderWidth={runeBorderWidth} rounded={hasCircle} gold={hasRune && hasCircle} />
+                        </PerkTooltipWrapper>
                     </FullRunesBodyRowRune>
                 );
             })}

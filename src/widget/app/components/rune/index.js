@@ -6,7 +6,7 @@ import tw, { styled } from 'twin.macro';
 const RoundedGoldBorderStyles = tw(RoundedGoldBorder)``;
 const NoWrapStyles = tw.div``;
 
-const Rune = ({ id, wh = 32, rounded = false, gold = false, leftSpace = false, borderWidth = false, greyed = false }) => {
+const Rune = ({ id, wh = 32, rounded = false, gold = false, leftSpace = false, borderWidth = false, greyed = false, cursor = 'default' }) => {
 
     const wrapComponents = {
         gold: RoundedGoldBorderStyles,
@@ -31,7 +31,7 @@ const Rune = ({ id, wh = 32, rounded = false, gold = false, leftSpace = false, b
 
     return (
         <WrapComponentStyles leftSpace={leftSpace} borderWidth={borderWidth} greyed={greyed}>
-            <Image src={src} rounded={rounded} width={wh} height={wh} bgColor={false} leftSpace={leftSpace} />
+            <Image src={src} rounded={rounded} width={wh} height={wh} bgColor={false} leftSpace={leftSpace} cursor={cursor} />
         </WrapComponentStyles>
     );
 };

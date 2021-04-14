@@ -23,13 +23,13 @@ const SpellItemStyles = styled('div')(({ leftSpace = false, bottomSpace = false,
     { width: `${wh}px`, height: `${wh}px` }
 ]);
 
-const SpellItem = ({ slug, wh = 36, type = 'item', leftSpace = false, bottomSpace = false, topSpace = false, overlay = false, ...rest }) => {
+const SpellItem = ({ slug, wh = 36, type = 'item', leftSpace = false, bottomSpace = false, topSpace = false, overlay = false, cursor = 'default', ...rest }) => {
 
     const src = 'spell' === type ? summonerSpellIcon(slug) : ('item' === type ? gameItemIcon(slug) : ('skill' === type ? getSkillIcon(slug) : false));
 
     return (
         <SpellItemStyles leftSpace={leftSpace} wh={wh} bottomSpace={bottomSpace} topSpace={topSpace} {...rest}>
-            <Image src={src} width={wh} height={wh} bgColor={false} rounded={'md'} />
+            <Image src={src} width={wh} height={wh} bgColor={false} rounded={'md'} cursor={cursor} />
             {overlay}
         </SpellItemStyles>
     );
