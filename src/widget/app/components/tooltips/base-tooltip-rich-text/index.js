@@ -1,5 +1,5 @@
 import { memo } from 'preact/compat';
-import RichText from '../rich-text';
+import { RichText } from '../rich-text';
 import { processCustomHtmlTags } from '../../../lib/helpers';
 import tw, { styled } from 'twin.macro';
 

@@ -2,11 +2,9 @@ import { memo } from 'preact/compat';
 import tw, { styled } from 'twin.macro';
 import Markdown from 'preact-markdown';
 
-export const RichText = memo(props => {
-  const { markdownText, children, className } = props;
-  console.log(markdownText)
+export const RichText = memo(({ children, className, markdownText, ...rest }) => {
   return (
-    <Wrapper className={className}>
+    <Wrapper className={className} {...rest}>
       {markdownText && <Markdown markdown={markdownText} />}
       {children}
     </Wrapper>

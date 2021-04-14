@@ -11,7 +11,6 @@ import {
 export const SummonerSpellTooltip = ({ slug = false }) => {
 
     const { ttData, setTtData } = useTooltips();
-    const [mounted, setMounted] = useState(false);
     const [localTooltip, setLocalTooltip] = useState(false);
 
     //Get the tooltip
