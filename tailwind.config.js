@@ -139,6 +139,7 @@ module.exports = {
             },
             width: {
                 '0.25': '0.0625rem',
+                '100': '25rem',
             },
         },
         fill: theme => ({

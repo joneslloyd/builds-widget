@@ -14,7 +14,7 @@ export const GameItemTooltipRichText = memo(props => {
 });
 
 export const StyledLolRichText = styled(LolRichText)(() => [
-    tw`relative`,
+    tw`relative text-sm leading-5`,
     {
         'color': '#b3b4d0',
         '.custom': {

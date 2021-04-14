@@ -19,28 +19,22 @@ export const GameTooltip = props => {
 };
 
 const ItemWrapper = styled(BaseTooltipWrapper)(() => [
-  tw`flex flex-col`,
+  tw`flex flex-col w-100`,
   {
-    'width': '40rem',
     'max-width': 'calc(100vw - 2rem)'
   }
 ]);
 
 const ItemHeader = styled('div')(() => [
-  tw`flex items-center mb-4`
+  tw`flex items-center mb-2.5`
 ]);
 
 const ItemHeaderIcon = styled('img')(() => [
-  tw`mr-4 w-20 h-20`
+  tw`mr-2.5 w-10 h-10`
 ]);
 
 const ItemTitle = styled('div')(() => [
-  tw`font-normal text-widget-gold mb-2`,
-  {
-    'font-size': '1.8rem',
-    'margin-left': '0.8rem',
-    'margin-right': '0.8rem'
-  }
+  tw`font-normal text-lg text-widget-gold mb-1.5 mx-2`,
 ]);
 
 export const GameTooltipEmpty = tw(ItemWrapper)`h-4 opacity-0`;
