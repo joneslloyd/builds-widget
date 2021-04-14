@@ -1,5 +1,5 @@
 import { squidexApiClient } from '../graphql/client';
-import { SPELL_BY_SLUG, PERK_BY_FILTER } from '../graphql/queries';
+import { SPELL_BY_SLUG, PERK_BY_FILTER, ITEM_BY_FILTER } from '../graphql/queries';
 
 const getDataByFilter = async (filter, query) => {
     return await squidexApiClient.query(query, {
@@ -17,7 +17,7 @@ export const getSquidexTooltipBySlug = async (type = 'spell', identifier) => {
 
 export const getSquidexTooltipByRiotId = async (type = 'spell', identifier) => {
 
-    const tooltipQuery = 'perk' === type ? PERK_BY_FILTER : false;
+    const tooltipQuery = 'perk' === type ? PERK_BY_FILTER : ('item' === type ? ITEM_BY_FILTER : false);
     const queryText = Number.isInteger(identifier) ? identifier : `'${identifier}'`;
 
     return await getDataByFilter(`data/riotId/iv eq ${queryText} `, tooltipQuery);

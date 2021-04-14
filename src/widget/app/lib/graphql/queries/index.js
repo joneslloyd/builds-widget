@@ -474,3 +474,67 @@ export const PERK_BY_FILTER = `
     }
     ${PerkFragment}
 `;
+
+export const GameItemTagsFragment = `
+  fragment GameItemTagsFragment on GameItemTagV1DataFlatDto {
+    name
+    slug
+  }
+`;
+
+
+export const GameItemTypeFragment = `
+  fragment GameItemTypeFragment on GameItemTypeV1DataFlatDto {
+    slug
+    name
+    description
+  }
+`;
+
+export const ChampionTypeFragment = `
+  fragment ChampionTypeFragment on ChampionTypeV1DataFlatDto {
+    slug
+    name
+  }
+`;
+
+export const LolGameItemFragment = `
+  fragment LolGameItemFragment on GameItemsV1DataFlatDto {
+    riotId
+    name
+    cost
+    tags {
+      flatData {
+        ...GameItemTagsFragment
+      }
+    }
+    buildsInto
+    buildsFrom
+    mainItemTag
+    effectDescription
+    type {
+      flatData {
+        ...GameItemTypeFragment
+      }
+    }
+    fitForChampionType {
+      flatData {
+        ...ChampionTypeFragment
+      }
+    }
+  }
+  ${GameItemTagsFragment}
+  ${GameItemTypeFragment}
+  ${ChampionTypeFragment}
+`;
+
+export const ITEM_BY_FILTER = `
+    query LolGameItemByRiotId($filter: String!) {
+        items: queryGameItemsV1Contents(filter: $filter) {
+            flatData {
+                ...LolGameItemFragment
+            }
+        }
+    }
+    ${LolGameItemFragment}
+`;
