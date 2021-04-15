@@ -6,7 +6,7 @@ import tw from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
 import SmallWhiteText from '../../styles/components/small-white-text';
-import FullRunesDisplay from '../../styles/components/compact-runes-display';
+import FullRunesDisplay from '../../styles/components/full-runes-display';
 
 const FullRunesStyles = tw(FlexCol)`mr-0 w-full xl:(mr-10 w-9/12)`;
 const FullRunesSmallWhiteText = tw(SmallWhiteText)`uppercase`;

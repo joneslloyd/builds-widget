@@ -9,7 +9,7 @@ const PerkTooltipWrapper = ({ by, identifier, children }) => {
 
     return (identifier && (
         <TransparentTooltip tooltipFn={tooltipFn}>
-            <span>{children}</span>
+            <span style="z-index: 10;">{children}</span>
         </TransparentTooltip>
     ));
 };

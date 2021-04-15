@@ -38,7 +38,7 @@ const LastRuneGroups = tw.div`flex pt-2.5 md:(pt-0)`;
 
 const CompactRunes = () => {
 
-    const { data: { data: { lol: { champion: { build: { perks = {} } = {} } = {} } = {} } = {} } = {} } = useDataApi();
+    const { daData: { data: { lol: { champion: { build: { perks = {} } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { loading: isLoading = true } = useLoading();
 
     const { IDs: iDs = [], style: primaryId = false, subStyle: secondaryId = false } = perks;

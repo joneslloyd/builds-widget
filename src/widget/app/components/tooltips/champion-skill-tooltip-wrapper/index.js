@@ -4,6 +4,7 @@ import ChampionSkillStandaloneTooltip from '../champion-skill-standalone-tooltip
 import { styled } from 'twin.macro';
 import { TransparentTooltip } from '../../../styles/components/transparent-tooltip';
 
+
 const ChampionSkillTooltipWrapper = ({ by, identifier, children }) => {
 
     const tooltipFn = useCallback(() => {
@@ -18,7 +19,7 @@ const ChampionSkillTooltipWrapper = ({ by, identifier, children }) => {
 
     return (identifier && (
         <TransparentTooltip tooltipFn={tooltipFn}>
-            <span>{children}</span>
+            <span style="z-index: 10;">{children}</span>
         </TransparentTooltip>
     ));
 };
