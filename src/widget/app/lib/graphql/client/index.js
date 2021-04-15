@@ -1,5 +1,5 @@
 import { createClient } from '@urql/preact';
-import { getEnvVar } from '../../helpers'
+import { getEnvVar } from '../../helpers';
 
 const apiData = getEnvVar('DATA_API');
 const apiDataToken = getEnvVar('DATA_API_TOKEN');

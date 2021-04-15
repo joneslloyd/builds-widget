@@ -1,3 +1,83 @@
+import { colors } from './legacy/colors';
+
+export const SkillKey = Object.freeze({
+    E: 'E',
+    PASSIVE: 'PASSIVE',
+    Q: 'Q',
+    R: 'R',
+    W: 'W',
+});
+
+export const PowerSpikeValue = Object.freeze({
+    GOOD: 'GOOD',
+    OK: 'OK',
+    POOR: 'POOR',
+});
+
+export const Rolename = Object.freeze({
+    ADC: 'ADC',
+    JUNGLE: 'JUNGLE',
+    MID: 'MID',
+    SUPPORT: 'SUPPORT',
+    TOP: 'TOP',
+    UNKNOWN: 'UNKNOWN',
+});
+
+export const TierLevel = Object.freeze({
+    A: 'A',
+    B: 'B',
+    C: 'C',
+    D: 'D',
+    E: 'E',
+    S: 'S',
+});
+
+export const LolChampionBuildItemsListType = Object.freeze({
+    Boots: 'Boots',
+    Core: 'Core',
+    Early: 'Early',
+    FifthItem: 'FifthItem',
+    FirstCore: 'FirstCore',
+    FourthItem: 'FourthItem',
+    FullBuild: 'FullBuild',
+    SecondCore: 'SecondCore',
+    Situational: 'Situational',
+    SixthItem: 'SixthItem',
+    Starter: 'Starter',
+});
+
+export const LolChampionBuildType = Object.freeze({
+    HIGHEST_WIN_RATE: 'HIGHEST_WIN_RATE',
+    MATCHUP_SPECIFIC: 'MATCHUP_SPECIFIC',
+    MOST_POPULAR: 'MOST_POPULAR',
+    OPTIONAL: 'OPTIONAL',
+    PRO_PLAYERS: 'PRO_PLAYERS',
+    RECOMMENDED: 'RECOMMENDED',
+});
+
+export const ProPlayerType = Object.freeze({
+    OTP: 'OTP',
+    Other: 'Other',
+    Pro: 'Pro',
+    Streamer: 'Streamer',
+});
+
+export const SkillKeyColor = Object.freeze({
+    [SkillKey.PASSIVE]: colors.skillLetterColor.P,
+    [SkillKey.Q]: colors.skillLetterColor.Q,
+    [SkillKey.W]: colors.skillLetterColor.W,
+    [SkillKey.E]: colors.skillLetterColor.E,
+    [SkillKey.R]: colors.skillLetterColor.R,
+});
+
+export const SkillKeyLetter = Object.freeze({
+    [SkillKey.PASSIVE]: 'P',
+    [SkillKey.Q]: 'Q',
+    [SkillKey.W]: 'W',
+    [SkillKey.E]: 'E',
+    [SkillKey.R]: 'R',
+});
+
 export const getEnvironmentVariables = () => {
     /* eslint-disable no-undef */
     return (VARIABLES !== 'undefined') ? VARIABLES : {};
@@ -55,6 +135,16 @@ export const getSkillIcon = (slug) => {
 export const championPosterImage = (slug) => {
     const cdnUrl = getEnvVar('CDN_URL');
     return slug ? `${cdnUrl}/assets/lol/images/dd/champions/backgrounds/${slug.toLowerCase().replace(/\s/g, '')}.jpg` : false;
+};
+
+export const championAbilityVideo = (identifier, by = 'slug') => {
+    const cdnUrl = getEnvVar('CDN_URL');
+    return (identifier && 'slug' === by) ? {
+        slug: identifier,
+        mp4: `${cdnUrl}/assets/lol/video/champion-abilities/${identifier}.mp4`,
+        webm: `${cdnUrl}/assets/lol/video/champion-abilities/${identifier}.webm`,
+        placeholder: `${cdnUrl}/assets/lol/video/champion-abilities/${identifier}.png`,
+    } : false;
 };
 
 export const RunesSlotsMap = [
@@ -131,26 +221,26 @@ export const RunesSlotsMap = [
     },
 ];
 
-export function firstItem(list) {
+export const firstItem = (list) => {
     return list?.length ? list[0] || null : null;
 }
 
-export function secondItem(list) {
+export const secondItem = (list) => {
     if (list && list.length > 1) {
         return list[1];
     }
     return null;
 }
 
-export function isDef(value) {
+export const isDef = (value) => {
     return value !== null && value !== undefined;
 }
 
-export function isDefAndNotEmpty(value) {
+export const isDefAndNotEmpty = (value) => {
     return !!(value && value.length);
 }
 
-export function isDefAndMoreThenZero(value) {
+export const isDefAndMoreThenZero = (value) => {
     return isDef(value) && value > 0;
 }
 
@@ -170,4 +260,24 @@ export const processCustomHtmlTags = (markdown) => {
             return match;
         }
     );
+}
+
+export const findBySlug = (slug, list) => {
+    return slug && list ? list.find(it => it.slug === slug) || null : null;
+}
+
+export const getStrEnumValues = (obj) => {
+    const result = [];
+    for (const key in obj) {
+        result.push(obj[key]);
+    }
+    return result;
+}
+
+export const isStrEnumValue = (obj, value) => {
+    return getStrEnumValues(obj).indexOf(value) !== -1;
+}
+
+export const validateStrEnumValue = (obj, value) => {
+    return obj && isStrEnumValue(obj, value) ? value : null;
 }

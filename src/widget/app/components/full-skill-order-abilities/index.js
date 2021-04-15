@@ -1,4 +1,5 @@
 import SpellItem from '../spell-item';
+import ChampionSkillTooltipWrapper from '../tooltips/champion-skill-tooltip-wrapper';
 import tw from 'twin.macro';
 import FlexCol from '../../styles/components/flex-col';
 
@@ -26,7 +27,9 @@ const FullSkillOrderAbilities = ({ loading = true, abilities = [] }) => {
 
                     return (
                         <>
-                            <SpellItem key={activationKey} slug={slug} wh={24} topSpace={topSpace} bottomSpace="small" type="skill" />
+                            <ChampionSkillTooltipWrapper by="slug" identifier={slug}>
+                                <SpellItem cursor="help" key={activationKey} slug={slug} wh={24} topSpace={topSpace} bottomSpace="small" type="skill" />
+                            </ChampionSkillTooltipWrapper>
                         </>
                     );
                 })

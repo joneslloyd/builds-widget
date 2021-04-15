@@ -5,6 +5,7 @@ import { useLoading } from '../../lib/context/loading';
 import SpellItem from '../spell-item';
 import LetterOverlay from '../overlay';
 import RightArrow from '../right-arrow';
+import ChampionSkillTooltipWrapper from '../tooltips/champion-skill-tooltip-wrapper';
 import tw from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
@@ -54,7 +55,9 @@ const CompactSkillPriority = () => {
 
                     return (
                         <>
-                            <SpellItem key={activationKey} overlay={overlay} slug={slug} wh={32} type="skill" />
+                            <ChampionSkillTooltipWrapper by="slug" identifier={slug}>
+                                <SpellItem cursor="help" key={activationKey} overlay={overlay} slug={slug} wh={32} type="skill" />
+                            </ChampionSkillTooltipWrapper>
                             {i !== abilities.length - 1 && (
                                 <RightArrowStyles />
                             )}

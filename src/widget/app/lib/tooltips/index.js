@@ -72,7 +72,8 @@ export const maybeFetchTooltip = async (type = 'spell', by = 'riotId', identifie
         setTooltipsLoading(false, tooltips, setTooltips);
 
         if (!error) {
-            const key = `${type}s`;
+            const keyType = 'ability' === type ? 'item' : type;
+            const key = `${keyType}s`;
             tooltip = firstItem(data[key]).flatData;
             addTooltip(tooltip, by, tooltips, setTooltips);
             return tooltip;

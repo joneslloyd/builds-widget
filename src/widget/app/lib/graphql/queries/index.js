@@ -1,3 +1,40 @@
+const ChampionAbilityStatFragment = `
+    fragment ChampionAbilityStatFragment on ChampionsAbilitiesV1statsChildDto {
+        slug
+        value
+        __typename
+    }
+`;
+
+export const ChampionAbilityCustomStatFragment = `
+    fragment ChampionAbilityCustomStatFragment on ChampionsAbilitiesV1customStatsChildDto {
+        slug
+        value
+        __typename
+    }
+`;
+
+const LolChampionAbilityFragment = `
+    fragment LolChampionAbilityFragment on ChampionsAbilitiesV1DataFlatDto {
+        activationKey
+        riotDesc: ddragonDescription
+        mobaDesc: description
+        name
+        slug
+        stats {
+            ...ChampionAbilityStatFragment
+            __typename
+        }
+        customStats {
+            ...ChampionAbilityCustomStatFragment
+            __typename
+        }
+        __typename
+    }
+    ${ChampionAbilityStatFragment}
+    ${ChampionAbilityCustomStatFragment}
+`;
+
 export const DATA_API_CHAMPION_QUERY = `
     query ChampionQuery($champion: String! = "akali") {
         lol {
@@ -144,35 +181,6 @@ export const SQUIDEX_API_CHAMPION_QUERY = `
     fragment ChampionTypeFragment on ChampionTypeV1DataFlatDto {
         slug
         name
-        __typename
-    }
-
-    fragment LolChampionAbilityFragment on ChampionsAbilitiesV1DataFlatDto {
-        activationKey
-        riotDesc: ddragonDescription
-        mobaDesc: description
-        name
-        slug
-        stats {
-            ...ChampionAbilityStatFragment
-            __typename
-        }
-        customStats {
-            ...ChampionAbilityCustomStatFragment
-            __typename
-        }
-        __typename
-    }
-
-    fragment ChampionAbilityStatFragment on ChampionsAbilitiesV1statsChildDto {
-        slug
-        value
-        __typename
-    }
-
-    fragment ChampionAbilityCustomStatFragment on ChampionsAbilitiesV1customStatsChildDto {
-        slug
-        value
         __typename
     }
 
@@ -423,10 +431,11 @@ export const SQUIDEX_API_CHAMPION_QUERY = `
         matchResultStatsLabels
         __typename
     }
+    ${LolChampionAbilityFragment}
 `;
 
-export const SPELL_BY_SLUG = `
-    query LolSummonerSpellBySlug($filter: String!) {
+export const SPELL_BY_FILTER = `
+    query LolSummonerSpellByFilter($filter: String!) {
         spells: querySummonersSpellsV1Contents(filter: $filter) {
             flatData {
                 ...SummonerSpellFragment
@@ -529,7 +538,7 @@ export const LolGameItemFragment = `
 `;
 
 export const ITEM_BY_FILTER = `
-    query LolGameItemByRiotId($filter: String!) {
+    query LolGameItemByFilter($filter: String!) {
         items: queryGameItemsV1Contents(filter: $filter) {
             flatData {
                 ...LolGameItemFragment
@@ -537,4 +546,15 @@ export const ITEM_BY_FILTER = `
         }
     }
     ${LolGameItemFragment}
+`;
+
+export const ABILITY_BY_FILTER = `
+  query LolChampionAbilityByFilter($filter: String!) {
+    items: queryChampionsAbilitiesV1Contents(filter: $filter) {
+      flatData {
+        ...LolChampionAbilityFragment
+      }
+    }
+  }
+  ${LolChampionAbilityFragment}
 `;
