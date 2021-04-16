@@ -1,36 +1,16 @@
 import { memo } from 'preact/compat';
+import loadable from '@loadable/component';
 import { useStaticGlobalProps } from '../../lib/context/static-global-props';
-import { useState, useEffect, useRef } from 'preact/hooks';
 
 const Skills = (props) => {
 
     const { layout } = useStaticGlobalProps();
-    const SkillsDisplayRef = useRef(null);
-    const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
+    const DynamicSkills = loadable(() => import(`../${layout}-skills/index.js`));
 
-        setLoading(true);
-
-        const importSkillsDisplayComponent = async () => {
-            try {
-                const { default: skillsDisplay } = await import(`../${layout}-skills/index.js`);
-                SkillsDisplayRef.current = skillsDisplay;
-            } catch (err) {
-                throw err;
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        importSkillsDisplayComponent();
-
-    }, []);
-
-    if (!loading && SkillsDisplayRef.current) {
-        const { current: ImportedSkillsDisplayComponent } = SkillsDisplayRef;
-        return <ImportedSkillsDisplayComponent {...props} />;
-    }
+    return (
+        <DynamicSkills {...props} />
+    )
 };
 
 export default memo(Skills);

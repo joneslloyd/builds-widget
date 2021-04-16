@@ -1,6 +1,5 @@
 import habitat from 'preact-habitat';
-import GlobalStyles from './app/styles/global-styles';
-import App from './app';
+import LoadableAppWrapper from './app/components/loadable-app-wrapper';
 import AppProvider from './app/lib/context'
 import { setup } from 'goober';
 
@@ -18,8 +17,7 @@ const Widget = (props) => {
     return (
         <>
             <AppProvider {...props}>
-                <GlobalStyles />
-                <App />
+                <LoadableAppWrapper />
             </AppProvider>
         </>
     );
