@@ -42,6 +42,7 @@
     "node-polyfill-webpack-plugin": "^1.0.3",
     "path-browserify": "^1.0.1",
     "preact": "^10.5.13",
+    "preact-custom-element": "^4.2.1",
     "preact-habitat": "^3.3.0",
     "preact-markdown": "^2.0.0",
     "preact-svg-loader": "^0.2.1",
