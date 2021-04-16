@@ -26,7 +26,7 @@ const ChampionSkillTooltipWrapper = ({ by, identifier, children }) => {
 
 const TooltipWrapper = styled('div')(() => [
     {
-        'width': '28rem',
+        'width': '17.5rem',
     },
 ]);
 

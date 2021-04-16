@@ -4,9 +4,9 @@ const re = /\s*([0-9]+\.?[0-9]*)\s*/gi;
 
 export const Wrapper = styled('span')(() => [
     {
-        'font-size': '1.2rem',
+        'font-size': '0.75rem',
         'font-weight': '400',
-        'line- height': '2rem',
+        'line-height': '1.25rem',
         'color': '#8890b5',
     },
 ]);
