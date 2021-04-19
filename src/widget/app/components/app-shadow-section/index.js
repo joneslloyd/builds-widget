@@ -8,6 +8,6 @@ const AppShadowSection = ({ children }) => {
     );
 };
 
-register(AppShadowSection, 'app-shadow-section', [], { shadow: true });
+register(AppShadowSection, 'app-shadow-section', ['children'], { shadow: true });
 
 export default AppShadowSection;
