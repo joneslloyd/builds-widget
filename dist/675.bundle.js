@@ -307,9 +307,6 @@
 * {
   --tw-shadow: 0 0 #0000; }
 `,x=a`
-  * {
-    all: initial;
-  }
   body {
     -webkit-tap-highlight-color: ${"#8b5cf6"};
 

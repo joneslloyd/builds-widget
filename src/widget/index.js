@@ -35,8 +35,9 @@ const Widget = (props) => {
             const headStyleTag = document.querySelectorAll('head style#_goober')[0];
 
             if (headStyleTag) {
-                const headStyles = headStyleTag.textContent;
 
+                let headStyles = headStyleTag.textContent;
+                headStyles = ':host{ all: initial !important; } ' + headStyles;
                 //Remove <head> style tag
                 headStyleTag.parentNode.removeChild(headStyleTag);
 
