@@ -307,7 +307,7 @@
 * {
   --tw-shadow: 0 0 #0000; }
 `,x=a`
-  :host {
+  * {
     all: initial;
   }
   body {

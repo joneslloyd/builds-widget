@@ -17,7 +17,7 @@ import RobotoLatin700ItalicWoff2 from './fonts/roboto-v20-latin-ext_latin-700ita
 import RobotoLatin700ItalicWoff from './fonts/roboto-v20-latin-ext_latin-700italic.woff';
 
 const CustomStyles = createGlobalStyles`
-  :host {
+  * {
     all: initial;
   }
   body {
