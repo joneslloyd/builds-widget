@@ -37,16 +37,22 @@ const Widget = (props) => {
             if (headStyleTag) {
 
                 let headStyles = headStyleTag.textContent;
-                headStyles = ':host{ all: initial !important; } ' + headStyles;
                 //Remove <head> style tag
                 headStyleTag.parentNode.removeChild(headStyleTag);
 
-                //Create new <style> tag in shadow dom
+                //Create new <style> tag in shadow dom to prevent inheritance of parent styles
+                const newStyleP = document.createElement('style');
+                newStyleP.textContent = ':host{ all: initial !important; }';
+                currentShadowSection.base.appendChild(newStyleP);
+
+                //Create new <style> tag in shadow dom for Goober
                 const newStyle = document.createElement('style');
                 newStyle.id = '_goober';
                 newStyle.textContent = headStyles;
                 currentShadowSection.base.appendChild(newStyle);
-                //goober.css.call({ target: currentShadowSection }, headStyles);
+
+                const css = goober.css.bind({ target: currentShadowSection.base });
+                const styled = goober.styled.bind({ target: currentShadowSection.base });
             }
         }
     }, [appShadowSectionRef]);
