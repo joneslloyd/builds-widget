@@ -16,39 +16,23 @@ const AppShadowSection = (props) => {
     const appShadowSectionRef = useRef(null);
     const [shadowCss, setShadowCss] = useState('');
 
-    const currentShadowSection = appShadowSectionRef.current;
+    useEffect(() => {
+        setTimeout(() => {
+            const currentShadowSection = appShadowSectionRef.current;
 
-    if (currentShadowSection) {
+            if (currentShadowSection) {
 
-        goober.css.call({ target: currentShadowSection.base }, goober.extractCss() + globalStylesExport);
+                goober.styled.bind({ target: currentShadowSection.base });
+                goober.css.bind({ target: currentShadowSection.base });
 
-        const gooberStyled = goober.styled.bind({ target: currentShadowSection.base });
-        const gooberCss = goober.css.bind({ target: currentShadowSection.base });
-    }
-
-    // useEffect(() => {
-    //     const currentShadowSection = appShadowSectionRef.current;
-
-    //     if (currentShadowSection) {
-
-    //         const gooberStyled = goober.styled.bind({ target: currentShadowSection.base });
-    //         const gooberCss = goober.css.bind({ target: currentShadowSection.base });
-
-
-    //         //goober.css.call({ target: currentShadowSection.base }, globalStylesExport);
-
-    //         setShadowCss(goober.extractCss() + globalStylesExport);
-
-
-    //         //goober.styled.call({ g: 1 }, 'div').call(null, globalStylesExport);
-
-    //         //goober.css.bind({ g: 1 })`${globalStylesExport}`;
-    //     }
-    // }, [appShadowSectionRef]);
+                setShadowCss(goober.extractCss() + globalStylesExport);
+            }
+        }, 1500);
+    }, [appShadowSectionRef]);
 
     return (
         <AppShadowSectionStyles ref={appShadowSectionRef}>
-            {/* <style id={'_goober'} dangerouslySetInnerHTML={{ __html: ' ' + shadowCss }} /> */}
+            <style id={'_goober'} dangerouslySetInnerHTML={{ __html: ' ' + shadowCss }} />
             <AppProvider {...props}>
                 <LoadableAppWrapper />
             </AppProvider>
