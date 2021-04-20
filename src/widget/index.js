@@ -1,4 +1,5 @@
 import habitat from 'preact-habitat';
+import * as goober from 'goober';
 import './app/components/app-shadow-section';
 
 if (process.env.NODE_ENV === 'development') {
@@ -6,6 +7,9 @@ if (process.env.NODE_ENV === 'development') {
     // to exist at top-level.
     require("preact/debug");
 }
+
+/* eslint-disable no-undef */
+goober.setup(h);
 
 const Widget = (props) => {
 
