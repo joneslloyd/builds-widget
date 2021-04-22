@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from 'preact/hooks';
-import 'tippy.js/dist/tippy.css';
-import 'react-popper-tooltip/dist/styles.css';
+/* eslint import/no-webpack-loader-syntax: off */
+import * as tippyCss from '!!raw-loader?esModule=false!tippy.js/dist/tippy.css';
+import * as reactPopperTooltipCss from '!!raw-loader?esModule=false!react-popper-tooltip/dist/styles.css';
 
 import { LazyTippy } from '../lazy-tippy';
 import { isVerticalPlacement } from '../../../lib/tooltips/helpers';
@@ -17,7 +18,7 @@ export const TooltipWrapper = props => {
         tooltipFn,
         trigger = 'mouseenter focus',
         isDisabled,
-        interactive = false,
+        interactive = true,
         offset,
         hideOnClick = true,
         visible,
@@ -34,6 +35,7 @@ export const TooltipWrapper = props => {
             const content = tooltipFn(tooltipRenderingProps);
             return content ? (
                 <div {...tooltipRenderingProps} className={className}>
+                    <style>{tippyCss}{reactPopperTooltipCss}</style>
                     {content}
                 </div>
             ) : null;

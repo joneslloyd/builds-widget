@@ -1,9 +1,20 @@
 import TooltipWrapper from '../../../components/tooltips/tooltip-wrapper';
-import { styled } from 'twin.macro';
+import { useStyled } from '../../../lib/context/goober';
 
-export const TransparentTooltip = styled(TooltipWrapper)(() => [
-    {
-        'background-color': 'transparent',
-        'border': 'solid 1px transparent',
-    },
-]);
+export const TransparentTooltip = ({ children, ...rest }) => {
+
+    const styled = useStyled();
+
+    const TransparentTooltipC = styled(TooltipWrapper)(() => [
+        {
+            'background-color': 'transparent',
+            'border': 'solid 1px transparent',
+        },
+    ]);
+
+    return (
+        <TransparentTooltipC {...rest}>
+            {children}
+        </TransparentTooltipC>
+    );
+};

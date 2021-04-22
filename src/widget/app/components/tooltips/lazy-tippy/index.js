@@ -23,6 +23,7 @@ export const LazyTippy = memo((props) => {
             ...props,
             plugins: [lazyPlugin, ...(props.plugins || [])],
             content: mounted ? props.content : '',
+            appendTo: 'parent',
             render: props.render
                 ? (...args) => {
                     return mounted && props.render ? props.render(...args) : null;

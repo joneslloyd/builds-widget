@@ -1,27 +1,27 @@
 import register from 'preact-custom-element';
-import { forwardRef } from 'preact/compat';
+import { useStyled } from '../../lib/context/goober';
+import { memo, forwardRef } from 'preact/compat';
 import LoadableAppWrapper from '../loadable-app-wrapper';
 import AppProvider from '../../lib/context'
-import tw, { styled, GlobalStyles } from 'twin.macro';
+import tw from 'twin.macro';
 
-const AppShadowSectionStyles = styled('div')(() => [
-    tw`h-full w-full min-h-full max-w-screen-xl`,
-]);
+const AppShadowSection = memo(forwardRef((props, ref) => {
 
-const AppShadowSection = forwardRef((props, ref) => {
+    const styled = useStyled();
 
-    const { shadowCss } = props;
+    const AppShadowSectionStyles = styled('div')(() => [
+        tw`h-full w-full min-h-full max-w-screen-xl`,
+    ]);
 
     return (
         <AppShadowSectionStyles ref={ref}>
-            <style id={'_goober'} dangerouslySetInnerHTML={{ __html: ' ' + shadowCss }} />
             <AppProvider {...props}>
                 <LoadableAppWrapper />
             </AppProvider>
         </AppShadowSectionStyles>
     );
-});
+}));
 
-register(AppShadowSection, 'app-shadow-section', ['shadowCss'], { shadow: true });
+register(AppShadowSection, 'app-shadow-section', ['target'], { shadow: true });
 
 export default AppShadowSection;

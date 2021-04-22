@@ -1,9 +1,9 @@
 import habitat from 'preact-habitat';
 import { createRef } from 'preact';
-import { useCallback, useEffect, useState } from 'preact/hooks';
+import { memo } from 'preact/compat';
 import * as goober from 'goober';
-import { globalStylesExport } from './app/styles/global-styles/global-styles-export';
 import './app/components/app-shadow-section';
+import { useEffect, useState } from 'preact/hooks';
 
 if (process.env.NODE_ENV === 'development') {
     // Must use require here as import statements are only allowed
@@ -14,40 +14,23 @@ if (process.env.NODE_ENV === 'development') {
 /* eslint-disable no-undef */
 goober.setup(h);
 
-const Widget = (props) => {
+const Widget = memo((props) => {
 
-    const headStyles = document.head.querySelector('#_goober')?.firstChild?.textContent || false;
     const appShadowSectionRef = createRef();
-    const [shadowCss, setShadowCss] = useState(false);
 
-    const doSetGoober = () => {
-
-        const currentShadowSection = appShadowSectionRef.current;
-
-        if (currentShadowSection) {
-
-            goober.styled.bind({ target: currentShadowSection });
-            goober.css.bind({ target: currentShadowSection });
-
-            const stylesToAdd = headStyles ? headStyles + globalStylesExport : globalStylesExport;
-
-            setShadowCss(stylesToAdd);
-
-        }
-    };
-
-    const setGoober = useCallback(() => {
-        doSetGoober();
-    }, [appShadowSectionRef, headStyles]);
+    const [shadowNode, setShadowNode] = useState(false);
 
     useEffect(() => {
-        setGoober();
-    }, [appShadowSectionRef, headStyles]);
+        const cr = appShadowSectionRef.current;
+        if (cr !== shadowNode) {
+            setShadowNode(cr);
+        }
+    }, [appShadowSectionRef]);
 
     return (
-        <app-shadow-section ref={appShadowSectionRef} shadowCss={shadowCss} {...props} />
+        <app-shadow-section ref={appShadowSectionRef} target={shadowNode} {...props} />
     );
-};
+});
 
 const { render } = habitat(Widget);
 
