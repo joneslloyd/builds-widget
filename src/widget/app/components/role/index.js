@@ -3,12 +3,15 @@ import { useDataApi } from '../../lib/context/data-api';
 import { useLoading } from '../../lib/context/loading';
 import { rolenameIcon } from '../../lib/helpers';
 import Image from '../image';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import FlexRow from '../../styles/components/flex-row';
 import SmallPurpleText from '../../styles/components/small-purple-text';
 
 const RoleStyles = tw(FlexRow)`items-center`;
 const RoleSmallPurpleText = tw(SmallPurpleText)`ml-1.5!`;
+const RoleImageHolder = styled('div')(() => [
+    tw`-mt-0.5`,
+]);
 
 const Role = () => {
 
@@ -22,7 +25,9 @@ const Role = () => {
 
     return (
         <RoleStyles>
-            <Image src={roleIcon} title={role} alt={role} width={11} height={11} />
+            <RoleImageHolder>
+                <Image src={roleIcon} title={role} alt={role} width={11} height={11} noBg={true} />
+            </RoleImageHolder>
             <RoleSmallPurpleText loading={loading}>{role}</RoleSmallPurpleText>
         </RoleStyles>
     );

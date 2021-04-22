@@ -1,7 +1,7 @@
 import { useState } from 'preact/hooks';
 import tw, { styled } from 'twin.macro';
 
-const Image = ({ src = false, alt, title, width, height, rounded = false, bgColor = true, cursor = 'default' }) => {
+const Image = ({ src = false, alt, title, width, height, rounded = false, bgColor = true, cursor = 'default', noBg = false }) => {
 
     const [loading, setLoading] = useState(true);
 
@@ -11,8 +11,8 @@ const Image = ({ src = false, alt, title, width, height, rounded = false, bgColo
         }
     };
 
-    const ImageLoadingStyles = styled.div(({ rounded, cursor }) => [
-        tw`flex bg-widget-gold-light animate-pulse`,
+    const ImageLoadingStyles = styled.div(({ rounded, cursor, noBg }) => [
+        noBg ? tw`flex animate-pulse` : tw`flex bg-widget-gold-light animate-pulse`,
         rounded === 'full' && tw`rounded-full`,
         rounded === 'md' && tw`rounded-sm`,
         { 'width': `${width}px`, 'height': `${height}px` },
@@ -22,9 +22,9 @@ const Image = ({ src = false, alt, title, width, height, rounded = false, bgColo
         }
     ]);
 
-    const ImageStyles = styled.img(({ rounded, cursor }) => [
+    const ImageStyles = styled.img(({ rounded, cursor, noBg }) => [
         tw`flex`,
-        bgColor === true && tw`bg-widget-gold-light`,
+        (!noBg && bgColor === true) && tw`bg-widget-gold-light`,
         rounded === 'full' && tw`rounded-full`,
         rounded === 'md' && tw`rounded-sm`,
         loading && { 'object-position': '-99999px 99999px' },
@@ -35,9 +35,9 @@ const Image = ({ src = false, alt, title, width, height, rounded = false, bgColo
 
     return (
         <>
-            <ImageLoadingStyles rounded={rounded} cursor={cursor} />
+            <ImageLoadingStyles rounded={rounded} cursor={cursor} noBg={noBg} />
             {src && (
-                <ImageStyles src={src} alt={alt} title={title} width={width} height={height} rounded={rounded} onLoad={setLoadingFalse} cursor={cursor} />
+                <ImageStyles src={src} alt={alt} title={title} width={width} height={height} rounded={rounded} onLoad={setLoadingFalse} cursor={cursor} noBg={noBg} />
             )}
         </>
     );
