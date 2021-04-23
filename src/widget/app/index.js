@@ -19,6 +19,9 @@ const App = () => {
     if (!loaded) {
       setLoaded(true);
     }
+    return () => {
+      setLoaded(false);
+    };
   }, []);
 
   return (

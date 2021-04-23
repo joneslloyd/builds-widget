@@ -1,17 +1,38 @@
-import { useState } from 'preact/hooks';
-import tw, { styled } from 'twin.macro';
+import { useCallback, useEffect, useState } from 'preact/hooks';
+import tw from 'twin.macro';
+import { useStyled } from '../../lib/context/goober';
 
 const Image = ({ src = false, alt, title, width, height, rounded = false, bgColor = true, cursor = 'default' }) => {
 
+    const styled = useStyled();
+
     const [loading, setLoading] = useState(true);
 
-    const setLoadingFalse = () => {
+    const doSetLoadingFalseFunc = () => {
         if (src && loading) {
             setLoading(false);
         }
     };
 
-    const ImageLoadingStyles = styled.div(({ rounded, cursor }) => [
+    const setLoadingFalseFunc = useCallback(() => {
+        doSetLoadingFalseFunc();
+    }, []);
+
+    const blankFunc = () => {
+        return;
+    };
+
+    const [setLoadingFalse, doSetLoadingFalse] = useState(blankFunc);
+
+    useEffect(() => {
+        doSetLoadingFalse(setLoadingFalseFunc);
+        () => {
+            doSetLoadingFalse(blankFunc);
+        };
+    }, []);
+
+
+    const ImageLoadingStyles = styled('div')(({ rounded, cursor }) => [
         tw`flex bg-widget-gold-light animate-pulse`,
         rounded === 'full' && tw`rounded-full`,
         rounded === 'md' && tw`rounded-sm`,
@@ -22,7 +43,7 @@ const Image = ({ src = false, alt, title, width, height, rounded = false, bgColo
         }
     ]);
 
-    const ImageStyles = styled.img(({ rounded, cursor }) => [
+    const ImageStyles = styled('img')(({ rounded, cursor }) => [
         tw`flex`,
         bgColor === true && tw`bg-widget-gold-light`,
         rounded === 'full' && tw`rounded-full`,

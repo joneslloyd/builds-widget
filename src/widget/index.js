@@ -25,10 +25,15 @@ const Widget = memo((props) => {
         if (cr !== shadowNode) {
             setShadowNode(cr);
         }
+        return () => {
+            if (shadowNode) {
+                setShadowNode(false);
+            }
+        };
     }, [appShadowSectionRef]);
 
     return (
-        <app-shadow-section ref={appShadowSectionRef} target={shadowNode} {...props} />
+        <app-shadow-section ref={appShadowSectionRef} target={shadowNode} {...props} style="width: 100%; height: auto; max-width: 100%; max-height: 100%;" />
     );
 });
 

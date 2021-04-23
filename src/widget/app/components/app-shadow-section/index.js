@@ -1,24 +1,19 @@
 import register from 'preact-custom-element';
-import { useStyled } from '../../lib/context/goober';
 import { memo, forwardRef } from 'preact/compat';
 import LoadableAppWrapper from '../loadable-app-wrapper';
 import AppProvider from '../../lib/context'
-import tw from 'twin.macro';
+import { theme } from 'twin.macro';
 
 const AppShadowSection = memo(forwardRef((props, ref) => {
 
-    const styled = useStyled();
-
-    const AppShadowSectionStyles = styled('div')(() => [
-        tw`h-full w-full min-h-full max-w-screen-xl`,
-    ]);
+    const shadowStyles = `justify-content: center; display: flex;`;
 
     return (
-        <AppShadowSectionStyles ref={ref}>
+        <div ref={ref} style={shadowStyles}>
             <AppProvider {...props}>
                 <LoadableAppWrapper />
             </AppProvider>
-        </AppShadowSectionStyles>
+        </div>
     );
 }));
 

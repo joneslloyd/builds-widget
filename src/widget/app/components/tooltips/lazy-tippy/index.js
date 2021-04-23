@@ -3,6 +3,7 @@ import { useState, useCallback, useMemo } from 'preact/hooks';
 import Tippy from '@tippyjs/react/headless';
 
 export const LazyTippy = memo((props) => {
+
     const [mounted, setMounted] = useState(false);
 
     const onShow = useCallback(() => setMounted(true), []);
@@ -23,7 +24,6 @@ export const LazyTippy = memo((props) => {
             ...props,
             plugins: [lazyPlugin, ...(props.plugins || [])],
             content: mounted ? props.content : '',
-            appendTo: 'parent',
             render: props.render
                 ? (...args) => {
                     return mounted && props.render ? props.render(...args) : null;
@@ -33,5 +33,5 @@ export const LazyTippy = memo((props) => {
         [props, mounted, lazyPlugin]
     );
 
-    return <Tippy {...computedProps} />;
+    return <Tippy {...props} />;
 });

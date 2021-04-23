@@ -1,4 +1,5 @@
-import tw, { styled } from 'twin.macro';
+import tw from 'twin.macro';
+import { useStyled } from '../../../lib/context/goober';
 
 import { GameItemTooltipRichText } from '../base-tooltip-rich-text';
 import { BaseTooltipWrapper } from '../../../styles/components/base-tooltip-wrapper';
@@ -18,23 +19,70 @@ export const GameTooltip = props => {
   );
 };
 
-const ItemWrapper = styled(BaseTooltipWrapper)(() => [
-  tw`flex flex-col w-100`,
-  {
-    'max-width': 'calc(100vw - 2rem)'
-  }
-]);
+const ItemWrapper = ({ children, ...rest }) => {
 
-const ItemHeader = styled('div')(() => [
-  tw`flex items-center mb-2.5`
-]);
+  const styled = useStyled();
 
-const ItemHeaderIcon = styled('img')(() => [
-  tw`mr-2.5 w-10 h-10`
-]);
+  const ItemWrapperC = styled(BaseTooltipWrapper)(() => [
+    tw`flex flex-col w-100 normal-case!`,
+    {
+      'max-width': 'calc(100vw - 2rem)'
+    }
+  ]);
 
-const ItemTitle = styled('div')(() => [
-  tw`font-normal text-lg text-widget-gold mb-1.5 mx-2`,
-]);
+  return (
+    <ItemWrapperC {...rest}>{children}</ItemWrapperC>
+  );
+};
 
-export const GameTooltipEmpty = tw(ItemWrapper)`h-4 opacity-0`;
+const ItemHeader = ({ children, ...rest }) => {
+
+  const styled = useStyled();
+
+  const ItemHeaderC = styled('div')(() => [
+    tw`flex items-center mb-2.5`
+  ]);
+
+  return (
+    <ItemHeaderC {...rest}>{children}</ItemHeaderC>
+  );
+};
+
+const ItemHeaderIcon = ({ children, ...rest }) => {
+
+  const styled = useStyled();
+
+  const ItemHeaderIconC = styled('img')(() => [
+    tw`mr-2.5 w-10 h-10`
+  ]);
+
+  return (
+    <ItemHeaderIconC {...rest}>{children}</ItemHeaderIconC>
+  );
+};
+
+const ItemTitle = ({ children, ...rest }) => {
+
+  const styled = useStyled();
+
+  const ItemTitleC = styled('div')(() => [
+    tw`font-normal text-lg text-widget-gold mb-1.5 mx-2`,
+  ]);
+
+  return (
+    <ItemTitleC {...rest}>{children}</ItemTitleC>
+  );
+};
+
+export const GameTooltipEmpty = ({ children, ...rest }) => {
+
+  const styled = useStyled();
+
+  const GameTooltipEmptyC = styled(ItemWrapper)(() => [
+    tw`h-4 opacity-0`,
+  ]);
+
+  return (
+    <GameTooltipEmptyC {...rest}>{children}</GameTooltipEmptyC>
+  );
+};

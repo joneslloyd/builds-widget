@@ -1,20 +1,29 @@
 import Rune from '../rune';
 import FullRunesBodyRow from '../full-runes-body-row';
 import { RunesSlotsMap } from '../../lib/helpers';
-import tw, { styled } from 'twin.macro';
+import tw from 'twin.macro';
+import { useStyled } from '../../lib/context/goober';
 import SmallWhiteText from '../../styles/components/small-white-text';
 import FullRunesDisplay from '../../styles/components/full-runes-display';
 import PerkTooltipWrapper from '../tooltips/perk-tooltip-wrapper';
 
-const FullRunesRuneGroupStyles = styled(FullRunesDisplay)(({ leftSpace = false }) => [
-    tw`flex-col`,
-    'normal' === leftSpace ? tw`mt-10 lg:(mt-0 ml-16)` : tw``,
-]);
-const FullRunesTitle = tw('div')`flex flex-row items-center justify-center`;
-const FullRunesRuneTitle = tw(SmallWhiteText)`text-widget-purple-full-runes-text capitalize text-sm font-black ml-2`;
-const FullRunesBody = tw('div')`flex flex-col items-center pt-5`;
-
 const FullRunesRuneGroup = ({ mainId, iDs = [], type = 'primary', loading: isLoading = true }) => {
+
+    const styled = useStyled();
+
+    const FullRunesRuneGroupStyles = styled(FullRunesDisplay)(({ leftSpace = false }) => [
+        tw`flex-col`,
+        'normal' === leftSpace ? tw`mt-10 lg:(mt-0 ml-16)` : tw``,
+    ]);
+    const FullRunesTitle = styled('div')(() => [
+        tw`flex flex-row items-center justify-center`,
+    ]);
+    const FullRunesRuneTitle = styled(SmallWhiteText)(() => [
+        tw`text-widget-purple-full-runes-text capitalize text-sm font-bold ml-2`,
+    ]);
+    const FullRunesBody = styled('div')(() => [
+        tw`flex flex-col items-center pt-5`,
+    ]);
 
 
     //Rune data

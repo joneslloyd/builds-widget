@@ -1,5 +1,6 @@
 import { memo } from 'preact/compat';
-import { useCallback, useState, useEffect } from 'preact/hooks';
+import { useCallback, useState } from 'preact/hooks';
+import useAsync from '../../../lib/hooks/use-async';
 import { perkImage } from '../../../lib/helpers';
 import { useTooltips } from '../../../lib/context/tooltips';
 import { maybeFetchTooltip } from '../../../lib/tooltips';
@@ -13,20 +14,25 @@ export const PerkTooltip = ({ by = 'riotId', identifier = false }) => {
     const { ttData, setTtData } = useTooltips();
     const [localTooltip, setLocalTooltip] = useState(false);
 
+    //Set state of tooltip
+    const doSetLocalTooltipRes = (ttRes) => {
+        if (ttRes) {
+            setLocalTooltip(ttRes)
+        }
+    };
+
+    const setLocalTooltipRes = useCallback((ttRes) => {
+        doSetLocalTooltipRes(ttRes);
+    }, []);
     //Get the tooltip
     const doTooltip = useCallback(async () => {
         //Only get it if there's a identifier set
         if (identifier) {
-            const ttRes = await maybeFetchTooltip('perk', by, identifier, ttData, setTtData);
-            if (ttRes) {
-                setLocalTooltip(ttRes);
-            }
+            return await maybeFetchTooltip('perk', by, identifier, ttData, setTtData);
         }
     }, [identifier]);
 
-    useEffect(async () => {
-        await doTooltip();
-    }, [identifier]);
+    useAsync(doTooltip, setLocalTooltipRes);
 
     return localTooltip ? (
         <GameTooltip

@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import { useCallback, useMemo } from 'preact/hooks';
 /* eslint import/no-webpack-loader-syntax: off */
 import * as tippyCss from '!!raw-loader?esModule=false!tippy.js/dist/tippy.css';
@@ -12,13 +13,14 @@ const defaultOffset = [0, 10];
 export const TooltipWrapper = props => {
 
     const {
+        appendTo = 'parent',
         children,
         placement = 'top',
         tooltip,
         tooltipFn,
         trigger = 'mouseenter focus',
         isDisabled,
-        interactive = true,
+        interactive = false,
         offset,
         hideOnClick = true,
         visible,
@@ -94,6 +96,7 @@ export const TooltipWrapper = props => {
 
     return (
         <LazyTippy
+            appendTo={appendTo}
             render={renderer}
             placement={placement}
             popperOptions={popperOptions}
@@ -112,4 +115,4 @@ export const TooltipWrapper = props => {
     );
 };
 
-export default TooltipWrapper;
+export default memo(TooltipWrapper);

@@ -1,5 +1,6 @@
 import { createContext } from 'preact';
-import { useEffect, useCallback, useContext, useState } from 'preact/hooks';
+import { useCallback, useContext, useState } from 'preact/hooks';
+import useAsync from '../../hooks/use-async';
 import { useLoading } from '../loading';
 import { useStaticGlobalProps } from '../static-global-props';
 import { dataApiClient } from '../../graphql/client';
@@ -24,6 +25,25 @@ export const DataApiProvider = ({ children }) => {
         setDaData
     };
 
+    const processApiData = useCallback((result) => {
+
+        if (result) {
+
+            //Set loading globally on the app
+            setLoading(false);
+
+            const { data, error } = result;
+
+            //Set the response into the Data API context
+            setDaData({
+                data,
+                loading: false,
+                error: error ? error : false
+            });
+        }
+
+    }, []);
+
     const getApiData = useCallback(async () => {
 
         //Set loading on the Data API context
@@ -40,22 +60,10 @@ export const DataApiProvider = ({ children }) => {
             champion
         }).toPromise();
 
-        const { data, error } = result;
-
-        //Set the response into the Data API context
-        setDaData({
-            data,
-            loading: false,
-            error: error ? error : false
-        });
-
-        //Set loading globally on the app
-        setLoading(false);
+        return result;
     }, []);
 
-    useEffect(async () => {
-        await getApiData();
-    }, []);
+    useAsync(getApiData, processApiData);
 
     return (
         <DataApiContext.Provider value={store}>{children}</DataApiContext.Provider>

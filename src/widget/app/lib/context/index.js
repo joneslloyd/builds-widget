@@ -5,14 +5,14 @@ import { TooltipsProvider } from './tooltips';
 import { DataApiProvider } from './data-api';
 import { SquidexApiProvider } from './squidex-api';
 
-const AppProvider = ({ children, target, champion, layout }) => {
+const AppProvider = ({ children, ...rest }) => {
     return (
-        <GooberProvider target={target}>
-            <StaticGlobalPropsProvider champion={champion} layout={layout}>
-                <LoadingProvider>
-                    <TooltipsProvider>
-                        <DataApiProvider>
-                            <SquidexApiProvider>{children}</SquidexApiProvider>
+        <GooberProvider {...rest}>
+            <StaticGlobalPropsProvider {...rest}>
+                <LoadingProvider {...rest}>
+                    <TooltipsProvider {...rest}>
+                        <DataApiProvider {...rest}>
+                            <SquidexApiProvider {...rest}>{children}</SquidexApiProvider>
                         </DataApiProvider>
                     </TooltipsProvider>
                 </LoadingProvider>

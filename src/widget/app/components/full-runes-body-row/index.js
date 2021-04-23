@@ -1,22 +1,25 @@
 import Rune from '../rune';
-import tw, { styled } from 'twin.macro';
+import tw from 'twin.macro';
+import { useStyled } from '../../lib/context/goober';
 import PerkTooltipWrapper from '../tooltips/perk-tooltip-wrapper';
 
-const FullRunesBodyRowStyles = styled('div')(({ topSpace = false, justifyContentSpaceBetween = false }) => [
-    tw`flex flex-row w-full justify-center`,
-    'normal' === topSpace ? tw`pt-2.5` : tw``,
-    'large' === topSpace ? tw`pt-5` : tw``,
-    'x-large' === topSpace ? tw`pt-8` : tw``,
-    true === justifyContentSpaceBetween ? tw`justify-between` : tw``
-]);
-const FullRunesBodyRowRune = styled('div')(({ leftSpace = false }) => [
-    tw`px-0`,
-    'normal' === leftSpace ? tw`pl-2.5` : tw``,
-    'large' === leftSpace ? tw`pl-5` : tw``,
-    'x-large' === leftSpace ? tw`pl-8` : tw``,
-]);
-
 const FullRunesBodyRow = ({ index = 0, data = {}, totalItems = 0, type = 'primary' }) => {
+
+    const styled = useStyled();
+
+    const FullRunesBodyRowStyles = styled('div')(({ topSpace = false, justifyContentSpaceBetween = false }) => [
+        tw`flex flex-row w-full justify-center`,
+        'normal' === topSpace ? tw`pt-2.5` : tw``,
+        'large' === topSpace ? tw`pt-5` : tw``,
+        'x-large' === topSpace ? tw`pt-8` : tw``,
+        true === justifyContentSpaceBetween ? tw`justify-between` : tw``
+    ]);
+    const FullRunesBodyRowRune = styled('div')(({ leftSpace = false }) => [
+        tw`px-0`,
+        'normal' === leftSpace ? tw`pl-2.5` : tw``,
+        'large' === leftSpace ? tw`pl-5` : tw``,
+        'x-large' === leftSpace ? tw`pl-8` : tw``,
+    ]);
 
     const { hasCircle, runes } = data;
     const runeSize = 'primary' === type ? (index === 0 ? 48 : 36) : (index === totalItems - 1 ? 24 : 36);

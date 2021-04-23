@@ -4,13 +4,20 @@ import { useLoading } from '../../lib/context/loading';
 import { rolenameIcon } from '../../lib/helpers';
 import Image from '../image';
 import tw from 'twin.macro';
+import { useStyled } from '../../lib/context/goober';
 import FlexRow from '../../styles/components/flex-row';
 import SmallPurpleText from '../../styles/components/small-purple-text';
 
-const RoleStyles = tw(FlexRow)`items-center`;
-const RoleSmallPurpleText = tw(SmallPurpleText)`ml-1.5!`;
-
 const Role = () => {
+
+    const styled = useStyled();
+
+    const RoleStyles = styled(FlexRow)(() => [
+        tw`items-center`,
+    ]);
+    const RoleSmallPurpleText = styled(SmallPurpleText)(() => [
+        tw`ml-1.5!`,
+    ]);
 
     const { daData: { data: { lol: { champion: { build: { role: rawRole = 'XXX' } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { loading: isLoading = true } = useLoading();
@@ -22,7 +29,7 @@ const Role = () => {
 
     return (
         <RoleStyles>
-            <Image src={roleIcon} title={role} alt={role} width={11} height={11} />
+            <Image src={roleIcon} title={role} alt={role} width={11} height={11} bgColor={false} />
             <RoleSmallPurpleText loading={loading}>{role}</RoleSmallPurpleText>
         </RoleStyles>
     );
