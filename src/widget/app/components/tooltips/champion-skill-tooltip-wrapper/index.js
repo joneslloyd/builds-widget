@@ -1,11 +1,19 @@
 import { memo } from 'preact/compat';
 import { useCallback } from 'preact/hooks';
 import ChampionSkillStandaloneTooltip from '../champion-skill-standalone-tooltip';
-import { styled } from 'twin.macro';
+import { useStyled } from '../../../lib/context/goober';
 import { TransparentTooltip } from '../../../styles/components/transparent-tooltip';
 
 
 const ChampionSkillTooltipWrapper = ({ by, identifier, children }) => {
+
+    const styled = useStyled();
+
+    const TooltipWrapper = styled('div')(() => [
+        {
+            'width': '17.5rem',
+        },
+    ]);
 
     const tooltipFn = useCallback(() => {
 
@@ -23,11 +31,5 @@ const ChampionSkillTooltipWrapper = ({ by, identifier, children }) => {
         </TransparentTooltip>
     ));
 };
-
-const TooltipWrapper = styled('div')(() => [
-    {
-        'width': '17.5rem',
-    },
-]);
 
 export default memo(ChampionSkillTooltipWrapper);

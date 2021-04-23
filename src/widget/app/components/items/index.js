@@ -2,22 +2,34 @@ import { memo } from 'preact/compat';
 import { useDataApi } from '../../lib/context/data-api';
 import { useLoading } from '../../lib/context/loading';
 import ItemSet from '../item-set';
-import tw, { styled } from 'twin.macro';
+import tw from 'twin.macro';
+import { useStyled } from '../../lib/context/goober';
 import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
 import SmallWhiteText from '../../styles/components/small-white-text';
 import ItemsDisplay from '../../styles/components/items-display';
 
-const ItemsStyles = tw(FlexCol)`w-full`;
-const ItemsStylesRow = tw(FlexRow)`w-full`;
-const ItemsSmallWhiteText = tw(SmallWhiteText)`uppercase`;
-const ItemsDisplayStyles = tw(ItemsDisplay)`flex flex-col w-full capitalize pt-2.5 pb-1 md:(flex-row)`;
-const ItemSetGroup = styled('div')(({ paddingTop = false }) => [
-    tw`flex flex-row w-full md:(w-auto)`,
-    'small' === paddingTop ? tw`pt-2.5 md:(pt-0)` : tw`pt-0`,
-]);
-
 const Items = () => {
+
+    const styled = useStyled();
+
+    const ItemsStyles = styled(FlexCol)(() => [
+        tw`w-full`,
+    ]);
+    const ItemsStylesRow = styled(FlexRow)(() => [
+        tw`w-full`,
+    ]);
+    const ItemsSmallWhiteText = styled(SmallWhiteText)(() => [
+        tw`uppercase`,
+    ]);
+    const ItemsDisplayStyles = styled(ItemsDisplay)(() => [
+        tw`flex flex-col w-full capitalize pt-2.5 pb-1 md:(flex-row)`,
+    ]);
+    const ItemSetGroup = styled('div')(({ paddingTop = false }) => [
+        tw`flex flex-row w-full md:(w-auto)`,
+        'small' === paddingTop ? tw`pt-2.5 md:(pt-0)` : tw`pt-0`,
+    ]);
+
 
     const dummyData = {
         type: 'items',

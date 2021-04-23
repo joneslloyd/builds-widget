@@ -4,20 +4,27 @@ import { useDataApi } from '../../lib/context/data-api';
 import { useSquidexApi } from '../../lib/context/squidex-api';
 import { useLoading } from '../../lib/context/loading';
 import SpellItem from '../spell-item';
-import tw, { styled } from 'twin.macro';
+import tw from 'twin.macro';
+import { useStyled } from '../../lib/context/goober';
 import FlexCol from '../../styles/components/flex-col';
 import FlexRow from '../../styles/components/flex-row';
 import SmallWhiteText from '../../styles/components/small-white-text';
 import SpellsDisplay from '../../styles/components/spells-display';
 import SummonerSpellTooltipWrapper from '../tooltips/summoner-spell-tooltip-wrapper';
 
-const SpellsStyles = styled(FlexCol)(() => [
-    tw`w-full pt-4 lg:(pt-5) xl:(pt-0)`
-]);
-const SpellsSmallWhiteText = tw(SmallWhiteText)`uppercase`;
-const SpellsDisplayStyles = tw(SpellsDisplay)`uppercase pt-3`;
-
 const Spells = () => {
+
+    const styled = useStyled();
+
+    const SpellsStyles = styled(FlexCol)(() => [
+        tw`w-full pt-4 lg:(pt-5) xl:(pt-0)`
+    ]);
+    const SpellsSmallWhiteText = styled(SmallWhiteText)(() => [
+        tw`uppercase`,
+    ]);
+    const SpellsDisplayStyles = styled(SpellsDisplay)(() => [
+        tw`uppercase pt-3`,
+    ]);
 
     const { daData: { data: { lol: { champion: { build: { spells = [] } = {} } = {} } = {} } = {} } } = useDataApi();
     const { sqData: { data: { querySummonersSpellsV1Contents: squidexSpells = [] } = {} } = {} } = useSquidexApi();

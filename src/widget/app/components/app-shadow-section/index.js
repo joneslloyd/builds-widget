@@ -1,40 +1,22 @@
 import register from 'preact-custom-element';
-import { useEffect, useRef } from 'preact/hooks';
+import { memo, forwardRef } from 'preact/compat';
 import LoadableAppWrapper from '../loadable-app-wrapper';
 import AppProvider from '../../lib/context'
-import * as goober from 'goober';
-import tw, { styled } from 'twin.macro';
+import { theme } from 'twin.macro';
 
-/* eslint-disable no-undef */
-goober.setup(h);
+const AppShadowSection = memo(forwardRef((props, ref) => {
 
-const AppShadowSectionStyles = styled('div')(() => [
-    tw`h-full w-full min-h-full max-w-screen-xl`,
-]);
-
-const AppShadowSection = (props) => {
-
-    const appShadowSectionRef = useRef(null);
-
-    useEffect(() => {
-
-        const currentShadowSection = appShadowSectionRef.current;
-
-        if (currentShadowSection) {
-
-            goober.css.call({ target: currentShadowSection.base }, goober.extractCss());
-        }
-    }, [appShadowSectionRef]);
+    const shadowStyles = `justify-content: center; display: flex;`;
 
     return (
-        <AppShadowSectionStyles ref={appShadowSectionRef}>
+        <div ref={ref} style={shadowStyles}>
             <AppProvider {...props}>
                 <LoadableAppWrapper />
             </AppProvider>
-        </AppShadowSectionStyles>
+        </div>
     );
-};
+}));
 
-register(AppShadowSection, 'app-shadow-section', [], { shadow: true });
+register(AppShadowSection, 'app-shadow-section', ['target'], { shadow: true });
 
 export default AppShadowSection;

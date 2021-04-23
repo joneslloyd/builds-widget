@@ -1,5 +1,6 @@
 import { createContext } from 'preact';
-import { useCallback, useContext, useEffect, useState } from 'preact/hooks';
+import { useCallback, useContext, useState } from 'preact/hooks';
+import useAsync from '../../hooks/use-async';
 import { useLoading } from '../loading';
 import { useStaticGlobalProps } from '../static-global-props';
 import { squidexApiClient } from '../../graphql/client';
@@ -23,6 +24,25 @@ export const SquidexApiProvider = ({ children }) => {
         sqData,
         setSqData
     };
+
+    const processApiData = useCallback((result) => {
+
+        if (result) {
+
+            //Set loading globally on the app
+            setLoading(false);
+
+            const { data, error } = result;
+
+            //Set the response into the Data API context
+            setSqData({
+                data,
+                loading: false,
+                error: error ? error : false
+            });
+        }
+
+    }, []);
 
     const getApiData = useCallback(async () => {
 
@@ -52,23 +72,11 @@ export const SquidexApiProvider = ({ children }) => {
             withProBuildsData: true
         }).toPromise();
 
-        const { data, error } = result;
-
-        //Set the response into the Squidex API context
-        setSqData({
-            data,
-            loading: false,
-            error: error ? error : false
-        });
-
-        //Set loading globally on the app
-        setLoading(false);
+        return result;
 
     }, []);
 
-    useEffect(async () => {
-        await getApiData();
-    }, []);
+    useAsync(getApiData, processApiData);
 
     return (
         <SquidexApiContext.Provider value={store}>{children}</SquidexApiContext.Provider>

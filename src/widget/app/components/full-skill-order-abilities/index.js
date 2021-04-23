@@ -1,11 +1,17 @@
 import SpellItem from '../spell-item';
 import ChampionSkillTooltipWrapper from '../tooltips/champion-skill-tooltip-wrapper';
 import tw from 'twin.macro';
+import { useStyled } from '../../lib/context/goober';
 import FlexCol from '../../styles/components/flex-col';
 
-const FullSkillOrderAbilitiesStyles = tw(FlexCol)``;
-
 const FullSkillOrderAbilities = ({ loading = true, abilities = [] }) => {
+
+    const styled = useStyled();
+
+    const FullSkillOrderAbilitiesStyles = styled(FlexCol)(() => [
+        tw``,
+    ]);
+
     return (
         <FullSkillOrderAbilitiesStyles>
             {

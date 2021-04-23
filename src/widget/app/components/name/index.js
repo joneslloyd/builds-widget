@@ -2,11 +2,16 @@ import { memo } from 'preact/compat';
 import { useSquidexApi } from '../../lib/context/squidex-api';
 import { useLoading } from '../../lib/context/loading';
 import tw from 'twin.macro';
+import { useStyled } from '../../lib/context/goober';
 import NormalText from '../../styles/components/normal-text';
 
-const NameStyles = tw.div`flex`;
-
 const Name = () => {
+
+    const styled = useStyled();
+
+    const NameStyles = styled('div')(() => [
+        tw`flex`,
+    ]);
 
     const { sqData: { data: { championCommonInfo = [] } = {} } } = useSquidexApi();
     const { loading = true } = useLoading();

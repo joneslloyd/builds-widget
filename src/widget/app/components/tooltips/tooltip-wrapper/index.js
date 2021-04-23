@@ -1,6 +1,8 @@
+import { memo } from 'preact/compat';
 import { useCallback, useMemo } from 'preact/hooks';
-import 'tippy.js/dist/tippy.css';
-import 'react-popper-tooltip/dist/styles.css';
+/* eslint import/no-webpack-loader-syntax: off */
+import * as tippyCss from '!!raw-loader?esModule=false!tippy.js/dist/tippy.css';
+import * as reactPopperTooltipCss from '!!raw-loader?esModule=false!react-popper-tooltip/dist/styles.css';
 
 import { LazyTippy } from '../lazy-tippy';
 import { isVerticalPlacement } from '../../../lib/tooltips/helpers';
@@ -11,6 +13,7 @@ const defaultOffset = [0, 10];
 export const TooltipWrapper = props => {
 
     const {
+        appendTo = 'parent',
         children,
         placement = 'top',
         tooltip,
@@ -34,6 +37,7 @@ export const TooltipWrapper = props => {
             const content = tooltipFn(tooltipRenderingProps);
             return content ? (
                 <div {...tooltipRenderingProps} className={className}>
+                    <style>{tippyCss}{reactPopperTooltipCss}</style>
                     {content}
                 </div>
             ) : null;
@@ -92,6 +96,7 @@ export const TooltipWrapper = props => {
 
     return (
         <LazyTippy
+            appendTo={appendTo}
             render={renderer}
             placement={placement}
             popperOptions={popperOptions}
@@ -110,4 +115,4 @@ export const TooltipWrapper = props => {
     );
 };
 
-export default TooltipWrapper;
+export default memo(TooltipWrapper);

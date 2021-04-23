@@ -3,16 +3,26 @@ import { useSquidexApi } from '../../lib/context/squidex-api';
 import { useLoading } from '../../lib/context/loading';
 import MoreBuildsIcon from '../more-builds-icon';
 import tw from 'twin.macro';
+import { useStyled } from '../../lib/context/goober';
 import FlexRow from '../../styles/components/flex-row';
 import SmallWhiteText from '../../styles/components/small-white-text';
 
-const MoreBuildsStyles = tw(FlexRow)`pt-2.5 md:(pt-0)`;
-const MoreBuildsLoading = tw(SmallWhiteText)`ml-6 lg:(ml-6)`;
-const MoreBuildsSmallGoldText = tw(SmallWhiteText)`flex items-center text-xs! font-medium text-widget-gold normal-case transition-all hover:text-widget-gold-light svg:all:(transition-all fill-widget-gold) hover:(svg:all:(fill-widget-gold-light)) md:(pl-6)`;
-const MoreBuildsIconStyled = tw(MoreBuildsIcon)`ml-1.5 fill-widget-gold`;
-
-
 const MoreBuilds = () => {
+
+    const styled = useStyled();
+
+    const MoreBuildsStyles = styled(FlexRow)(() => [
+        tw`pt-2.5 md:(pt-0)`,
+    ]);
+    const MoreBuildsLoading = styled(SmallWhiteText)(() => [
+        tw`ml-6 no-underline lg:(ml-6)`,
+    ]);
+    const MoreBuildsSmallGoldText = styled(SmallWhiteText)(() => [
+        tw`flex items-center text-xs! font-medium text-widget-gold normal-case transition-all no-underline hover:text-widget-gold-light svg:all:(transition-all fill-widget-gold) hover:(svg:all:(fill-widget-gold-light)) md:(pl-6)`,
+    ]);
+    const MoreBuildsIconStyled = styled(MoreBuildsIcon)(() => [
+        tw`ml-1.5 fill-widget-gold`,
+    ]);
 
     const { sqData: { data: { championCommonInfo = [] } = {} } = {} } = useSquidexApi();
     const { loading: isLoading = true } = useLoading();

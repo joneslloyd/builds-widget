@@ -1,12 +1,19 @@
 import RoundedGoldBorder from '../rounded-gold-border';
 import Image from '../image';
 import { perkImage } from '../../lib/helpers';
-import tw, { styled } from 'twin.macro';
-
-const RoundedGoldBorderStyles = tw(RoundedGoldBorder)``;
-const NoWrapStyles = tw.div``;
+import tw from 'twin.macro';
+import { useStyled } from '../../lib/context/goober';
 
 const Rune = ({ id, wh = 32, rounded = false, gold = false, leftSpace = false, borderWidth = false, greyed = false, cursor = 'default' }) => {
+
+    const styled = useStyled();
+
+    const RoundedGoldBorderStyles = styled(RoundedGoldBorder)(() => [
+        tw``,
+    ]);
+    const NoWrapStyles = styled('div')(() => [
+        tw``,
+    ]);
 
     const wrapComponents = {
         gold: RoundedGoldBorderStyles,

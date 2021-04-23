@@ -1,11 +1,16 @@
 import FullSkillOrderAbilities from '../full-skill-order-abilities';
 import FullSkillOrderMappedSkills from '../full-skill-order-mapped-skills';
 import tw from 'twin.macro';
+import { useStyled } from '../../lib/context/goober';
 import FlexRow from '../../styles/components/flex-row';
 
-const FullSkillOrderDisplayStyles = tw(FlexRow)`items-start`;
-
 const FullSkillOrderDisplay = ({ abilities, skillOrder, skillMap, loading = true }) => {
+
+    const styled = useStyled();
+
+    const FullSkillOrderDisplayStyles = styled(FlexRow)(() => [
+        tw`items-start`,
+    ]);
 
     return (
         <FullSkillOrderDisplayStyles>

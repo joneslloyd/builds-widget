@@ -1,20 +1,23 @@
+import { GooberProvider } from './goober';
 import { StaticGlobalPropsProvider } from './static-global-props';
 import { LoadingProvider } from './loading';
 import { TooltipsProvider } from './tooltips';
 import { DataApiProvider } from './data-api';
 import { SquidexApiProvider } from './squidex-api';
 
-const AppProvider = ({ children, champion, layout }) => {
+const AppProvider = ({ children, ...rest }) => {
     return (
-        <StaticGlobalPropsProvider champion={champion} layout={layout}>
-            <LoadingProvider>
-                <TooltipsProvider>
-                    <DataApiProvider>
-                        <SquidexApiProvider>{children}</SquidexApiProvider>
-                    </DataApiProvider>
-                </TooltipsProvider>
-            </LoadingProvider>
-        </StaticGlobalPropsProvider>
+        <GooberProvider {...rest}>
+            <StaticGlobalPropsProvider {...rest}>
+                <LoadingProvider {...rest}>
+                    <TooltipsProvider {...rest}>
+                        <DataApiProvider {...rest}>
+                            <SquidexApiProvider {...rest}>{children}</SquidexApiProvider>
+                        </DataApiProvider>
+                    </TooltipsProvider>
+                </LoadingProvider>
+            </StaticGlobalPropsProvider>
+        </GooberProvider>
     );
 };
 

@@ -4,39 +4,52 @@ import { useLoading } from '../../lib/context/loading';
 import { useCallback } from 'preact/hooks';
 import Rune from '../rune';
 import { getLineColorFromIcon } from '../../lib/helpers';
-import tw, { styled } from 'twin.macro';
+import tw from 'twin.macro';
+import { useStyled } from '../../lib/context/goober';
 import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
 import SmallWhiteText from '../../styles/components/small-white-text';
 import CompactRunesDisplay from '../../styles/components/compact-runes-display';
 import PerkTooltipWrapper from '../tooltips/perk-tooltip-wrapper';
 
-const CompactRunesStyles = tw(FlexCol)`mr-0 xl:(mr-10 w-9/12)`;
-const CompactRunesSmallWhiteText = tw(SmallWhiteText)`uppercase`;
-const CompactRunesDisplayStyles = tw(CompactRunesDisplay)`flex flex-col uppercase pt-2.5 md:(flex-row)`;
-const RuneGroup = styled(CompactRunesDisplay)(({ leftSpace, line = false, loading = true }) => [
-    tw`items-center relative bg-transparent!`,
-    'large' === leftSpace ? tw`ml-8` : tw``,
-    'largeMd' === leftSpace ? tw`md:ml-8` : tw``,
-    'normal' === leftSpace ? tw`ml-7` : tw``,
-    'small' === leftSpace ? tw`ml-6` : tw``,
-    'very-small' === leftSpace ? tw`ml-3` : tw``,
-    (true === loading && 'gold' === line) ? tw`before:(absolute z-0 inset-53p left-6 content block w-9/12 h-0.5 bg-widget-gold-line outline-widget-gold-outer-line animate-pulse)` : tw``,
-    (false === loading && 'gold' === line) ? tw`before:(absolute z-0 inset-53p left-6 content block w-9/12 h-0.5 bg-widget-gold-line outline-widget-gold-outer-line)` : tw``,
-    (true === loading && 'blue' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-blue-line outline-widget-blue-outer-line animate-pulse)` : tw``,
-    (false === loading && 'blue' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-blue-line outline-widget-blue-outer-line)` : tw``,
-    (true === loading && 'red' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-red-line outline-widget-red-outer-line animate-pulse)` : tw``,
-    (false === loading && 'red' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-red-line outline-widget-red-outer-line)` : tw``,
-    (true === loading && 'green' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-green-line outline-widget-green-outer-line animate-pulse)` : tw``,
-    (false === loading && 'green' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-green-line outline-widget-green-outer-line)` : tw``,
-    (true === loading && 'purple' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-purple-line outline-widget-purple-outer-line animate-pulse)` : tw``,
-    (false === loading && 'purple' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-purple-line outline-widget-purple-outer-line)` : tw``,
-]);
-
-const FirstRuneGroup = tw(RuneGroup)`before:(w-8/12) md:(before:(w-9/12))`;
-const LastRuneGroups = tw.div`flex pt-2.5 md:(pt-0)`;
-
 const CompactRunes = () => {
+
+    const styled = useStyled();
+
+    const CompactRunesStyles = styled(FlexCol)(() => [
+        tw`mr-0 xl:(mr-10 w-9/12)`,
+    ]);
+    const CompactRunesSmallWhiteText = styled(SmallWhiteText)(() => [
+        tw`uppercase`,
+    ]);
+    const CompactRunesDisplayStyles = styled(CompactRunesDisplay)(() => [
+        tw`flex flex-col uppercase pt-2.5 md:(flex-row)`,
+    ]);
+    const RuneGroup = styled(CompactRunesDisplay)(({ leftSpace, line = false, loading = true }) => [
+        tw`items-center relative bg-transparent!`,
+        'large' === leftSpace ? tw`ml-8` : tw``,
+        'largeMd' === leftSpace ? tw`md:ml-8` : tw``,
+        'normal' === leftSpace ? tw`ml-7` : tw``,
+        'small' === leftSpace ? tw`ml-6` : tw``,
+        'very-small' === leftSpace ? tw`ml-3` : tw``,
+        (true === loading && 'gold' === line) ? tw`before:(absolute z-0 inset-53p left-6 content block w-9/12 h-0.5 bg-widget-gold-line outline-widget-gold-outer-line animate-pulse)` : tw``,
+        (false === loading && 'gold' === line) ? tw`before:(absolute z-0 inset-53p left-6 content block w-9/12 h-0.5 bg-widget-gold-line outline-widget-gold-outer-line)` : tw``,
+        (true === loading && 'blue' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-blue-line outline-widget-blue-outer-line animate-pulse)` : tw``,
+        (false === loading && 'blue' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-blue-line outline-widget-blue-outer-line)` : tw``,
+        (true === loading && 'red' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-red-line outline-widget-red-outer-line animate-pulse)` : tw``,
+        (false === loading && 'red' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-red-line outline-widget-red-outer-line)` : tw``,
+        (true === loading && 'green' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-green-line outline-widget-green-outer-line animate-pulse)` : tw``,
+        (false === loading && 'green' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-green-line outline-widget-green-outer-line)` : tw``,
+        (true === loading && 'purple' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-purple-line outline-widget-purple-outer-line animate-pulse)` : tw``,
+        (false === loading && 'purple' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-purple-line outline-widget-purple-outer-line)` : tw``,
+    ]);
+
+    const FirstRuneGroup = styled(RuneGroup)(() => [
+        tw`before:(w-8/12) md:(before:(w-9/12))`,
+    ]);
+    const LastRuneGroups = styled('div')(() => [
+        tw`flex pt-2.5 md:(pt-0)`,
+    ]);
 
     const { daData: { data: { lol: { champion: { build: { perks = {} } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { loading: isLoading = true } = useLoading();

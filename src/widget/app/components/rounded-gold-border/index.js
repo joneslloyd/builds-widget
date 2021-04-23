@@ -1,6 +1,9 @@
-import tw, { styled } from 'twin.macro';
+import tw from 'twin.macro';
+import { useStyled } from '../../lib/context/goober';
 
 const RoundedGoldBorder = ({ children, borderWidth = '2px', ...rest }) => {
+
+    const styled = useStyled();
 
     const RoundedGoldBorderStyles = styled('div')(({ borderWidth }) => [
         tw`border-solid border-2 border-widget-gold rounded-full`,

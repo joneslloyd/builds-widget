@@ -4,14 +4,23 @@ import { useDataApi } from '../../lib/context/data-api';
 import { useLoading } from '../../lib/context/loading';
 import { roundWinRate } from '../../lib/helpers';
 import tw from 'twin.macro';
+import { useStyled } from '../../lib/context/goober';
 import FlexRow from '../../styles/components/flex-row';
 import SmallPurpleText from '../../styles/components/small-purple-text';
 
-const WinRateStyles = tw(FlexRow)`pl-3.5`;
-const WinRateSmallPurpleText = tw(SmallPurpleText)`pr-1`;
-const WinRateSmallGreenText = tw(SmallPurpleText)`text-widget-green`;
-
 const WinRate = () => {
+
+    const styled = useStyled();
+
+    const WinRateStyles = styled(FlexRow)(() => [
+        tw`pl-3.5`,
+    ]);
+    const WinRateSmallPurpleText = styled(SmallPurpleText)(() => [
+        tw`pr-1`,
+    ]);
+    const WinRateSmallGreenText = styled(SmallPurpleText)(() => [
+        tw`text-widget-green`,
+    ]);
 
     const { daData: { data: { lol: { champion: { stats: { winRateHistory = [] } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const latestWinRateHistoryItem = winRateHistory ? winRateHistory[0] : {};
