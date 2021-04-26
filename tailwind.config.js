@@ -1,4 +1,4 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
     purge: {
@@ -169,8 +169,16 @@ module.exports = {
     variants: {
         extend: {
             fill: ['hover'],
-            stroke: ['hover']
+            stroke: ['hover'],
+            height: ['px'],
         },
     },
-    plugins: [],
-}
+    plugins: [
+        require('./rem-to-px.js')({
+            baseFontSize: 16,
+            toModify: [
+                'all'
+            ]
+        }),
+    ],
+};

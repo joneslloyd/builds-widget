@@ -86,7 +86,7 @@ const GlobalStyles = () => {
 
   const global = useGlob();
 
-  const CustomStyles = global(customStylesData + resetData);
+  const CustomStyles = global(`:host{ all: initial !important; }` + customStylesData + resetData);
 
   return (
     <>

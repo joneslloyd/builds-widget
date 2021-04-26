@@ -33,7 +33,7 @@ const Widget = memo((props) => {
     }, [appShadowSectionRef]);
 
     return (
-        <app-shadow-section ref={appShadowSectionRef} target={shadowNode} {...props} style="width: 100%; height: auto; max-width: 100%; max-height: 100%;" />
+        <app-shadow-section ref={appShadowSectionRef} target={shadowNode} {...props} style="font-size: 12px; width: 100%; height: auto; max-width: 100%; max-height: 100%;" />
     );
 });
 
