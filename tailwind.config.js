@@ -170,7 +170,6 @@ module.exports = {
         extend: {
             fill: ['hover'],
             stroke: ['hover'],
-            height: ['px'],
         },
     },
     plugins: [
