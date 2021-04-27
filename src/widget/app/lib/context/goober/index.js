@@ -6,6 +6,7 @@ export const GooberContext = createContext({
     css: goober.css,
     styled: goober.styled,
     glob: goober.glob,
+    customTarget: false,
 });
 
 export const GooberProvider = ({ children, target: targetRaw }) => {
@@ -19,6 +20,7 @@ export const GooberProvider = ({ children, target: targetRaw }) => {
                     css: goober.css.bind({ target }),
                     styled: goober.styled.bind({ target }),
                     glob: goober.css.bind({ g: 1, target }),
+                    customTarget: true,
                 }}>{children}</GooberContext.Provider>
             )}
             {!target && (
@@ -58,4 +60,11 @@ export const useGlob = () => {
     const { glob } = useGoober();
 
     return glob;
+};
+
+export const useCustomTarget = () => {
+
+    const { customTarget } = useGoober();
+
+    return customTarget;
 };
