@@ -18,8 +18,8 @@ const LoadableAppWrapper = () => {
 
     return (
         <LoadableAppWrapperStyles>
-            <LoadableGlobalStyles />
             <LoadableApp />
+            <LoadableGlobalStyles />
         </LoadableAppWrapperStyles>
     )
 };
