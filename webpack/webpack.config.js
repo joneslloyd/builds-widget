@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv-safe');
 const CopyPlugin = require('copy-webpack-plugin');
-const chalk = require('chalk');
 
 module.exports = (env) => {
 
@@ -123,7 +122,34 @@ module.exports = (env) => {
         },
         {
           test: /\.css$/i,
-          use: ['style-loader', 'css-loader'],
+          use: [
+            'style-loader',
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                postcssOptions: {
+                  parser: 'postcss-js',
+                  plugins: [
+                    [
+                      'postcss-rem-to-pixel',
+                      'postcss-import',
+                      {
+                        rootValue: 16,
+                        unitPrecision: 5,
+                        propList: ['*'],
+                        selectorBlackList: [],
+                        replace: true,
+                        mediaQuery: true,
+                        minRemValue: -9999999
+                      }
+                    ]
+                  ]
+                },
+                execute: true,
+              },
+            },
+          ],
         },
       ],
     },
