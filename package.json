@@ -50,6 +50,7 @@
     "raw-loader": "^4.0.2",
     "react-popper-tooltip": "^4.2.0",
     "react-string-replace": "^0.4.4",
+    "reduce-css-calc": "^2.1.8",
     "sass": "^1.32.8",
     "source-map-explorer": "^2.5.2",
     "style-loader": "^2.0.0",

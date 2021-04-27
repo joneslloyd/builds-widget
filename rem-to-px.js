@@ -1,7 +1,8 @@
 const plugin = require('tailwindcss/plugin');
 const resolveConfig = require('tailwindcss/resolveConfig');
-const configFile = require('./tailwind.config.js');
-const config = resolveConfig(configFile);
+const tailwindConfig = require('./tailwind.config.js');
+
+const fullConfig = resolveConfig(tailwindConfig)
 
 const remToPx = (rem, base) => {
     return rem * base;
@@ -28,24 +29,37 @@ const makePixelsForThemePart = function (data, base) {
             ]);
         }
     }
-
     return Object.fromEntries(pixelData);
 };
 
-module.exports = plugin.withOptions(() => {
+const doPxConfig = (options) => {
 
-}, (options) => {
+    const { baseFontSize = 16, toModify = ['all'], data = {} } = options;
+    const { theme, variants } = data;
 
-    const { baseFontSize = 16, toModify = ['all'] } = options;
-    const theme = config.theme;
-    const returnPxData = {};
+    const returnPxData = {
+        theme: {
+            ...fullConfig.theme,
+            ...theme
+        },
+        variants: {
+            ...fullConfig.variants,
+            ...variants
+        }
+    };
 
     for (const [key, value] of Object.entries(theme)) {
         if ('all' === toModify[0] || toModify.includes(key)) {
             const updatedData = makePixelsForThemePart(value, baseFontSize);
-            returnPxData[key] = updatedData;
+            returnPxData.theme[key] = updatedData;
         }
     }
 
     return returnPxData;
+};
+
+module.exports = plugin.withOptions(() => {
+    return () => { };
+}, (options) => {
+    return doPxConfig(options);
 });
