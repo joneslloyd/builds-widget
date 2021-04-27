@@ -10,7 +10,7 @@ const SpellItem = ({ slug, wh = 36, type = 'item', leftSpace = false, bottomSpac
 
     const SpellItemStyles = styled('div')(({ leftSpace = false, bottomSpace = false, topSpace = false, wh }) => {
         return parseStyles([
-            tw`relative`,
+            tw`relative leading-normal`,
             'large' === leftSpace ? tw`ml-5!` : tw``,
             'normal' === leftSpace ? tw`ml-3.5!` : tw``,
             'small' === leftSpace ? tw`ml-2!` : tw``,
