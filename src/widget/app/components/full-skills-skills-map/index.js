@@ -3,18 +3,23 @@ import RightArrow from '../right-arrow';
 import tw from 'twin.macro';
 import { useStyled } from '../../lib/context/goober';
 import FlexRow from '../../styles/components/flex-row';
+import { parseStyles } from '../../lib/helpers';
 
 const FullSkillOrderSkillsMap = ({ skillMap: rawSkillMap = [], loading = true }) => {
 
     const styled = useStyled();
 
-    const FullSkillOrderSkillsMapStyles = styled(FlexRow)(() => [
-        tw`ml-2`,
-    ]);
-    const FullSkillOrderContentSquareStyles = styled(ContentSquare)(({ leftSpace = false, rightSpace = false }) => [
-        'normal' === leftSpace ? tw`ml-2` : tw``,
-        'normal' === rightSpace ? tw`mr-2` : tw``
-    ]);
+    const FullSkillOrderSkillsMapStyles = styled(FlexRow)(() => {
+        return parseStyles([
+            tw`ml-2`,
+        ]);
+    });
+    const FullSkillOrderContentSquareStyles = styled(ContentSquare)(({ leftSpace = false, rightSpace = false }) => {
+        return parseStyles([
+            'normal' === leftSpace ? tw`ml-2` : tw``,
+            'normal' === rightSpace ? tw`mr-2` : tw``
+        ]);
+    });
 
     const skillMap = rawSkillMap.length > 0 ? rawSkillMap.filter(s => s !== 'R') : [
         0, 1, 2

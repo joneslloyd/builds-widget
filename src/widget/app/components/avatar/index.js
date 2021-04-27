@@ -3,7 +3,7 @@ import { useDataApi } from '../../lib/context/data-api';
 import { useSquidexApi } from '../../lib/context/squidex-api';
 import RoundedGoldBorder from '../rounded-gold-border';
 import Image from '../image';
-import { championImage } from '../../lib/helpers';
+import { championImage, parseStyles } from '../../lib/helpers';
 import tw from 'twin.macro';
 import { useStyled } from '../../lib/context/goober';
 
@@ -11,9 +11,11 @@ const Avatar = () => {
 
     const styled = useStyled();
 
-    const AvatarStyles = styled('div')(() => [
-        tw`flex`,
-    ]);
+    const AvatarStyles = styled('div')(() => {
+        return parseStyles([
+            tw`flex`,
+        ]);
+    });
 
     const { daData: { data: { lol: { champion: { build: { championSlug = '' } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { sqData: { data: squidexData = {} } } = useSquidexApi();

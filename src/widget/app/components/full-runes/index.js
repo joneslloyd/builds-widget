@@ -8,23 +8,32 @@ import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
 import SmallWhiteText from '../../styles/components/small-white-text';
 import FullRunesDisplay from '../../styles/components/full-runes-display';
+import { parseStyles } from '../../lib/helpers';
 
 const FullRunes = () => {
 
     const styled = useStyled();
 
-    const FullRunesStyles = styled(FlexCol)(() => [
-        tw`mr-0 w-full xl:(mr-10 w-9/12)`,
-    ]);
-    const FullRunesSmallWhiteText = styled(SmallWhiteText)(() => [
-        tw`uppercase`,
-    ]);
-    const FullRunesDisplayRow = styled(FlexRow)(() => [
-        tw`w-full`,
-    ]);
-    const FullRunesDisplayStyles = styled(FullRunesDisplay)(() => [
-        tw`flex uppercase pt-2.5 flex-col w-full items-center lg:(flex-row items-start)`,
-    ]);
+    const FullRunesStyles = styled(FlexCol)(() => {
+        return parseStyles([
+            tw`mr-0 w-full xl:(mr-10 w-9/12)`,
+        ]);
+    });
+    const FullRunesSmallWhiteText = styled(SmallWhiteText)(() => {
+        return parseStyles([
+            tw`uppercase`,
+        ]);
+    });
+    const FullRunesDisplayRow = styled(FlexRow)(() => {
+        return parseStyles([
+            tw`w-full`,
+        ]);
+    });
+    const FullRunesDisplayStyles = styled(FullRunesDisplay)(() => {
+        return parseStyles([
+            tw`flex uppercase pt-2.5 flex-col w-full items-center lg:(flex-row items-start)`,
+        ]);
+    });
 
     const { daData: { data: { lol: { champion: { build: { perks = {} } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { loading = true } = useLoading();

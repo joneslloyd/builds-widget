@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'preact/hooks';
 import tw from 'twin.macro';
 import { useStyled } from '../../lib/context/goober';
+import { parseStyles } from '../../lib/helpers';
 
 const Image = ({ src = false, alt, title, width, height, rounded = false, bgColor = true, cursor = 'default' }) => {
 
@@ -32,27 +33,31 @@ const Image = ({ src = false, alt, title, width, height, rounded = false, bgColo
     }, []);
 
 
-    const ImageLoadingStyles = styled('div')(({ rounded, cursor }) => [
-        tw`flex bg-widget-gold-light animate-pulse`,
-        rounded === 'full' && tw`rounded-full`,
-        rounded === 'md' && tw`rounded-sm`,
-        { 'width': `${width}px`, 'height': `${height}px` },
-        !loading && { 'display': 'none' },
-        {
-            'cursor': cursor
-        }
-    ]);
+    const ImageLoadingStyles = styled('div')(({ rounded, cursor }) => {
+        return parseStyles([
+            tw`flex bg-widget-gold-light animate-pulse`,
+            rounded === 'full' ? tw`rounded-full` : tw``,
+            rounded === 'md' ? tw`rounded-sm` : tw``,
+            { 'width': `${width}px`, 'height': `${height}px` },
+            !loading ? { 'display': 'none' } : tw``,
+            {
+                'cursor': cursor
+            }
+        ]);
+    });
 
-    const ImageStyles = styled('img')(({ rounded, cursor }) => [
-        tw`flex`,
-        bgColor === true && tw`bg-widget-gold-light`,
-        rounded === 'full' && tw`rounded-full`,
-        rounded === 'md' && tw`rounded-sm`,
-        loading && { 'object-position': '-99999px 99999px' },
-        {
-            'cursor': cursor
-        }
-    ]);
+    const ImageStyles = styled('img')(({ rounded, cursor }) => {
+        return parseStyles([
+            tw`flex`,
+            bgColor === true ? tw`bg-widget-gold-light` : tw``,
+            rounded === 'full' ? tw`rounded-full` : tw``,
+            rounded === 'md' ? tw`rounded-sm` : tw``,
+            loading ? { 'object-position': '-99999px 99999px' } : tw``,
+            {
+                'cursor': cursor
+            }
+        ]);
+    });
 
     return (
         <>

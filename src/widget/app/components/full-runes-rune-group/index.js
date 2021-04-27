@@ -1,6 +1,6 @@
 import Rune from '../rune';
 import FullRunesBodyRow from '../full-runes-body-row';
-import { RunesSlotsMap } from '../../lib/helpers';
+import { parseStyles, RunesSlotsMap } from '../../lib/helpers';
 import tw from 'twin.macro';
 import { useStyled } from '../../lib/context/goober';
 import SmallWhiteText from '../../styles/components/small-white-text';
@@ -11,19 +11,27 @@ const FullRunesRuneGroup = ({ mainId, iDs = [], type = 'primary', loading: isLoa
 
     const styled = useStyled();
 
-    const FullRunesRuneGroupStyles = styled(FullRunesDisplay)(({ leftSpace = false }) => [
-        tw`flex-col`,
-        'normal' === leftSpace ? tw`mt-10 lg:(mt-0 ml-16)` : tw``,
-    ]);
-    const FullRunesTitle = styled('div')(() => [
-        tw`flex flex-row items-center justify-center`,
-    ]);
-    const FullRunesRuneTitle = styled(SmallWhiteText)(() => [
-        tw`text-widget-purple-full-runes-text capitalize text-sm font-bold ml-2`,
-    ]);
-    const FullRunesBody = styled('div')(() => [
-        tw`flex flex-col items-center pt-5`,
-    ]);
+    const FullRunesRuneGroupStyles = styled(FullRunesDisplay)(({ leftSpace = false }) => {
+        return parseStyles([
+            tw`flex-col`,
+            'normal' === leftSpace ? tw`mt-10 lg:(mt-0 ml-16)` : tw``,
+        ]);
+    });
+    const FullRunesTitle = styled('div')(() => {
+        return parseStyles([
+            tw`flex flex-row items-center justify-center`,
+        ]);
+    });
+    const FullRunesRuneTitle = styled(SmallWhiteText)(() => {
+        return parseStyles([
+            tw`text-widget-purple-full-runes-text capitalize text-sm font-bold ml-2`,
+        ]);
+    });
+    const FullRunesBody = styled('div')(() => {
+        return parseStyles([
+            tw`flex flex-col items-center pt-5`,
+        ]);
+    });
 
 
     //Rune data

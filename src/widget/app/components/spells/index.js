@@ -11,20 +11,27 @@ import FlexRow from '../../styles/components/flex-row';
 import SmallWhiteText from '../../styles/components/small-white-text';
 import SpellsDisplay from '../../styles/components/spells-display';
 import SummonerSpellTooltipWrapper from '../tooltips/summoner-spell-tooltip-wrapper';
+import { parseStyles } from '../../lib/helpers';
 
 const Spells = () => {
 
     const styled = useStyled();
 
-    const SpellsStyles = styled(FlexCol)(() => [
-        tw`w-full pt-4 lg:(pt-5) xl:(pt-0)`
-    ]);
-    const SpellsSmallWhiteText = styled(SmallWhiteText)(() => [
-        tw`uppercase`,
-    ]);
-    const SpellsDisplayStyles = styled(SpellsDisplay)(() => [
-        tw`uppercase pt-3`,
-    ]);
+    const SpellsStyles = styled(FlexCol)(() => {
+        return parseStyles([
+            tw`w-full pt-4 lg:(pt-5) xl:(pt-0)`
+        ]);
+    });
+    const SpellsSmallWhiteText = styled(SmallWhiteText)(() => {
+        return parseStyles([
+            tw`uppercase`,
+        ]);
+    });
+    const SpellsDisplayStyles = styled(SpellsDisplay)(() => {
+        return parseStyles([
+            tw`uppercase pt-3`,
+        ]);
+    });
 
     const { daData: { data: { lol: { champion: { build: { spells = [] } = {} } = {} } = {} } = {} } } = useDataApi();
     const { sqData: { data: { querySummonersSpellsV1Contents: squidexSpells = [] } = {} } = {} } = useSquidexApi();

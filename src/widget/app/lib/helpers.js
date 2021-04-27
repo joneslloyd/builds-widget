@@ -1,4 +1,5 @@
 import { colors } from './legacy/colors';
+import doParseStyles from './style-parsing';
 
 export const SkillKey = Object.freeze({
     E: 'E',
@@ -281,3 +282,12 @@ export const isStrEnumValue = (obj, value) => {
 export const validateStrEnumValue = (obj, value) => {
     return obj && isStrEnumValue(obj, value) ? value : null;
 }
+
+export const parseStyles = (styles) => {
+    // console.log(' before ');
+    // console.log(styles);
+    const parsedStyles = doParseStyles(styles);
+    // console.log(' after ');
+    // console.log(parsedStyles);
+    return parsedStyles;
+};

@@ -6,20 +6,27 @@ import { useStyled } from '../../lib/context/goober';
 import FlexRow from '../../styles/components/flex-row';
 import SmallPurpleText from '../../styles/components/small-purple-text';
 import SmallWhiteText from '../../styles/components/small-white-text';
+import { parseStyles } from '../../lib/helpers';
 
 const Patch = () => {
 
     const styled = useStyled();
 
-    const PatchStyles = styled(FlexRow)(() => [
-        tw`pl-3.5`,
-    ]);
-    const PatchSmallPurpleText = styled(SmallPurpleText)(() => [
-        tw`pr-1.5`,
-    ]);
-    const PatchSmallWhiteText = styled(SmallWhiteText)(() => [
-        tw``,
-    ]);
+    const PatchStyles = styled(FlexRow)(() => {
+        return parseStyles([
+            tw`pl-3.5`,
+        ]);
+    });
+    const PatchSmallPurpleText = styled(SmallPurpleText)(() => {
+        return parseStyles([
+            tw`pr-1.5`,
+        ]);
+    });
+    const PatchSmallWhiteText = styled(SmallWhiteText)(() => {
+        return parseStyles([
+            tw``,
+        ]);
+    });
 
     const { daData: { data: { lol: { champion: { build: { patch = 'xx.x' } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { loading: isLoading = true } = useLoading();

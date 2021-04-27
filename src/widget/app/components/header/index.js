@@ -8,17 +8,22 @@ import tw from 'twin.macro';
 import { useStyled } from '../../lib/context/goober';
 import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
+import { parseStyles } from '../../lib/helpers';
 
 const Header = () => {
 
     const styled = useStyled();
 
-    const HeaderStyles = styled(FlexRow)(() => [
-        tw`bg-widget-purple rounded-t-md px-3 py-2.5 border-b border-widget-purple-border`,
-    ]);
-    const NamePatchStyles = styled(FlexCol)(() => [
-        tw`pl-2`,
-    ]);
+    const HeaderStyles = styled(FlexRow)(() => {
+        return parseStyles([
+            tw`bg-widget-purple rounded-t-md px-3 py-2.5 border-b border-widget-purple-border`,
+        ]);
+    });
+    const NamePatchStyles = styled(FlexCol)(() => {
+        return parseStyles([
+            tw`pl-2`,
+        ]);
+    });
 
     return (
         <HeaderStyles>

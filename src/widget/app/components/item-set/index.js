@@ -5,25 +5,32 @@ import FlexCol from '../../styles/components/flex-col';
 import FlexRow from '../../styles/components/flex-row';
 import SmallPurpleText from '../../styles/components/small-purple-text';
 import GameItemTooltipWrapper from '../tooltips/game-item-tooltip-wrapper';
+import { parseStyles } from '../../lib/helpers';
 
 const ItemSet = ({ name, items, loading = true, leftSpace = false }) => {
 
     const styled = useStyled();
 
-    const ItemSetStyles = styled(FlexCol)(({ leftSpace }) => [
-        tw`w-auto`,
-        'large' === leftSpace ? tw`ml-8` : tw``,
-        'normal' === leftSpace ? tw`ml-7` : tw``,
-        'small' === leftSpace ? tw`ml-5` : tw``,
-        'baseNoneMdSmall' === leftSpace ? tw`ml-0 md:(ml-5)` : tw``,
-        'very-small' === leftSpace ? tw`ml-3` : tw``,
-    ]);
-    const ItemSetSmallPurpleText = styled(SmallPurpleText)(() => [
-        tw`capitalize`,
-    ]);
-    const ItemSetDisplayStyles = styled(FlexRow)(() => [
-        tw`uppercase pt-1.5`,
-    ]);
+    const ItemSetStyles = styled(FlexCol)(({ leftSpace }) => {
+        return parseStyles([
+            tw`w-auto`,
+            'large' === leftSpace ? tw`ml-8` : tw``,
+            'normal' === leftSpace ? tw`ml-7` : tw``,
+            'small' === leftSpace ? tw`ml-5` : tw``,
+            'baseNoneMdSmall' === leftSpace ? tw`ml-0 md:(ml-5)` : tw``,
+            'very-small' === leftSpace ? tw`ml-3` : tw``,
+        ]);
+    });
+    const ItemSetSmallPurpleText = styled(SmallPurpleText)(() => {
+        return parseStyles([
+            tw`capitalize`,
+        ]);
+    });
+    const ItemSetDisplayStyles = styled(FlexRow)(() => {
+        return parseStyles([
+            tw`uppercase pt-1.5`,
+        ]);
+    });
 
     return (
         <ItemSetStyles leftSpace={leftSpace}>

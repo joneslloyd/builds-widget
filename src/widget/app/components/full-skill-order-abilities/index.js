@@ -3,14 +3,17 @@ import ChampionSkillTooltipWrapper from '../tooltips/champion-skill-tooltip-wrap
 import tw from 'twin.macro';
 import { useStyled } from '../../lib/context/goober';
 import FlexCol from '../../styles/components/flex-col';
+import { parseStyles } from '../../lib/helpers';
 
 const FullSkillOrderAbilities = ({ loading = true, abilities = [] }) => {
 
     const styled = useStyled();
 
-    const FullSkillOrderAbilitiesStyles = styled(FlexCol)(() => [
-        tw``,
-    ]);
+    const FullSkillOrderAbilitiesStyles = styled(FlexCol)(() => {
+        return parseStyles([
+            tw``,
+        ]);
+    });
 
     return (
         <FullSkillOrderAbilitiesStyles>

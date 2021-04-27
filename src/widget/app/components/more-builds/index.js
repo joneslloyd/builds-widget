@@ -6,23 +6,32 @@ import tw from 'twin.macro';
 import { useStyled } from '../../lib/context/goober';
 import FlexRow from '../../styles/components/flex-row';
 import SmallWhiteText from '../../styles/components/small-white-text';
+import { parseStyles } from '../../lib/helpers';
 
 const MoreBuilds = () => {
 
     const styled = useStyled();
 
-    const MoreBuildsStyles = styled(FlexRow)(() => [
-        tw`pt-2.5 md:(pt-0)`,
-    ]);
-    const MoreBuildsLoading = styled(SmallWhiteText)(() => [
-        tw`ml-6 no-underline lg:(ml-6)`,
-    ]);
-    const MoreBuildsSmallGoldText = styled(SmallWhiteText)(() => [
-        tw`flex items-center text-xs! font-medium text-widget-gold normal-case transition-all no-underline hover:text-widget-gold-light svg:all:(transition-all fill-widget-gold) hover:(svg:all:(fill-widget-gold-light)) md:(pl-6)`,
-    ]);
-    const MoreBuildsIconStyled = styled(MoreBuildsIcon)(() => [
-        tw`ml-1.5 fill-widget-gold`,
-    ]);
+    const MoreBuildsStyles = styled(FlexRow)(() => {
+        return parseStyles([
+            tw`pt-2.5 md:(pt-0)`,
+        ]);
+    });
+    const MoreBuildsLoading = styled(SmallWhiteText)(() => {
+        return parseStyles([
+            tw`ml-6 no-underline lg:(ml-6)`,
+        ]);
+    });
+    const MoreBuildsSmallGoldText = styled(SmallWhiteText)(() => {
+        return parseStyles([
+            tw`flex items-center text-xs! font-medium text-widget-gold normal-case transition-all no-underline hover:text-widget-gold-light svg:all:(transition-all fill-widget-gold) hover:(svg:all:(fill-widget-gold-light)) md:(pl-6)`,
+        ]);
+    });
+    const MoreBuildsIconStyled = styled(MoreBuildsIcon)(() => {
+        return parseStyles([
+            tw`ml-1.5 fill-widget-gold`,
+        ]);
+    });
 
     const { sqData: { data: { championCommonInfo = [] } = {} } = {} } = useSquidexApi();
     const { loading: isLoading = true } = useLoading();

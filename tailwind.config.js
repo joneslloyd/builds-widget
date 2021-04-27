@@ -172,12 +172,5 @@ module.exports = {
             stroke: ['hover'],
         },
     },
-    plugins: [
-        require('./rem-to-px.js')({
-            baseFontSize: 16,
-            toModify: [
-                'all'
-            ]
-        }),
-    ],
+    plugins: [],
 };

@@ -1,7 +1,7 @@
 import { memo } from 'preact/compat';
 import { useDataApi } from '../../lib/context/data-api';
 import { useLoading } from '../../lib/context/loading';
-import { rolenameIcon } from '../../lib/helpers';
+import { parseStyles, rolenameIcon } from '../../lib/helpers';
 import Image from '../image';
 import tw from 'twin.macro';
 import { useStyled } from '../../lib/context/goober';
@@ -12,12 +12,16 @@ const Role = () => {
 
     const styled = useStyled();
 
-    const RoleStyles = styled(FlexRow)(() => [
-        tw`items-center`,
-    ]);
-    const RoleSmallPurpleText = styled(SmallPurpleText)(() => [
-        tw`ml-1.5!`,
-    ]);
+    const RoleStyles = styled(FlexRow)(() => {
+        return parseStyles([
+            tw`items-center`,
+        ]);
+    });
+    const RoleSmallPurpleText = styled(SmallPurpleText)(() => {
+        return parseStyles([
+            tw`ml-1.5!`,
+        ]);
+    });
 
     const { daData: { data: { lol: { champion: { build: { role: rawRole = 'XXX' } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { loading: isLoading = true } = useLoading();
