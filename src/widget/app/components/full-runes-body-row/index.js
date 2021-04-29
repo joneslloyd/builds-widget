@@ -4,7 +4,7 @@ import { useStyled } from '../../lib/context/goober';
 import PerkTooltipWrapper from '../tooltips/perk-tooltip-wrapper';
 import { parseStyles } from '../../lib/helpers';
 
-const FullRunesBodyRow = ({ index = 0, data = {}, totalItems = 0, type = 'primary', loading = true }) => {
+const FullRunesBodyRow = ({ index = 0, data = {}, type = 'primary', loading = true }) => {
 
     const styled = useStyled();
 
@@ -36,7 +36,7 @@ const FullRunesBodyRow = ({ index = 0, data = {}, totalItems = 0, type = 'primar
         <FullRunesBodyRowStyles topSpace={topSpace} justifyContentSpaceBetween={justifyContentSpaceBetween}>
             {runes && runes.map((runeData, runeIndex) => {
 
-                const { rune = false, hasRune = false, isShard = false } = runeData;
+                const { rune = false, hasRune = false } = runeData;
                 const leftSpace = runeIndex === 0 ? false : (index === 0 ? 'normal' : (('secondary' === type && index > 2) ? 'x-large' : 'large'));
 
                 const key = `${rune ? rune : 'rune'}-${runeIndex}`;

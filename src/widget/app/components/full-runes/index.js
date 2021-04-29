@@ -38,7 +38,7 @@ const FullRunes = () => {
     const { daData: { data: { lol: { champion: { build: { perks = {} } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { loading = true } = useLoading();
     const { IDs: iDs = [], style: primaryId = false, subStyle: secondaryId = false } = perks;
-    console.log(iDs);
+
     return (
         <FullRunesStyles>
             <FullRunesSmallWhiteText>Runes</FullRunesSmallWhiteText>

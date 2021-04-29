@@ -43,24 +43,29 @@ const FullRunesRuneGroup = ({ mainId, iDs = [], type = 'primary', loading: isLoa
     //Rune title
     const { title: { label: theTitle = 'xxxxxxx' } = {}, slots: theSlotsRaw = [] } = thisRuneSlot || {};
 
+    const shardSlots = RunesSlotsMap.filter(r => {
+        const { title: { label } = {} } = r;
+        return label === 'Shards';
+    })[0].slots;
+
+    console.log('Shard slots:');
+    console.log(shardSlots);
+    console.log('ids:');
+    console.log(iDs);
+
     const theSlots = 'secondary' === type ? [
         ...theSlotsRaw.slice(1),
-        ...RunesSlotsMap.filter(r => {
-            const { title: { label } = {} } = r;
-            return label === 'Shards';
-        })[0].slots
+        ...shardSlots
     ] : theSlotsRaw;
 
     //Rune slots
     const theRunes = theSlots ? theSlots.map((s, i) => {
         const hasCircle = i !== 0 ? 'full' : false;
-        const isShared = ('secondary' === type && i > 2) ? true : false;
-        const runes = s.map(r => {
-            const hasRune = iDs.includes(r);
+        const runes = s.map((r, rIndex) => {
+            const hasRune = 'secondary' === type ? (i > 2 ? (r === iDs[i + 3]) : iDs.includes(r)) : iDs.includes(r);
             return {
                 rune: r,
-                hasRune,
-                isShared
+                hasRune
             };
         });
         return {
