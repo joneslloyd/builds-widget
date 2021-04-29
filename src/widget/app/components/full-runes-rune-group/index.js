@@ -55,7 +55,7 @@ const FullRunesRuneGroup = ({ mainId, iDs = [], type = 'primary', loading: isLoa
 
     //Rune slots
     const theRunes = theSlots ? theSlots.map((s, i) => {
-        const hasCircle = i !== 0 ? 'full' : false;
+        const hasCircle = ('secondary' === type || i !== 0) ? 'full' : false;
         const runes = s.map((r, rIndex) => {
             const hasRune = 'secondary' === type ? (i > 2 ? (r === iDs[i + 3]) : iDs.includes(r)) : iDs.includes(r);
             return {

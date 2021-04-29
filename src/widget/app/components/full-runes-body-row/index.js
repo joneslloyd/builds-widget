@@ -14,7 +14,7 @@ const FullRunesBodyRow = ({ index = 0, data = {}, type = 'primary', loading = tr
             'normal' === topSpace ? tw`pt-2.5` : tw``,
             'large' === topSpace ? tw`pt-5` : tw``,
             'x-large' === topSpace ? tw`pt-8` : tw``,
-            true === justifyContentSpaceBetween ? tw`justify-between` : tw``
+            true === justifyContentSpaceBetween ? tw`justify-center` : tw``
         ]);
     });
     const FullRunesBodyRowRune = styled('div')(({ leftSpace = false }) => {
@@ -37,7 +37,7 @@ const FullRunesBodyRow = ({ index = 0, data = {}, type = 'primary', loading = tr
             {runes && runes.map((runeData, runeIndex) => {
 
                 const { rune = false, hasRune = false } = runeData;
-                const leftSpace = runeIndex === 0 ? false : (index === 0 ? 'normal' : (('secondary' === type && index > 2) ? 'x-large' : 'large'));
+                const leftSpace = runeIndex === 0 ? false : (('primary' === type && index === 0) ? 'normal' : ((index > 2) ? 'x-large' : 'large'));
 
                 const key = `${rune ? rune : 'rune'}-${runeIndex}`;
 
