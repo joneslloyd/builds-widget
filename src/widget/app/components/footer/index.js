@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import GamesAnalyzed from '../games-analyzed';
 import MoreBuilds from '../more-builds';
 import PoweredBy from '../powered-by';
@@ -25,4 +26,4 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default memo(Footer);

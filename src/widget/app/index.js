@@ -5,6 +5,7 @@ import Body from './components/body';
 import Footer from './components/footer';
 import tw from 'twin.macro';
 import { parseStyles } from './lib/helpers';
+import { memo } from 'preact/compat';
 
 const App = () => {
 
@@ -36,4 +37,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default memo(App);

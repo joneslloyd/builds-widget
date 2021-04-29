@@ -1,5 +1,6 @@
 import CompactSkillPriority from '../compact-skill-priority';
 import CompactSkillOrder from '../compact-skill-order';
+import { memo } from 'preact/compat';
 
 const CompactSkills = () => {
 
@@ -11,4 +12,4 @@ const CompactSkills = () => {
     );
 };
 
-export default CompactSkills;
+export default memo(CompactSkills);

@@ -16,4 +16,4 @@ const AppShadowSection = memo(forwardRef((props, ref) => {
 
 register(AppShadowSection, 'app-shadow-section', ['target'], { shadow: true });
 
-export default AppShadowSection;
+export default memo(AppShadowSection);

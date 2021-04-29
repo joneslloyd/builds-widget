@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import DynamicSvg from '../dynamic-svg';
 
 const PlatinumPlusIcon = ({ className }) => {
@@ -7,4 +8,4 @@ const PlatinumPlusIcon = ({ className }) => {
     );
 }
 
-export default PlatinumPlusIcon;
+export default memo(PlatinumPlusIcon);

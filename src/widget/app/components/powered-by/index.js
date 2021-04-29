@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import Mark from '../mark';
 import BrandName from '../brand-name';
 import tw from 'twin.macro';
@@ -33,4 +34,4 @@ const PoweredBy = () => {
     );
 };
 
-export default PoweredBy;
+export default memo(PoweredBy);

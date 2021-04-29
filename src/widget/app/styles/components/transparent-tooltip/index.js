@@ -1,9 +1,10 @@
+import { memo } from 'preact/compat';
 import tw from 'twin.macro';
 import TooltipWrapper from '../../../components/tooltips/tooltip-wrapper';
 import { useStyled } from '../../../lib/context/goober';
 import { parseStyles } from '../../../lib/helpers';
 
-export const TransparentTooltip = ({ children, ...rest }) => {
+export const TransparentTooltip = memo(({ children, ...rest }) => {
 
     const styled = useStyled();
 
@@ -23,4 +24,4 @@ export const TransparentTooltip = ({ children, ...rest }) => {
             {children}
         </TransparentTooltipC>
     );
-};
+});

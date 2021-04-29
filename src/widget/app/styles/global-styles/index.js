@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import { useGlob } from '../../lib/context/goober';
 import tw, { theme } from 'twin.macro';
 
@@ -95,4 +96,4 @@ const GlobalStyles = () => {
   );
 };
 
-export default GlobalStyles;
+export default memo(GlobalStyles);

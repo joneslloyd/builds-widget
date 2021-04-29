@@ -2,6 +2,7 @@ import loadable from '@loadable/component';
 import { useStyled } from '../../lib/context/goober';
 import tw from 'twin.macro';
 import { parseStyles } from '../../lib/helpers';
+import { memo } from 'preact/compat';
 
 const LoadableAppWrapper = () => {
 
@@ -24,4 +25,4 @@ const LoadableAppWrapper = () => {
     )
 };
 
-export default LoadableAppWrapper;
+export default memo(LoadableAppWrapper);

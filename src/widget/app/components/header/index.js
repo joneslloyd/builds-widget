@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import Avatar from '../avatar';
 import Name from '../name';
 import Role from '../role';
@@ -41,4 +42,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default memo(Header);

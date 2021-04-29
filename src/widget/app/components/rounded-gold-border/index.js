@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import tw from 'twin.macro';
 import { useStyled } from '../../lib/context/goober';
 import { parseStyles } from '../../lib/helpers';
@@ -20,4 +21,4 @@ const RoundedGoldBorder = ({ children, borderWidth = '2px', ...rest }) => {
     );
 };
 
-export default RoundedGoldBorder;
+export default memo(RoundedGoldBorder);

@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import { GooberProvider } from './goober';
 import { StaticGlobalPropsProvider } from './static-global-props';
 import { LoadingProvider } from './loading';
@@ -21,5 +22,5 @@ const AppProvider = ({ children, ...rest }) => {
     );
 };
 
-export default AppProvider;
+export default memo(AppProvider);
 

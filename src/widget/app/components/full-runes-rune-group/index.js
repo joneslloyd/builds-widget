@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import Rune from '../rune';
 import FullRunesBodyRow from '../full-runes-body-row';
 import { parseStyles, RunesSlotsMap } from '../../lib/helpers';
@@ -121,4 +122,4 @@ const FullRunesRuneGroup = ({ mainId, iDs = [], type = 'primary', loading: isLoa
     );
 };
 
-export default FullRunesRuneGroup;
+export default memo(FullRunesRuneGroup);

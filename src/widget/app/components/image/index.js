@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import { useCallback, useEffect, useState } from 'preact/hooks';
 import tw from 'twin.macro';
 import { useStyled } from '../../lib/context/goober';
@@ -69,4 +70,4 @@ const Image = ({ src = false, alt, title, width, height, rounded = false, bgColo
     );
 };
 
-export default Image;
+export default memo(Image);

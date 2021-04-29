@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import { useStyled } from '../../../lib/context/goober';
 import tw from 'twin.macro';
 import { parseStyles } from '../../../lib/helpers';
@@ -20,4 +21,4 @@ const FullRunesDisplay = ({ children, ...rest }) => {
     );
 };
 
-export default FullRunesDisplay;
+export default memo(FullRunesDisplay);
