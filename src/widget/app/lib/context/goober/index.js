@@ -2,26 +2,31 @@ import { createContext } from 'preact';
 import { useContext } from 'preact/hooks';
 import * as goober from 'goober';
 
-export const GooberContext = createContext({
-    css: goober.css,
-    styled: goober.styled,
-    glob: goober.glob,
+const documentHead = document.head;
+const defaultGooberContext = {
+    css: goober.css.bind({ target: documentHead }),
+    styled: goober.styled.bind({ target: documentHead }),
+    glob: goober.glob.bind({ target: documentHead }),
     customTarget: false,
-});
+};
+
+export const GooberContext = createContext(defaultGooberContext);
 
 export const GooberProvider = ({ children, target: targetRaw }) => {
 
     const target = targetRaw ? targetRaw.shadowRoot : false;
 
+    const gooberContextValue = target ? {
+        css: goober.css.bind({ target }),
+        styled: goober.styled.bind({ target }),
+        glob: goober.css.bind({ g: 1, target }),
+        customTarget: true,
+    } : defaultGooberContext;
+
     return (
         <>
             {target && (
-                <GooberContext.Provider value={{
-                    css: goober.css.bind({ target }),
-                    styled: goober.styled.bind({ target }),
-                    glob: goober.css.bind({ g: 1, target }),
-                    customTarget: true,
-                }}>{children}</GooberContext.Provider>
+                <GooberContext.Provider value={gooberContextValue}>{children}</GooberContext.Provider>
             )}
             {!target && (
                 <>{children}</>
