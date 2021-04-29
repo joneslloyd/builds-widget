@@ -3,7 +3,10 @@ import { useContext, useState } from 'preact/hooks';
 
 export const TooltipsContext = createContext(null);
 
-export const TooltipsProvider = ({ children }) => {
+export const TooltipsProvider = ({ target: targetRaw, children }) => {
+
+    //Get parent node to use for tooltips
+    const tooltipParent = targetRaw ? targetRaw.shadowRoot : false;
 
     //Tooltips data
     const [ttData, setTtData] = useState({
@@ -14,7 +17,8 @@ export const TooltipsProvider = ({ children }) => {
 
     const store = {
         ttData,
-        setTtData
+        setTtData,
+        tooltipParent
     };
 
     return (
