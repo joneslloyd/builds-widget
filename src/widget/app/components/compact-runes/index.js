@@ -110,8 +110,8 @@ const CompactRunes = () => {
                             <PerkTooltipWrapper by="riotId" identifier={iDs[4]}>
                                 <Rune loading={loading} cursor="help" id={iDs[4]} wh={32} rounded="full" gold={true} leftSpace="normal" />
                             </PerkTooltipWrapper>
-                            <PerkTooltipWrapper by="riotId" identifier={iDs[4]}>
-                                <Rune loading={loading} cursor="help" id={iDs[4]} wh={32} rounded="full" gold={true} leftSpace="large" />
+                            <PerkTooltipWrapper by="riotId" identifier={iDs[5]}>
+                                <Rune loading={loading} cursor="help" id={iDs[5]} wh={32} rounded="full" gold={true} leftSpace="large" />
                             </PerkTooltipWrapper>
                         </RuneGroup>
                         <RuneGroup leftSpace="small" loading={loading}>
