@@ -48,11 +48,6 @@ const FullRunesRuneGroup = ({ mainId, iDs = [], type = 'primary', loading: isLoa
         return label === 'Shards';
     })[0].slots;
 
-    console.log('Shard slots:');
-    console.log(shardSlots);
-    console.log('ids:');
-    console.log(iDs);
-
     const theSlots = 'secondary' === type ? [
         ...theSlotsRaw.slice(1),
         ...shardSlots
