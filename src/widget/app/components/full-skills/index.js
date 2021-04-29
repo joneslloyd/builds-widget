@@ -33,7 +33,7 @@ const FullSkills = () => {
         ]);
     });
 
-    const { daData: { data: { lol: { champion: { build: { skillOrder = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17] } = {} } = {} } = {} } = {} } = {} } = useDataApi();
+    const { daData: { data: { lol: { champion: { build: { skillOrder = [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2] } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { sqData: { data: { championCommonInfo: [{ flatData: { abilities: abilitiesRaw = [] } = {} } = {}] = [] } = {} } = {} } = useSquidexApi();
     const { loading: isLoading = true } = useLoading();
 
