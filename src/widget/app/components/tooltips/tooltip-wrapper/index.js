@@ -8,12 +8,21 @@ import { LazyTippy } from '../lazy-tippy';
 import { isVerticalPlacement } from '../../../lib/tooltips/helpers';
 import { isDef } from '../../../lib/helpers';
 
+import { useTooltips } from '../../../lib/context/tooltips';
+
 const defaultOffset = [0, 10];
 
 export const TooltipWrapper = props => {
 
+    const { tooltipParent } = useTooltips();
+
+    const doAppendToFunc = () => tooltipParent;
+    const appendToFunc = useCallback(() => {
+        return doAppendToFunc();
+    }, [tooltipParent]);
+
     const {
-        appendTo = 'parent',
+        appendTo = appendToFunc,
         children,
         placement = 'top',
         tooltip,
@@ -34,7 +43,7 @@ export const TooltipWrapper = props => {
     // choose legacy tooltip of tooltipFn, we will get rid of this function when all tooltip moved to tooltipFn
     const renderer = useCallback(
         (tooltipRenderingProps) => {
-            const content = tooltipFn(tooltipRenderingProps);
+            const content = tooltipFn ? tooltipFn(tooltipRenderingProps) : tooltip;
             return content ? (
                 <div {...tooltipRenderingProps} className={className}>
                     <style>{tippyCss}{reactPopperTooltipCss}</style>
