@@ -1,3 +1,4 @@
+import { useMemo } from 'preact/hooks';
 import SpellItem from '../spell-item';
 import ChampionSkillTooltipWrapper from '../tooltips/champion-skill-tooltip-wrapper';
 import tw from 'twin.macro';
@@ -9,11 +10,13 @@ const FullSkillOrderAbilities = ({ loading = true, abilities = [] }) => {
 
     const styled = useStyled();
 
-    const FullSkillOrderAbilitiesStyles = styled(FlexCol)(() => {
-        return parseStyles([
-            tw``,
-        ]);
-    });
+    const FullSkillOrderAbilitiesStyles = useMemo(() => {
+        return styled(FlexCol)(() => {
+            return parseStyles([
+                tw``,
+            ]);
+        })
+    }, [styled]);
 
     return (
         <FullSkillOrderAbilitiesStyles>

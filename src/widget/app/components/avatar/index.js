@@ -1,4 +1,5 @@
 import { memo } from 'preact/compat';
+import { useMemo } from 'preact/hooks';
 import { useDataApi } from '../../lib/context/data-api';
 import { useSquidexApi } from '../../lib/context/squidex-api';
 import RoundedGoldBorder from '../rounded-gold-border';
@@ -11,11 +12,13 @@ const Avatar = () => {
 
     const styled = useStyled();
 
-    const AvatarStyles = styled('div')(() => {
-        return parseStyles([
-            tw`flex`,
-        ]);
-    });
+    const AvatarStyles = useMemo(() => {
+        return styled('div')(() => {
+            return parseStyles([
+                tw`flex`,
+            ]);
+        });
+    }, [styled]);
 
     const { daData: { data: { lol: { champion: { build: { championSlug = '' } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { sqData: { data: squidexData = {} } } = useSquidexApi();

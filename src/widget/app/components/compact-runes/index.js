@@ -1,7 +1,7 @@
 import { memo } from 'preact/compat';
 import { useDataApi } from '../../lib/context/data-api';
 import { useLoading } from '../../lib/context/loading';
-import { useCallback } from 'preact/hooks';
+import { useCallback, useMemo } from 'preact/hooks';
 import Rune from '../rune';
 import { getLineColorFromIcon, parseStyles } from '../../lib/helpers';
 import tw from 'twin.macro';
@@ -16,52 +16,68 @@ const CompactRunes = () => {
 
     const styled = useStyled();
 
-    const CompactRunesStyles = styled(FlexCol)(() => {
-        return parseStyles([
-            tw`mr-0 xl:(mr-10 w-9/12)`,
-        ]);
-    });
-    const CompactRunesSmallWhiteText = styled(SmallWhiteText)(() => {
-        return parseStyles([
-            tw`uppercase`,
-        ]);
-    });
-    const CompactRunesDisplayStyles = styled(CompactRunesDisplay)(() => {
-        return parseStyles([
-            tw`flex flex-col uppercase pt-2.5 md:(flex-row)`,
-        ]);
-    });
-    const RuneGroup = styled(CompactRunesDisplay)(({ leftSpace, line = false, loading = true }) => {
-        return parseStyles([
-            tw`items-center relative bg-transparent!`,
-            'large' === leftSpace ? tw`ml-8` : tw``,
-            'largeMd' === leftSpace ? tw`md:ml-8` : tw``,
-            'normal' === leftSpace ? tw`ml-7` : tw``,
-            'small' === leftSpace ? tw`ml-6` : tw``,
-            'very-small' === leftSpace ? tw`ml-3` : tw``,
-            (true === loading && 'gold' === line) ? tw`before:(absolute z-0 inset-53p left-6 content block w-9/12 h-0.5 bg-widget-gold-line outline-widget-gold-outer-line animate-pulse)` : tw``,
-            (false === loading && 'gold' === line) ? tw`before:(absolute z-0 inset-53p left-6 content block w-9/12 h-0.5 bg-widget-gold-line outline-widget-gold-outer-line)` : tw``,
-            (true === loading && 'blue' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-blue-line outline-widget-blue-outer-line animate-pulse)` : tw``,
-            (false === loading && 'blue' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-blue-line outline-widget-blue-outer-line)` : tw``,
-            (true === loading && 'red' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-red-line outline-widget-red-outer-line animate-pulse)` : tw``,
-            (false === loading && 'red' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-red-line outline-widget-red-outer-line)` : tw``,
-            (true === loading && 'green' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-green-line outline-widget-green-outer-line animate-pulse)` : tw``,
-            (false === loading && 'green' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-green-line outline-widget-green-outer-line)` : tw``,
-            (true === loading && 'purple' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-purple-line outline-widget-purple-outer-line animate-pulse)` : tw``,
-            (false === loading && 'purple' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-purple-line outline-widget-purple-outer-line)` : tw``,
-        ]);
-    });
+    const CompactRunesStyles = useMemo(() => {
+        return styled(FlexCol)(() => {
+            return parseStyles([
+                tw`mr-0 xl:(mr-10 w-9/12)`,
+            ]);
+        });
+    }, [styled]);
 
-    const FirstRuneGroup = styled(RuneGroup)(() => {
-        return parseStyles([
-            tw`before:(w-8/12) md:(before:(w-9/12))`,
-        ]);
-    });
-    const LastRuneGroups = styled('div')(() => {
-        return parseStyles([
-            tw`flex pt-2.5 md:(pt-0)`,
-        ]);
-    });
+    const CompactRunesSmallWhiteText = useMemo(() => {
+        return styled(SmallWhiteText)(() => {
+            return parseStyles([
+                tw`uppercase`,
+            ]);
+        });
+    }, [styled]);
+
+    const CompactRunesDisplayStyles = useMemo(() => {
+        return styled(CompactRunesDisplay)(() => {
+            return parseStyles([
+                tw`flex flex-col uppercase pt-2.5 md:(flex-row)`,
+            ]);
+        });
+    }, [styled]);
+
+    const RuneGroup = useMemo(() => {
+        return styled(CompactRunesDisplay)(({ leftSpace, line = false, loading = true }) => {
+            return parseStyles([
+                tw`items-center relative bg-transparent!`,
+                'large' === leftSpace ? tw`ml-8` : tw``,
+                'largeMd' === leftSpace ? tw`md:ml-8` : tw``,
+                'normal' === leftSpace ? tw`ml-7` : tw``,
+                'small' === leftSpace ? tw`ml-6` : tw``,
+                'very-small' === leftSpace ? tw`ml-3` : tw``,
+                (true === loading && 'gold' === line) ? tw`before:(absolute z-0 inset-53p left-6 content block w-9/12 h-0.5 bg-widget-gold-line outline-widget-gold-outer-line animate-pulse)` : tw``,
+                (false === loading && 'gold' === line) ? tw`before:(absolute z-0 inset-53p left-6 content block w-9/12 h-0.5 bg-widget-gold-line outline-widget-gold-outer-line)` : tw``,
+                (true === loading && 'blue' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-blue-line outline-widget-blue-outer-line animate-pulse)` : tw``,
+                (false === loading && 'blue' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-blue-line outline-widget-blue-outer-line)` : tw``,
+                (true === loading && 'red' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-red-line outline-widget-red-outer-line animate-pulse)` : tw``,
+                (false === loading && 'red' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-red-line outline-widget-red-outer-line)` : tw``,
+                (true === loading && 'green' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-green-line outline-widget-green-outer-line animate-pulse)` : tw``,
+                (false === loading && 'green' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-green-line outline-widget-green-outer-line)` : tw``,
+                (true === loading && 'purple' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-purple-line outline-widget-purple-outer-line animate-pulse)` : tw``,
+                (false === loading && 'purple' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-purple-line outline-widget-purple-outer-line)` : tw``,
+            ]);
+        });
+    }, [styled]);
+
+    const FirstRuneGroup = useMemo(() => {
+        return styled(RuneGroup)(() => {
+            return parseStyles([
+                tw`before:(w-8/12) md:(before:(w-9/12))`,
+            ]);
+        });
+    }, [styled]);
+
+    const LastRuneGroups = useMemo(() => {
+        return styled('div')(() => {
+            return parseStyles([
+                tw`flex pt-2.5 md:(pt-0)`,
+            ]);
+        });
+    }, [styled]);
 
     const { daData: { data: { lol: { champion: { build: { perks = {} } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { loading: isLoading = true } = useLoading();

@@ -17,21 +17,29 @@ const Spells = () => {
 
     const styled = useStyled();
 
-    const SpellsStyles = styled(FlexCol)(() => {
-        return parseStyles([
-            tw`w-full pt-4 lg:(pt-5) xl:(pt-0)`
-        ]);
-    });
-    const SpellsSmallWhiteText = styled(SmallWhiteText)(() => {
-        return parseStyles([
-            tw`uppercase`,
-        ]);
-    });
-    const SpellsDisplayStyles = styled(SpellsDisplay)(() => {
-        return parseStyles([
-            tw`uppercase pt-3`,
-        ]);
-    });
+    const SpellsStyles = useMemo(() => {
+        return styled(FlexCol)(() => {
+            return parseStyles([
+                tw`w-full pt-4 lg:(pt-5) xl:(pt-0)`
+            ]);
+        })
+    }, [styled]);
+
+    const SpellsSmallWhiteText = useMemo(() => {
+        return styled(SmallWhiteText)(() => {
+            return parseStyles([
+                tw`uppercase`,
+            ]);
+        })
+    }, [styled]);
+
+    const SpellsDisplayStyles = useMemo(() => {
+        return styled(SpellsDisplay)(() => {
+            return parseStyles([
+                tw`uppercase pt-3`,
+            ]);
+        })
+    }, [styled]);
 
     const { daData: { data: { lol: { champion: { build: { spells = [] } = {} } = {} } = {} } = {} } } = useDataApi();
     const { sqData: { data: { querySummonersSpellsV1Contents: squidexSpells = [] } = {} } = {} } = useSquidexApi();

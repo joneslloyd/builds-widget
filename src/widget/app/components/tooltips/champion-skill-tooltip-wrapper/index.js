@@ -1,5 +1,5 @@
 import { memo } from 'preact/compat';
-import { useCallback } from 'preact/hooks';
+import { useCallback, useMemo } from 'preact/hooks';
 import ChampionSkillStandaloneTooltip from '../champion-skill-standalone-tooltip';
 import { useStyled } from '../../../lib/context/goober';
 import { TransparentTooltip } from '../../../styles/components/transparent-tooltip';
@@ -10,13 +10,15 @@ const ChampionSkillTooltipWrapper = ({ by, identifier, children }) => {
 
     const styled = useStyled();
 
-    const TooltipWrapper = styled('div')(() => {
-        return parseStyles([
-            {
-                'width': '17.5rem',
-            },
-        ]);
-    });
+    const TooltipWrapper = useMemo(() => {
+        return styled('div')(() => {
+            return parseStyles([
+                {
+                    'width': '17.5rem',
+                },
+            ]);
+        })
+    }, [styled]);
 
     const tooltipFn = useCallback(() => {
 

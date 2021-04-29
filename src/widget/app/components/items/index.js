@@ -1,4 +1,5 @@
 import { memo } from 'preact/compat';
+import { useMemo } from 'preact/hooks';
 import { useDataApi } from '../../lib/context/data-api';
 import { useLoading } from '../../lib/context/loading';
 import ItemSet from '../item-set';
@@ -14,32 +15,46 @@ const Items = () => {
 
     const styled = useStyled();
 
-    const ItemsStyles = styled(FlexCol)(() => {
-        return parseStyles([
-            tw`w-full`,
-        ]);
-    });
-    const ItemsStylesRow = styled(FlexRow)(() => {
-        return parseStyles([
-            tw`w-full`,
-        ]);
-    });
-    const ItemsSmallWhiteText = styled(SmallWhiteText)(() => {
-        return parseStyles([
-            tw`uppercase`,
-        ]);
-    });
-    const ItemsDisplayStyles = styled(ItemsDisplay)(() => {
-        return parseStyles([
-            tw`flex flex-col w-full capitalize pt-2.5 pb-1 md:(flex-row)`,
-        ]);
-    });
-    const ItemSetGroup = styled('div')(({ paddingTop = false }) => {
-        return parseStyles([
-            tw`flex flex-row w-full md:(w-auto)`,
-            'small' === paddingTop ? tw`pt-2.5 md:(pt-0)` : tw`pt-0`,
-        ]);
-    });
+    const ItemsStyles = useMemo(() => {
+        return styled(FlexCol)(() => {
+            return parseStyles([
+                tw`w-full`,
+            ]);
+        })
+    }, [styled]);
+
+    const ItemsStylesRow = useMemo(() => {
+        return styled(FlexRow)(() => {
+            return parseStyles([
+                tw`w-full`,
+            ]);
+        })
+    }, [styled]);
+
+    const ItemsSmallWhiteText = useMemo(() => {
+        return styled(SmallWhiteText)(() => {
+            return parseStyles([
+                tw`uppercase`,
+            ]);
+        })
+    }, [styled]);
+
+    const ItemsDisplayStyles = useMemo(() => {
+        return styled(ItemsDisplay)(() => {
+            return parseStyles([
+                tw`flex flex-col w-full capitalize pt-2.5 pb-1 md:(flex-row)`,
+            ]);
+        })
+    }, [styled]);
+
+    const ItemSetGroup = useMemo(() => {
+        return styled('div')(({ paddingTop = false }) => {
+            return parseStyles([
+                tw`flex flex-row w-full md:(w-auto)`,
+                'small' === paddingTop ? tw`pt-2.5 md:(pt-0)` : tw`pt-0`,
+            ]);
+        })
+    }, [styled]);
 
 
     const dummyData = {

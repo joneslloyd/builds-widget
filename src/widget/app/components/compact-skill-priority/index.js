@@ -17,26 +17,37 @@ const CompactSkillPriority = () => {
 
     const styled = useStyled();
 
-    const CompactSkillPriorityStyles = styled(FlexCol)(() => {
-        return parseStyles([
-            tw`mr-0 xl:(mr-10)`,
-        ]);
-    });
-    const CompactSkillPrioritySmallWhiteText = styled(SmallWhiteText)(() => {
-        return parseStyles([
-            tw`uppercase`,
-        ]);
-    });
-    const CompactSkillPriorityRow = styled(FlexRow)(() => {
-        return parseStyles([
-            tw`pt-2.5`,
-        ]);
-    });
-    const RightArrowStyles = styled(RightArrow)(() => {
-        return parseStyles([
-            tw`mx-2`,
-        ]);
-    });
+    const CompactSkillPriorityStyles = useMemo(() => {
+        return styled(FlexCol)(() => {
+            return parseStyles([
+                tw`mr-0 xl:(mr-10)`,
+            ]);
+        });
+    }, [styled]);
+
+    const CompactSkillPrioritySmallWhiteText = useMemo(() => {
+        return styled(SmallWhiteText)(() => {
+            return parseStyles([
+                tw`uppercase`,
+            ]);
+        });
+    }, [styled]);
+
+    const CompactSkillPriorityRow = useMemo(() => {
+        return styled(FlexRow)(() => {
+            return parseStyles([
+                tw`pt-2.5`,
+            ]);
+        });
+    }, [styled]);
+
+    const RightArrowStyles = useMemo(() => {
+        return styled(RightArrow)(() => {
+            return parseStyles([
+                tw`mx-2`,
+            ]);
+        });
+    }, [styled]);
 
     const { sqData: { data: { championCommonInfo: [{ flatData: { abilities: abilitiesRaw = [] } = {} } = {}] = [] } = {} } = {} } = useSquidexApi();
     const { loading: isLoading = true } = useLoading();

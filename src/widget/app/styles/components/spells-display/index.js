@@ -1,3 +1,4 @@
+import { useMemo } from 'preact/hooks';
 import { useStyled } from '../../../lib/context/goober';
 import tw from 'twin.macro';
 import SpellsDisplayU from '../../utils/spells-display';
@@ -8,12 +9,14 @@ const SpellsDisplay = ({ children, ...rest }) => {
 
     const styled = useStyled();
 
-    const SpellsDisplayC = styled('div')(({ loading }) => {
-        return parseStyles([
-            SpellsDisplayU,
-            loading ? LoadingText : tw``,
-        ]);
-    });
+    const SpellsDisplayC = useMemo(() => {
+        return styled('div')(({ loading }) => {
+            return parseStyles([
+                SpellsDisplayU,
+                loading ? LoadingText : tw``,
+            ]);
+        })
+    }, [styled]);
 
     return (
         <SpellsDisplayC {...rest}>{children}</SpellsDisplayC>

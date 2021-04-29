@@ -1,3 +1,4 @@
+import { useMemo } from 'preact/hooks';
 import Rune from '../rune';
 import FullRunesBodyRow from '../full-runes-body-row';
 import { parseStyles, RunesSlotsMap } from '../../lib/helpers';
@@ -11,28 +12,39 @@ const FullRunesRuneGroup = ({ mainId, iDs = [], type = 'primary', loading: isLoa
 
     const styled = useStyled();
 
-    const FullRunesRuneGroupStyles = styled(FullRunesDisplay)(({ leftSpace = false }) => {
-        return parseStyles([
-            tw`flex-col`,
-            'normal' === leftSpace ? tw`mt-10 lg:(mt-0 ml-16)` : tw``,
-        ]);
-    });
-    const FullRunesTitle = styled('div')(() => {
-        return parseStyles([
-            tw`flex flex-row items-center justify-center`,
-        ]);
-    });
-    const FullRunesRuneTitle = styled(SmallWhiteText)(() => {
-        return parseStyles([
-            tw`text-widget-purple-full-runes-text capitalize text-sm font-bold ml-2`,
-        ]);
-    });
-    const FullRunesBody = styled('div')(() => {
-        return parseStyles([
-            tw`flex flex-col items-center pt-5`,
-        ]);
-    });
+    const FullRunesRuneGroupStyles = useMemo(() => {
+        return styled(FullRunesDisplay)(({ leftSpace = false }) => {
+            return parseStyles([
+                tw`flex-col`,
+                'normal' === leftSpace ? tw`mt-10 lg:(mt-0 ml-16)` : tw``,
+            ]);
+        })
+    }, [styled]);
 
+    const FullRunesTitle = useMemo(() => {
+        return styled('div')(() => {
+            return parseStyles([
+                tw`flex flex-row items-center justify-center`,
+            ]);
+
+        })
+    }, [styled]);
+
+    const FullRunesRuneTitle = useMemo(() => {
+        return styled(SmallWhiteText)(() => {
+            return parseStyles([
+                tw`text-widget-purple-full-runes-text capitalize text-sm font-bold ml-2`,
+            ]);
+        })
+    }, [styled]);
+
+    const FullRunesBody = useMemo(() => {
+        return styled('div')(() => {
+            return parseStyles([
+                tw`flex flex-col items-center pt-5`,
+            ]);
+        })
+    }, [styled]);
 
     //Rune data
     const thisRuneSlot = RunesSlotsMap.filter(r => {

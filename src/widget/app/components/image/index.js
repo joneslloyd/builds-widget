@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'preact/hooks';
+import { useCallback, useEffect, useMemo, useState } from 'preact/hooks';
 import tw from 'twin.macro';
 import { useStyled } from '../../lib/context/goober';
 import { parseStyles } from '../../lib/helpers';
@@ -33,31 +33,35 @@ const Image = ({ src = false, alt, title, width, height, rounded = false, bgColo
     }, []);
 
 
-    const ImageLoadingStyles = styled('div')(({ rounded, cursor }) => {
-        return parseStyles([
-            tw`flex bg-widget-gold-light animate-pulse`,
-            rounded === 'full' ? tw`rounded-full` : tw``,
-            rounded === 'md' ? tw`rounded-sm` : tw``,
-            { 'width': `${width}px`, 'height': `${height}px` },
-            !loading ? { 'display': 'none' } : tw``,
-            {
-                'cursor': cursor
-            }
-        ]);
-    });
+    const ImageLoadingStyles = useMemo(() => {
+        return styled('div')(({ rounded, cursor }) => {
+            return parseStyles([
+                tw`flex bg-widget-gold-light animate-pulse`,
+                rounded === 'full' ? tw`rounded-full` : tw``,
+                rounded === 'md' ? tw`rounded-sm` : tw``,
+                { 'width': `${width}px`, 'height': `${height}px` },
+                !loading ? { 'display': 'none' } : tw``,
+                {
+                    'cursor': cursor
+                }
+            ]);
+        })
+    }, [styled]);
 
-    const ImageStyles = styled('img')(({ rounded, cursor }) => {
-        return parseStyles([
-            tw`flex`,
-            bgColor === true ? tw`bg-widget-gold-light` : tw``,
-            rounded === 'full' ? tw`rounded-full` : tw``,
-            rounded === 'md' ? tw`rounded-sm` : tw``,
-            loading ? { 'object-position': '-99999px 99999px' } : tw``,
-            {
-                'cursor': cursor
-            }
-        ]);
-    });
+    const ImageStyles = useMemo(() => {
+        return styled('img')(({ rounded, cursor }) => {
+            return parseStyles([
+                tw`flex`,
+                bgColor === true ? tw`bg-widget-gold-light` : tw``,
+                rounded === 'full' ? tw`rounded-full` : tw``,
+                rounded === 'md' ? tw`rounded-sm` : tw``,
+                loading ? { 'object-position': '-99999px 99999px' } : tw``,
+                {
+                    'cursor': cursor
+                }
+            ]);
+        })
+    }, [styled]);
 
     return (
         <>

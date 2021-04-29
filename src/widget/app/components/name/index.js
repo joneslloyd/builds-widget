@@ -1,4 +1,5 @@
 import { memo } from 'preact/compat';
+import { useMemo } from 'preact/hooks';
 import { useSquidexApi } from '../../lib/context/squidex-api';
 import { useLoading } from '../../lib/context/loading';
 import tw from 'twin.macro';
@@ -10,11 +11,13 @@ const Name = () => {
 
     const styled = useStyled();
 
-    const NameStyles = styled('div')(() => {
-        return parseStyles([
-            tw`flex`,
-        ]);
-    });
+    const NameStyles = useMemo(() => {
+        return styled('div')(() => {
+            return parseStyles([
+                tw`flex`,
+            ]);
+        })
+    }, [styled]);
 
     const { sqData: { data: { championCommonInfo = [] } = {} } } = useSquidexApi();
     const { loading = true } = useLoading();

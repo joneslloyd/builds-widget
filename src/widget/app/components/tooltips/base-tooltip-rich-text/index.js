@@ -1,4 +1,5 @@
 import { memo } from 'preact/compat';
+import { useMemo } from 'preact/hooks';
 import { RichText } from '../rich-text';
 import { parseStyles, processCustomHtmlTags } from '../../../lib/helpers';
 import tw from 'twin.macro';
@@ -18,41 +19,43 @@ export const StyledLolRichText = ({ children, ...rest }) => {
 
     const styled = useStyled();
 
-    const StyledLolRichTextC = styled(LolRichText)(() => {
-        return parseStyles([
-            tw`relative text-sm leading-5`,
-            {
-                'color': '#b3b4d0',
-                '.custom': {
-                    'display': 'inline'
+    const StyledLolRichTextC = useMemo(() => {
+        return styled(LolRichText)(() => {
+            return parseStyles([
+                tw`relative text-sm leading-5`,
+                {
+                    'color': '#b3b4d0',
+                    '.custom': {
+                        'display': 'inline'
+                    },
+                    '.stats': {
+                        'display': 'block',
+                        'color': '#6b6889',
+                    },
+                    '.attention': {
+                        'font-weight': '500',
+                        'color': '#ffffff',
+                    },
+                    'i, .unique, .active, .aura, .passive, .rarityMythic': {
+                        'font-weight': '700',
+                        'color': '#ffffff'
+                    },
+                    '.rarityMythic': {
+                        'color': '#fec205'
+                    },
+                    '.magicDamage': {
+                        'color': '#84d0fe'
+                    },
+                    'li': {
+                        'list-style-type': 'none',
+                    },
+                    'li + li': {
+                        'margin-top': '0.8rem'
+                    },
                 },
-                '.stats': {
-                    'display': 'block',
-                    'color': '#6b6889',
-                },
-                '.attention': {
-                    'font-weight': '500',
-                    'color': '#ffffff',
-                },
-                'i, .unique, .active, .aura, .passive, .rarityMythic': {
-                    'font-weight': '700',
-                    'color': '#ffffff'
-                },
-                '.rarityMythic': {
-                    'color': '#fec205'
-                },
-                '.magicDamage': {
-                    'color': '#84d0fe'
-                },
-                'li': {
-                    'list-style-type': 'none',
-                },
-                'li + li': {
-                    'margin-top': '0.8rem'
-                },
-            },
-        ]);
-    });
+            ]);
+        })
+    }, [styled]);
 
     return (
         <StyledLolRichTextC {...rest}>{children}</StyledLolRichTextC>

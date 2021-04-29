@@ -1,4 +1,5 @@
 import { memo } from 'preact/compat';
+import { useMemo } from 'preact/hooks';
 import { useSquidexApi } from '../../lib/context/squidex-api';
 import { useLoading } from '../../lib/context/loading';
 import MoreBuildsIcon from '../more-builds-icon';
@@ -12,26 +13,37 @@ const MoreBuilds = () => {
 
     const styled = useStyled();
 
-    const MoreBuildsStyles = styled(FlexRow)(() => {
-        return parseStyles([
-            tw`pt-2.5 md:(pt-0)`,
-        ]);
-    });
-    const MoreBuildsLoading = styled(SmallWhiteText)(() => {
-        return parseStyles([
-            tw`ml-6 no-underline lg:(ml-6)`,
-        ]);
-    });
-    const MoreBuildsSmallGoldText = styled(SmallWhiteText)(() => {
-        return parseStyles([
-            tw`flex items-center text-xs! font-medium text-widget-gold normal-case transition-all no-underline hover:text-widget-gold-light svg:all:(transition-all fill-widget-gold) hover:(svg:all:(fill-widget-gold-light)) md:(pl-6)`,
-        ]);
-    });
-    const MoreBuildsIconStyled = styled(MoreBuildsIcon)(() => {
-        return parseStyles([
-            tw`ml-1.5 fill-widget-gold`,
-        ]);
-    });
+    const MoreBuildsStyles = useMemo(() => {
+        return styled(FlexRow)(() => {
+            return parseStyles([
+                tw`pt-2.5 md:(pt-0)`,
+            ]);
+        })
+    }, [styled]);
+
+    const MoreBuildsLoading = useMemo(() => {
+        return styled(SmallWhiteText)(() => {
+            return parseStyles([
+                tw`ml-6 no-underline lg:(ml-6)`,
+            ]);
+        })
+    }, [styled]);
+
+    const MoreBuildsSmallGoldText = useMemo(() => {
+        return styled(SmallWhiteText)(() => {
+            return parseStyles([
+                tw`flex items-center text-xs! font-medium text-widget-gold normal-case transition-all no-underline hover:text-widget-gold-light svg:all:(transition-all fill-widget-gold) hover:(svg:all:(fill-widget-gold-light)) md:(pl-6)`,
+            ]);
+        })
+    }, [styled]);
+
+    const MoreBuildsIconStyled = useMemo(() => {
+        return styled(MoreBuildsIcon)(() => {
+            return parseStyles([
+                tw`ml-1.5 fill-widget-gold`,
+            ]);
+        })
+    }, [styled]);
 
     const { sqData: { data: { championCommonInfo = [] } = {} } = {} } = useSquidexApi();
     const { loading: isLoading = true } = useLoading();

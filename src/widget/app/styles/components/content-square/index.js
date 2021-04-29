@@ -1,3 +1,4 @@
+import { useMemo } from 'preact/hooks';
 import tw from 'twin.macro';
 import { useStyled } from '../../../lib/context/goober';
 import { parseStyles } from '../../../lib/helpers';
@@ -7,18 +8,20 @@ const ContentSquareStyles = ({ children, ...rest }) => {
 
     const styled = useStyled();
 
-    const ContentSquareStylesC = styled('div')(({ wh = 16, letter = false, loading = true, noBg = false }) => {
-        return parseStyles([
-            tw`text-white font-bold text-xs bg-widget-purple-overlay rounded-sm`,
-            'W' === letter ? tw`text-widget-keys-W!` : tw``,
-            'Q' === letter ? tw`text-widget-keys-Q!` : tw``,
-            'E' === letter ? tw`text-widget-keys-E!` : tw``,
-            'R' === letter ? tw`text-widget-keys-R!` : tw``,
-            true === noBg ? tw`bg-transparent` : tw``,
-            loading && (LoadingText),
-            { width: `${wh}px`, height: `${wh}px` }
-        ]);
-    });
+    const ContentSquareStylesC = useMemo(() => {
+        return styled('div')(({ wh = 16, letter = false, loading = true, noBg = false }) => {
+            return parseStyles([
+                tw`text-white font-bold text-xs bg-widget-purple-overlay rounded-sm`,
+                'W' === letter ? tw`text-widget-keys-W!` : tw``,
+                'Q' === letter ? tw`text-widget-keys-Q!` : tw``,
+                'E' === letter ? tw`text-widget-keys-E!` : tw``,
+                'R' === letter ? tw`text-widget-keys-R!` : tw``,
+                true === noBg ? tw`bg-transparent` : tw``,
+                loading && (LoadingText),
+                { width: `${wh}px`, height: `${wh}px` }
+            ]);
+        })
+    }, [styled]);
 
     return (
         <ContentSquareStylesC {...rest}>{children}</ContentSquareStylesC>

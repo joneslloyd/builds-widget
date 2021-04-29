@@ -1,3 +1,4 @@
+import { useMemo } from 'preact/hooks';
 import { useStyled } from '../../../lib/context/goober';
 import tw from 'twin.macro';
 import { parseStyles } from '../../../lib/helpers';
@@ -8,12 +9,14 @@ const ItemsDisplay = ({ children, ...rest }) => {
 
     const styled = useStyled();
 
-    const ItemsDisplayC = styled('div')(({ loading }) => {
-        return parseStyles([
-            ItemsDisplayU,
-            loading ? LoadingText : tw``,
-        ]);
-    });
+    const ItemsDisplayC = useMemo(() => {
+        return styled('div')(({ loading }) => {
+            return parseStyles([
+                ItemsDisplayU,
+                loading ? LoadingText : tw``,
+            ]);
+        })
+    }, [styled]);
 
     return (
         <ItemsDisplayC {...rest}>{children}</ItemsDisplayC>

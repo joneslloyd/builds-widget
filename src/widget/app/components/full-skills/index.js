@@ -16,22 +16,30 @@ const FullSkills = () => {
 
     const styled = useStyled();
 
-    const FullSkillOrderStyles = styled(FlexCol)(() => {
-        return parseStyles([
-            tw`hidden md:(flex pt-4) lg:(pt-5) xl:(pt-0)`,
-        ]);
-    });
-    const FullSkillOrderSmallWhiteText = styled(SmallWhiteText)(() => {
-        return parseStyles([
-            tw`uppercase`,
-        ]);
-    });
-    const FullSkillOrderRow = styled(FlexRow)(({ pt = false }) => {
-        return parseStyles([
-            tw``,
-            'normal' === pt ? tw`pt-3` : tw``,
-        ]);
-    });
+    const FullSkillOrderStyles = useMemo(() => {
+        return styled(FlexCol)(() => {
+            return parseStyles([
+                tw`hidden md:(flex pt-4) lg:(pt-5) xl:(pt-0)`,
+            ]);
+        })
+    }, [styled]);
+
+    const FullSkillOrderSmallWhiteText = useMemo(() => {
+        return styled(SmallWhiteText)(() => {
+            return parseStyles([
+                tw`uppercase`,
+            ]);
+        })
+    }, [styled]);
+
+    const FullSkillOrderRow = useMemo(() => {
+        return styled(FlexRow)(({ pt = false }) => {
+            return parseStyles([
+                tw``,
+                'normal' === pt ? tw`pt-3` : tw``,
+            ]);
+        })
+    }, [styled]);
 
     const { daData: { data: { lol: { champion: { build: { skillOrder = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17] } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { sqData: { data: { championCommonInfo: [{ flatData: { abilities: abilitiesRaw = [] } = {} } = {}] = [] } = {} } = {} } = useSquidexApi();

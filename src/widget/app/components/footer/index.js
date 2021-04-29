@@ -5,16 +5,19 @@ import tw from 'twin.macro';
 import { useStyled } from '../../lib/context/goober';
 import FlexRow from '../../styles/components/flex-row';
 import { parseStyles } from '../../lib/helpers';
+import { useMemo } from 'preact/hooks';
 
 const Footer = () => {
 
     const styled = useStyled();
 
-    const FooterStyles = styled(FlexRow)(() => {
-        return parseStyles([
-            tw`w-auto flex flex-col bg-widget-purple rounded-b-md p-3.5 border-t border-widget-purple-border md:(flex-row)`,
-        ]);
-    });
+    const FooterStyles = useMemo(() => {
+        return styled(FlexRow)(() => {
+            return parseStyles([
+                tw`w-auto flex flex-col bg-widget-purple rounded-b-md p-3.5 border-t border-widget-purple-border md:(flex-row)`,
+            ]);
+        });
+    }, [styled]);
 
     return (
         <FooterStyles>

@@ -1,3 +1,4 @@
+import { useMemo } from 'preact/hooks';
 import { useStyled } from '../../../lib/context/goober';
 import tw from 'twin.macro';
 import { parseStyles } from '../../../lib/helpers';
@@ -8,12 +9,14 @@ const FullRunesDisplay = ({ children, ...rest }) => {
 
     const styled = useStyled();
 
-    const FullRunesDisplayC = styled('div')(({ loading }) => {
-        return parseStyles([
-            FullRunesDisplayU,
-            loading ? LoadingText : tw``,
-        ]);
-    });
+    const FullRunesDisplayC = useMemo(() => {
+        return styled('div')(({ loading }) => {
+            return parseStyles([
+                FullRunesDisplayU,
+                loading ? LoadingText : tw``,
+            ]);
+        })
+    }, [styled]);
 
     return (
         <FullRunesDisplayC {...rest}>{children}</FullRunesDisplayC>

@@ -1,3 +1,4 @@
+import { useMemo } from 'preact/hooks';
 import { useStyled } from '../../../lib/context/goober';
 import tw from 'twin.macro';
 import { parseStyles } from '../../../lib/helpers';
@@ -8,12 +9,14 @@ const CompactRunesDisplay = ({ children, ...rest }) => {
 
     const styled = useStyled();
 
-    const CompactRunesDisplayC = styled('div')(({ loading }) => {
-        return parseStyles([
-            CompactRunesDisplayU,
-            loading ? LoadingText : tw``,
-        ]);
-    });
+    const CompactRunesDisplayC = useMemo(() => {
+        return styled('div')(({ loading }) => {
+            return parseStyles([
+                CompactRunesDisplayU,
+                loading ? LoadingText : tw``,
+            ]);
+        })
+    }, [styled]);
 
     return (
         <CompactRunesDisplayC {...rest}>{children}</CompactRunesDisplayC>

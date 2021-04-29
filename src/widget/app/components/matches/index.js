@@ -1,4 +1,5 @@
 import { memo } from 'preact/compat';
+import { useMemo } from 'preact/hooks';
 import { useDataApi } from '../../lib/context/data-api';
 import { useLoading } from '../../lib/context/loading';
 import { commaNumber, parseStyles } from '../../lib/helpers';
@@ -12,21 +13,29 @@ const Matches = () => {
 
     const styled = useStyled();
 
-    const MatchesStyles = styled(FlexRow)(() => {
-        return parseStyles([
-            tw`hidden md:(flex pl-1)`,
-        ]);
-    });
-    const MatchesSmallPurpleText = styled(SmallPurpleText)(() => {
-        return parseStyles([
-            tw`lowercase`,
-        ]);
-    });
-    const MatchesSmallWhiteText = styled(SmallWhiteText)(() => {
-        return parseStyles([
-            tw``,
-        ]);
-    });
+    const MatchesStyles = useMemo(() => {
+        return styled(FlexRow)(() => {
+            return parseStyles([
+                tw`hidden md:(flex pl-1)`,
+            ]);
+        })
+    }, [styled]);
+
+    const MatchesSmallPurpleText = useMemo(() => {
+        return styled(SmallPurpleText)(() => {
+            return parseStyles([
+                tw`lowercase`,
+            ]);
+        })
+    }, [styled]);
+
+    const MatchesSmallWhiteText = useMemo(() => {
+        return styled(SmallWhiteText)(() => {
+            return parseStyles([
+                tw``,
+            ]);
+        })
+    }, [styled]);
 
     const { daData: { data: { lol: { champion: { build: { stats: { matchCount: matchCountRaw = 'x,xxx' } = {} } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { loading: isLoading = true } = useLoading();

@@ -1,3 +1,4 @@
+import { useMemo } from 'preact/hooks';
 import Avatar from '../avatar';
 import Name from '../name';
 import Role from '../role';
@@ -14,16 +15,21 @@ const Header = () => {
 
     const styled = useStyled();
 
-    const HeaderStyles = styled(FlexRow)(() => {
-        return parseStyles([
-            tw`bg-widget-purple rounded-t-md px-3 py-2.5 border-b border-widget-purple-border`,
-        ]);
-    });
-    const NamePatchStyles = styled(FlexCol)(() => {
-        return parseStyles([
-            tw`pl-2`,
-        ]);
-    });
+    const HeaderStyles = useMemo(() => {
+        return styled(FlexRow)(() => {
+            return parseStyles([
+                tw`bg-widget-purple rounded-t-md px-3 py-2.5 border-b border-widget-purple-border`,
+            ]);
+        })
+    }, [styled]);
+
+    const NamePatchStyles = useMemo(() => {
+        return styled(FlexCol)(() => {
+            return parseStyles([
+                tw`pl-2`,
+            ]);
+        })
+    }, [styled]);
 
     return (
         <HeaderStyles>

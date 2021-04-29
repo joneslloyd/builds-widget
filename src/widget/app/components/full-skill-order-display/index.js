@@ -1,3 +1,4 @@
+import { useMemo } from 'preact/hooks';
 import FullSkillOrderAbilities from '../full-skill-order-abilities';
 import FullSkillOrderMappedSkills from '../full-skill-order-mapped-skills';
 import tw from 'twin.macro';
@@ -9,11 +10,13 @@ const FullSkillOrderDisplay = ({ abilities, skillOrder, skillMap, loading = true
 
     const styled = useStyled();
 
-    const FullSkillOrderDisplayStyles = styled(FlexRow)(() => {
-        return parseStyles([
-            tw`items-start`,
-        ]);
-    });
+    const FullSkillOrderDisplayStyles = useMemo(() => {
+        return styled(FlexRow)(() => {
+            return parseStyles([
+                tw`items-start`,
+            ]);
+        })
+    }, [styled]);
 
     return (
         <FullSkillOrderDisplayStyles>

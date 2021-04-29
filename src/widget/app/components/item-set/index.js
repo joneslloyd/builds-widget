@@ -1,3 +1,4 @@
+import { useMemo } from 'preact/hooks';
 import SpellItem from '../spell-item';
 import tw from 'twin.macro';
 import { useStyled } from '../../lib/context/goober';
@@ -11,26 +12,34 @@ const ItemSet = ({ name, items, loading = true, leftSpace = false }) => {
 
     const styled = useStyled();
 
-    const ItemSetStyles = styled(FlexCol)(({ leftSpace }) => {
-        return parseStyles([
-            tw`w-auto`,
-            'large' === leftSpace ? tw`ml-8` : tw``,
-            'normal' === leftSpace ? tw`ml-7` : tw``,
-            'small' === leftSpace ? tw`ml-5` : tw``,
-            'baseNoneMdSmall' === leftSpace ? tw`ml-0 md:(ml-5)` : tw``,
-            'very-small' === leftSpace ? tw`ml-3` : tw``,
-        ]);
-    });
-    const ItemSetSmallPurpleText = styled(SmallPurpleText)(() => {
-        return parseStyles([
-            tw`capitalize`,
-        ]);
-    });
-    const ItemSetDisplayStyles = styled(FlexRow)(() => {
-        return parseStyles([
-            tw`uppercase pt-1.5`,
-        ]);
-    });
+    const ItemSetStyles = useMemo(() => {
+        return styled(FlexCol)(({ leftSpace }) => {
+            return parseStyles([
+                tw`w-auto`,
+                'large' === leftSpace ? tw`ml-8` : tw``,
+                'normal' === leftSpace ? tw`ml-7` : tw``,
+                'small' === leftSpace ? tw`ml-5` : tw``,
+                'baseNoneMdSmall' === leftSpace ? tw`ml-0 md:(ml-5)` : tw``,
+                'very-small' === leftSpace ? tw`ml-3` : tw``,
+            ]);
+        })
+    }, [styled]);
+
+    const ItemSetSmallPurpleText = useMemo(() => {
+        return styled(SmallPurpleText)(() => {
+            return parseStyles([
+                tw`capitalize`,
+            ]);
+        })
+    }, [styled]);
+
+    const ItemSetDisplayStyles = useMemo(() => {
+        return styled(FlexRow)(() => {
+            return parseStyles([
+                tw`uppercase pt-1.5`,
+            ]);
+        })
+    }, [styled]);
 
     return (
         <ItemSetStyles leftSpace={leftSpace}>

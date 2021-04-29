@@ -1,3 +1,4 @@
+import { useMemo } from 'preact/hooks';
 import ContentSquare from '../content-square';
 import RightArrow from '../right-arrow';
 import tw from 'twin.macro';
@@ -9,17 +10,22 @@ const FullSkillOrderSkillsMap = ({ skillMap: rawSkillMap = [], loading = true })
 
     const styled = useStyled();
 
-    const FullSkillOrderSkillsMapStyles = styled(FlexRow)(() => {
-        return parseStyles([
-            tw`ml-2`,
-        ]);
-    });
-    const FullSkillOrderContentSquareStyles = styled(ContentSquare)(({ leftSpace = false, rightSpace = false }) => {
-        return parseStyles([
-            'normal' === leftSpace ? tw`ml-2` : tw``,
-            'normal' === rightSpace ? tw`mr-2` : tw``
-        ]);
-    });
+    const FullSkillOrderSkillsMapStyles = useMemo(() => {
+        return styled(FlexRow)(() => {
+            return parseStyles([
+                tw`ml-2`,
+            ]);
+        })
+    }, [styled]);
+
+    const FullSkillOrderContentSquareStyles = useMemo(() => {
+        return styled(ContentSquare)(({ leftSpace = false, rightSpace = false }) => {
+            return parseStyles([
+                'normal' === leftSpace ? tw`ml-2` : tw``,
+                'normal' === rightSpace ? tw`mr-2` : tw``
+            ]);
+        })
+    }, [styled]);
 
     const skillMap = rawSkillMap.length > 0 ? rawSkillMap.filter(s => s !== 'R') : [
         0, 1, 2

@@ -1,5 +1,5 @@
 import { memo } from 'preact/compat';
-import { useCallback } from 'preact/hooks';
+import { useCallback, useMemo } from 'preact/hooks';
 import { useDataApi } from '../../lib/context/data-api';
 import { useLoading } from '../../lib/context/loading';
 import { parseStyles, roundWinRate } from '../../lib/helpers';
@@ -12,21 +12,29 @@ const WinRate = () => {
 
     const styled = useStyled();
 
-    const WinRateStyles = styled(FlexRow)(() => {
-        return parseStyles([
-            tw`pl-3.5`,
-        ]);
-    });
-    const WinRateSmallPurpleText = styled(SmallPurpleText)(() => {
-        return parseStyles([
-            tw`pr-1`,
-        ]);
-    });
-    const WinRateSmallGreenText = styled(SmallPurpleText)(() => {
-        return parseStyles([
-            tw`text-widget-green`,
-        ]);
-    });
+    const WinRateStyles = useMemo(() => {
+        return styled(FlexRow)(() => {
+            return parseStyles([
+                tw`pl-3.5`,
+            ]);
+        })
+    }, [styled]);
+
+    const WinRateSmallPurpleText = useMemo(() => {
+        return styled(SmallPurpleText)(() => {
+            return parseStyles([
+                tw`pr-1`,
+            ]);
+        })
+    }, [styled]);
+
+    const WinRateSmallGreenText = useMemo(() => {
+        return styled(SmallPurpleText)(() => {
+            return parseStyles([
+                tw`text-widget-green`,
+            ]);
+        })
+    }, [styled]);
 
     const { daData: { data: { lol: { champion: { stats: { winRateHistory = [] } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const latestWinRateHistoryItem = winRateHistory ? winRateHistory[0] : {};

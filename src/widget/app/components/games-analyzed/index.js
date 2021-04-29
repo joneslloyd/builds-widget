@@ -1,5 +1,5 @@
 import { memo } from 'preact/compat';
-import { useCallback } from 'preact/hooks';
+import { useCallback, useMemo } from 'preact/hooks';
 import { useDataApi } from '../../lib/context/data-api';
 import { useLoading } from '../../lib/context/loading';
 import { commaNumber, parseStyles } from '../../lib/helpers';
@@ -13,26 +13,37 @@ const GamesAnalyzed = () => {
 
     const styled = useStyled();
 
-    const GamesAnalyzedStyles = styled(FlexRow)(() => {
-        return parseStyles([
-            tw``,
-        ]);
-    });
-    const GamesAnalyzedSmallLightestPurpleText = styled(SmallPurpleText)(() => {
-        return parseStyles([
-            tw`text-widget-purple-lightest lowercase pr-0.5 lg:(pr-1.5)`,
-        ]);
-    });
-    const GamesAnalyzedSmallPurpleTextSmaller = styled(SmallPurpleText)(() => {
-        return parseStyles([
-            tw`flex normal-case pl-0.5 lg:(hidden) lg:(pl-1)`,
-        ]);
-    });
-    const GamesAnalyzedSmallPurpleTextLarger = styled(SmallPurpleText)(() => {
-        return parseStyles([
-            tw`hidden normal-case pl-0.5 lg:(flex) lg:(pl-1)`,
-        ]);
-    });
+    const GamesAnalyzedStyles = useMemo(() => {
+        return styled(FlexRow)(() => {
+            return parseStyles([
+                tw``,
+            ]);
+        })
+    }, [styled]);
+
+    const GamesAnalyzedSmallLightestPurpleText = useMemo(() => {
+        return styled(SmallPurpleText)(() => {
+            return parseStyles([
+                tw`text-widget-purple-lightest lowercase pr-0.5 lg:(pr-1.5)`,
+            ]);
+        })
+    }, [styled]);
+
+    const GamesAnalyzedSmallPurpleTextSmaller = useMemo(() => {
+        return styled(SmallPurpleText)(() => {
+            return parseStyles([
+                tw`flex normal-case pl-0.5 lg:(hidden) lg:(pl-1)`,
+            ]);
+        })
+    }, [styled]);
+
+    const GamesAnalyzedSmallPurpleTextLarger = useMemo(() => {
+        return styled(SmallPurpleText)(() => {
+            return parseStyles([
+                tw`hidden normal-case pl-0.5 lg:(flex) lg:(pl-1)`,
+            ]);
+        })
+    }, [styled]);
 
     const { daData: { data: { lol: { champion: { build: { stats: { matchCount: matchCountRaw } = {} } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { loading: isLoading = true } = useLoading();

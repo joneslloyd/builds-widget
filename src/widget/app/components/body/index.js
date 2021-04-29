@@ -20,27 +20,31 @@ const Body = () => {
 
     const styled = useStyled();
 
-    const BodyStyles = styled('div')(({ layout = false, posterUrl = false }) => {
-        return parseStyles([
-            tw`flex flex-col bg-transparent divide-y divide-widget-white-line`,
-            ('full' === layout && posterUrl) ? {
-                [`@media (min-width: ${theme('screens.lg')})`]: {
-                    'background-repeat': 'no-repeat',
-                    'background-position': '183px -36px',
-                    'background-size': '100% auto',
-                    'background-image': `radial-gradient(circle at 61% 153px, ${theme('colors.widget-purple.light-65')}, ${theme('colors.widget-purple.light')} 30%), url('${posterUrl}')`,
-                },
-            } : tw``,
-        ]);
-    });
+    const BodyStyles = useMemo(() => {
+        return styled('div')(({ layout = false, posterUrl = false }) => {
+            return parseStyles([
+                tw`flex flex-col bg-transparent divide-y divide-widget-white-line`,
+                ('full' === layout && posterUrl) ? {
+                    [`@media (min-width: ${theme('screens.lg')})`]: {
+                        'background-repeat': 'no-repeat',
+                        'background-position': '183px -36px',
+                        'background-size': '100% auto',
+                        'background-image': `radial-gradient(circle at 61% 153px, ${theme('colors.widget-purple.light-65')}, ${theme('colors.widget-purple.light')} 30%), url('${posterUrl}')`,
+                    },
+                } : tw``,
+            ]);
+        });
+    }, [styled]);
 
-    const BodyRowCol = styled(FlexRow)(({ pt = false, layout = false, hiddenBelowMd = false }) => {
-        return parseStyles([
-            true === pt ? tw`md:(pt-5) lg:(pt-7)` : tw``,
-            'full' === layout ? tw`p-3 flex-col items-start lg:(p-5) xl:(flex-row items-end)` : tw`p-3 flex-col items-start lg:(p-5) xl:(flex-row)`,
-            true === hiddenBelowMd ? tw`hidden md:(flex)` : tw``,
-        ]);
-    });
+    const BodyRowCol = useMemo(() => {
+        return styled(FlexRow)(({ pt = false, layout = false, hiddenBelowMd = false }) => {
+            return parseStyles([
+                true === pt ? tw`md:(pt-5) lg:(pt-7)` : tw``,
+                'full' === layout ? tw`p-3 flex-col items-start lg:(p-5) xl:(flex-row items-end)` : tw`p-3 flex-col items-start lg:(p-5) xl:(flex-row)`,
+                true === hiddenBelowMd ? tw`hidden md:(flex)` : tw``,
+            ]);
+        });
+    }, [styled]);
 
     const posterUrl = useMemo(() => {
         return championPosterImage(name);

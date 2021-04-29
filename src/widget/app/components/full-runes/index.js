@@ -1,4 +1,5 @@
 import { memo } from 'preact/compat';
+import { useMemo } from 'preact/hooks';
 import { useDataApi } from '../../lib/context/data-api';
 import { useLoading } from '../../lib/context/loading';
 import FullRunesRuneGroup from '../full-runes-rune-group';
@@ -14,26 +15,37 @@ const FullRunes = () => {
 
     const styled = useStyled();
 
-    const FullRunesStyles = styled(FlexCol)(() => {
-        return parseStyles([
-            tw`mr-0 w-full xl:(mr-10 w-9/12)`,
-        ]);
-    });
-    const FullRunesSmallWhiteText = styled(SmallWhiteText)(() => {
-        return parseStyles([
-            tw`uppercase`,
-        ]);
-    });
-    const FullRunesDisplayRow = styled(FlexRow)(() => {
-        return parseStyles([
-            tw`w-full`,
-        ]);
-    });
-    const FullRunesDisplayStyles = styled(FullRunesDisplay)(() => {
-        return parseStyles([
-            tw`flex uppercase pt-2.5 flex-col w-full items-center lg:(flex-row items-start)`,
-        ]);
-    });
+    const FullRunesStyles = useMemo(() => {
+        return styled(FlexCol)(() => {
+            return parseStyles([
+                tw`mr-0 w-full xl:(mr-10 w-9/12)`,
+            ]);
+        });
+    }, [styled]);
+
+    const FullRunesSmallWhiteText = useMemo(() => {
+        return styled(SmallWhiteText)(() => {
+            return parseStyles([
+                tw`uppercase`,
+            ]);
+        });
+    }, [styled]);
+
+    const FullRunesDisplayRow = useMemo(() => {
+        return styled(FlexRow)(() => {
+            return parseStyles([
+                tw`w-full`,
+            ]);
+        });
+    }, [styled]);
+
+    const FullRunesDisplayStyles = useMemo(() => {
+        return styled(FullRunesDisplay)(() => {
+            return parseStyles([
+                tw`flex uppercase pt-2.5 flex-col w-full items-center lg:(flex-row items-start)`,
+            ]);
+        });
+    }, [styled]);
 
     const { daData: { data: { lol: { champion: { build: { perks = {} } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { loading = true } = useLoading();

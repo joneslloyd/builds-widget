@@ -1,4 +1,5 @@
 import { memo } from 'preact/compat';
+import { useMemo } from 'preact/hooks';
 import { useDataApi } from '../../lib/context/data-api';
 import { useLoading } from '../../lib/context/loading';
 import tw from 'twin.macro';
@@ -12,21 +13,29 @@ const Patch = () => {
 
     const styled = useStyled();
 
-    const PatchStyles = styled(FlexRow)(() => {
-        return parseStyles([
-            tw`pl-3.5`,
-        ]);
-    });
-    const PatchSmallPurpleText = styled(SmallPurpleText)(() => {
-        return parseStyles([
-            tw`pr-1.5`,
-        ]);
-    });
-    const PatchSmallWhiteText = styled(SmallWhiteText)(() => {
-        return parseStyles([
-            tw``,
-        ]);
-    });
+    const PatchStyles = useMemo(() => {
+        return styled(FlexRow)(() => {
+            return parseStyles([
+                tw`pl-3.5`,
+            ]);
+        })
+    }, [styled]);
+
+    const PatchSmallPurpleText = useMemo(() => {
+        return styled(SmallPurpleText)(() => {
+            return parseStyles([
+                tw`pr-1.5`,
+            ]);
+        })
+    }, [styled]);
+
+    const PatchSmallWhiteText = useMemo(() => {
+        return styled(SmallWhiteText)(() => {
+            return parseStyles([
+                tw``,
+            ]);
+        })
+    }, [styled]);
 
     const { daData: { data: { lol: { champion: { build: { patch = 'xx.x' } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { loading: isLoading = true } = useLoading();

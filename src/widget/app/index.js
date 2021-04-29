@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'preact/hooks';
+import { useState, useEffect, useMemo } from 'preact/hooks';
 import { useStyled } from './lib/context/goober';
 import Header from './components/header';
 import Body from './components/body';
@@ -11,12 +11,14 @@ const App = () => {
   const [loaded, setLoaded] = useState(false);
   const styled = useStyled();
 
-  const Container = styled('div')(({ loaded = false }) => {
-    return parseStyles([
-      tw`hidden flex-col items-stretch justify-between h-full w-full min-h-full border border-widget-purple-border bg-widget-purple-light text-white rounded-md font-sans max-w-screen-xl sm:(flex)`,
-      false === loaded ? tw`lg:(min-h-914) xl:(min-h-808)` : tw``,
-    ]);
-  });
+  const Container = useMemo(() => {
+    return styled('div')(({ loaded = false }) => {
+      return parseStyles([
+        tw`hidden flex-col items-stretch justify-between h-full w-full min-h-full border border-widget-purple-border bg-widget-purple-light text-white rounded-md font-sans max-w-screen-xl sm:(flex)`,
+        false === loaded ? tw`lg:(min-h-914) xl:(min-h-808)` : tw``,
+      ]);
+    });
+  }, [styled]);
 
   useEffect(() => {
     if (!loaded) {
