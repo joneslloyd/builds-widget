@@ -1,4 +1,4 @@
-import { useRef, useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 
 const useSingleDataLoader = (loadingFn, params) => {
 
@@ -9,7 +9,7 @@ const useSingleDataLoader = (loadingFn, params) => {
     useEffect(() => {
         const { loadingFn, params } = paramsRef.current;
         setState({ isLoading: true });
-        loadingFn(params)
+        loadingFn(...params)
             .then(response => {
                 mountedRef.current && setState({ isLoading: false, isLoaded: true, response, error: null });
             })
