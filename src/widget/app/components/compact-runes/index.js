@@ -39,15 +39,11 @@ const CompactRunes = () => {
             'normal' === leftSpace ? tw`ml-7` : tw``,
             'small' === leftSpace ? tw`ml-6` : tw``,
             'very-small' === leftSpace ? tw`ml-3` : tw``,
-            (true === loading && 'gold' === line) ? tw`before:(absolute z-0 inset-53p left-6 content block w-9/12 h-0.5 bg-widget-gold-line outline-widget-gold-outer-line animate-pulse)` : tw``,
+            (true === loading && false !== line) ? tw`before:(absolute z-0 inset-43p left-6 content block w-9/12 h-2 bg-widget-purple-skeleton animate-pulse)` : tw``,
             (false === loading && 'gold' === line) ? tw`before:(absolute z-0 inset-53p left-6 content block w-9/12 h-0.5 bg-widget-gold-line outline-widget-gold-outer-line)` : tw``,
-            (true === loading && 'blue' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-blue-line outline-widget-blue-outer-line animate-pulse)` : tw``,
             (false === loading && 'blue' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-blue-line outline-widget-blue-outer-line)` : tw``,
-            (true === loading && 'red' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-red-line outline-widget-red-outer-line animate-pulse)` : tw``,
             (false === loading && 'red' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-red-line outline-widget-red-outer-line)` : tw``,
-            (true === loading && 'green' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-green-line outline-widget-green-outer-line animate-pulse)` : tw``,
             (false === loading && 'green' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-green-line outline-widget-green-outer-line)` : tw``,
-            (true === loading && 'purple' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-purple-line outline-widget-purple-outer-line animate-pulse)` : tw``,
             (false === loading && 'purple' === line) ? tw`before:(absolute z-0 inset-53p left-7 content block w-9/12 h-0.5 bg-widget-purple-line outline-widget-purple-outer-line)` : tw``,
         ]);
     });
@@ -66,7 +62,9 @@ const CompactRunes = () => {
     const { daData: { data: { lol: { champion: { build: { perks = {} } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { loading: isLoading = true } = useLoading();
 
-    const { IDs: iDs = [], style: primaryId = false, subStyle: secondaryId = false } = perks;
+    const { IDs: iDs = [
+        false, false, false, false, false, false, false, false, false, false, false
+    ], style: primaryId = false, subStyle: secondaryId = false } = perks;
 
     const getPrimaryLine = useCallback(() => {
         return getLineColorFromIcon(primaryId);
@@ -89,42 +87,42 @@ const CompactRunes = () => {
                 <CompactRunesDisplayStyles>
                     <FirstRuneGroup line={primaryLine} loading={loading}>
                         <PerkTooltipWrapper by="riotId" identifier={primaryId}>
-                            <Rune cursor="help" id={primaryId} wh={36} rounded={false} />
+                            <Rune loading={loading} cursor="help" id={primaryId} wh={loading ? 32 : 36} rounded={loading ? 'full' : false} />
                         </PerkTooltipWrapper>
                         <PerkTooltipWrapper by="riotId" identifier={iDs[0]}>
-                            <Rune cursor="help" id={iDs[0]} wh={48} rounded={false} leftSpace="smallest" />
+                            <Rune loading={loading} cursor="help" id={iDs[0]} wh={loading ? 32 : 48} rounded={loading ? 'full' : false} leftSpace={loading ? 'large' : 'smallest'} />
                         </PerkTooltipWrapper>
                         <PerkTooltipWrapper by="riotId" identifier={iDs[1]}>
-                            <Rune cursor="help" id={iDs[1]} wh={32} rounded="full" gold={true} leftSpace="small" />
+                            <Rune loading={loading} cursor="help" id={iDs[1]} wh={32} rounded="full" gold={true} leftSpace={loading ? 'large' : 'small'} />
                         </PerkTooltipWrapper>
                         <PerkTooltipWrapper by="riotId" identifier={iDs[2]}>
-                            <Rune cursor="help" id={iDs[2]} wh={32} rounded="full" gold={true} leftSpace="large" />
+                            <Rune loading={loading} cursor="help" id={iDs[2]} wh={32} rounded="full" gold={true} leftSpace="large" />
                         </PerkTooltipWrapper>
                         <PerkTooltipWrapper by="riotId" identifier={iDs[3]}>
-                            <Rune cursor="help" id={iDs[3]} wh={32} rounded="full" gold={true} leftSpace="large" />
+                            <Rune loading={loading} cursor="help" id={iDs[3]} wh={32} rounded="full" gold={true} leftSpace="large" />
                         </PerkTooltipWrapper>
                     </FirstRuneGroup>
                     <LastRuneGroups>
                         <RuneGroup leftSpace="largeMd" line={secondaryLine} loading={loading}>
                             <PerkTooltipWrapper by="riotId" identifier={secondaryId}>
-                                <Rune cursor="help" id={secondaryId} wh={36} rounded={false} />
+                                <Rune loading={loading} cursor="help" id={secondaryId} wh={loading ? 32 : 36} rounded={loading ? 'full' : false} />
                             </PerkTooltipWrapper>
                             <PerkTooltipWrapper by="riotId" identifier={iDs[4]}>
-                                <Rune cursor="help" id={iDs[4]} wh={32} rounded="full" gold={true} leftSpace="normal" />
+                                <Rune loading={loading} cursor="help" id={iDs[4]} wh={32} rounded="full" gold={true} leftSpace="normal" />
                             </PerkTooltipWrapper>
                             <PerkTooltipWrapper by="riotId" identifier={iDs[4]}>
-                                <Rune cursor="help" id={iDs[4]} wh={32} rounded="full" gold={true} leftSpace="large" />
+                                <Rune loading={loading} cursor="help" id={iDs[4]} wh={32} rounded="full" gold={true} leftSpace="large" />
                             </PerkTooltipWrapper>
                         </RuneGroup>
                         <RuneGroup leftSpace="small" loading={loading}>
                             <PerkTooltipWrapper by="riotId" identifier={iDs[6]}>
-                                <Rune cursor="help" id={iDs[6]} wh={24} rounded="full" gold={true} borderWidth="1px" />
+                                <Rune loading={loading} cursor="help" id={iDs[6]} wh={24} rounded="full" gold={true} borderWidth="1px" />
                             </PerkTooltipWrapper>
                             <PerkTooltipWrapper by="riotId" identifier={iDs[7]}>
-                                <Rune cursor="help" id={iDs[7]} wh={24} rounded="full" gold={true} leftSpace="large" borderWidth="1px" />
+                                <Rune loading={loading} cursor="help" id={iDs[7]} wh={24} rounded="full" gold={true} leftSpace="large" borderWidth="1px" />
                             </PerkTooltipWrapper>
                             <PerkTooltipWrapper by="riotId" identifier={iDs[8]}>
-                                <Rune cursor="help" id={iDs[8]} wh={24} rounded="full" gold={true} leftSpace="large" borderWidth="1px" />
+                                <Rune loading={loading} cursor="help" id={iDs[8]} wh={24} rounded="full" gold={true} leftSpace="large" borderWidth="1px" />
                             </PerkTooltipWrapper>
                         </RuneGroup>
                     </LastRuneGroups>

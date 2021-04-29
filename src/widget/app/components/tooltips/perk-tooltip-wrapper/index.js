@@ -7,11 +7,16 @@ const PerkTooltipWrapper = ({ by, identifier, children }) => {
 
     const tooltipFn = useCallback(() => <PerkTooltip by={by} identifier={identifier} />, [identifier]);
 
-    return (identifier && (
-        <TransparentTooltip tooltipFn={tooltipFn}>
-            <span style="z-index: 10;">{children}</span>
-        </TransparentTooltip>
-    ));
+    return (
+        <>
+            {identifier && (
+                <TransparentTooltip tooltipFn={tooltipFn}>
+                    <span style="z-index: 10;">{children}</span>
+                </TransparentTooltip>
+            )}
+            {!identifier && children}
+        </>
+    );
 };
 
 export default memo(PerkTooltipWrapper);

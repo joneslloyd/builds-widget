@@ -16,6 +16,7 @@ const ContentSquareStyles = ({ children, ...rest }) => {
             'R' === letter ? tw`text-widget-keys-R!` : tw``,
             true === noBg ? tw`bg-transparent` : tw``,
             loading && (LoadingText),
+            tw`m-0`,
             { width: `${wh}px`, height: `${wh}px` }
         ]);
     });

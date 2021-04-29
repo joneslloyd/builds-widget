@@ -4,7 +4,7 @@ import { useStaticGlobalProps } from '../../lib/context/static-global-props';
 
 const Runes = (props) => {
 
-    const { layout } = useStaticGlobalProps();
+    const { layout = 'full' } = useStaticGlobalProps();
 
     const DynamicRunes = loadable(() => import(`../${layout}-runes/index.js`));
 

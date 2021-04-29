@@ -46,14 +46,21 @@ const GamesAnalyzed = () => {
     const loading = isLoading || !matchCount;
 
     return (
-        <GamesAnalyzedStyles>
-            <GamesAnalyzedSmallLightestPurpleText loading={loading}>2,031,593</GamesAnalyzedSmallLightestPurpleText>
-            <FlexRow>
-                <PlatinumPlusIcon />
-                <GamesAnalyzedSmallPurpleTextSmaller>games analyzed</GamesAnalyzedSmallPurpleTextSmaller>
-                <GamesAnalyzedSmallPurpleTextLarger>Platinum+ games analyzed</GamesAnalyzedSmallPurpleTextLarger>
-            </FlexRow>
-        </GamesAnalyzedStyles>
+        <>
+            {loading && (
+                <SmallPurpleText loading={loading}>Games.......</SmallPurpleText>
+            )}
+            {!loading && (
+                <GamesAnalyzedStyles>
+                    <GamesAnalyzedSmallLightestPurpleText loading={loading}>2,031,593</GamesAnalyzedSmallLightestPurpleText>
+                    <FlexRow>
+                        <PlatinumPlusIcon />
+                        <GamesAnalyzedSmallPurpleTextSmaller>games analyzed</GamesAnalyzedSmallPurpleTextSmaller>
+                        <GamesAnalyzedSmallPurpleTextLarger>Platinum+ games analyzed</GamesAnalyzedSmallPurpleTextLarger>
+                    </FlexRow>
+                </GamesAnalyzedStyles>
+            )}
+        </>
     );
 };
 

@@ -4,7 +4,7 @@ import { parseStyles, perkImage } from '../../lib/helpers';
 import tw from 'twin.macro';
 import { useStyled } from '../../lib/context/goober';
 
-const Rune = ({ id, wh = 32, rounded = false, gold = false, leftSpace = false, borderWidth = false, greyed = false, cursor = 'default' }) => {
+const Rune = ({ id = false, wh = 32, rounded = false, gold = false, leftSpace = false, borderWidth = false, greyed = false, cursor = 'default', loading = true }) => {
 
     const styled = useStyled();
 
@@ -43,7 +43,7 @@ const Rune = ({ id, wh = 32, rounded = false, gold = false, leftSpace = false, b
     const src = perkImage(id);
 
     return (
-        <WrapComponentStyles leftSpace={leftSpace} borderWidth={borderWidth} greyed={greyed}>
+        <WrapComponentStyles leftSpace={leftSpace} borderWidth={borderWidth} greyed={greyed} loading={loading}>
             <Image src={src} rounded={rounded} width={wh} height={wh} bgColor={false} leftSpace={leftSpace} cursor={cursor} />
         </WrapComponentStyles>
     );

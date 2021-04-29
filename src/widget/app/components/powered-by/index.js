@@ -16,11 +16,13 @@ const PoweredBy = () => {
             tw`pt-5 pb-2.5 md:(pt-0 pb-0 ml-auto)`,
         ]);
     });
+
     const PoweredBySmallPurpleText = styled(SmallPurpleText)(() => {
         return parseStyles([
             tw`flex items-center self-end normal-case`,
         ]);
     });
+
     const PoweredByMark = styled(Mark)(() => {
         return parseStyles([
             tw`ml-1 mr-1 lg:(ml-2 mr-2)`,

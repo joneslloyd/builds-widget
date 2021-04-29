@@ -17,9 +17,9 @@ const MoreBuilds = () => {
             tw`pt-2.5 md:(pt-0)`,
         ]);
     });
-    const MoreBuildsLoading = styled(SmallWhiteText)(() => {
+    const MoreBuildsLoading = styled(SmallWhiteText)(({ loading = true }) => {
         return parseStyles([
-            tw`ml-6 no-underline lg:(ml-6)`,
+            false === loading ? tw`ml-6 no-underline lg:(ml-6)` : tw`ml-2.5`,
         ]);
     });
     const MoreBuildsSmallGoldText = styled(SmallWhiteText)(() => {
@@ -46,7 +46,7 @@ const MoreBuilds = () => {
     return (
         <MoreBuildsStyles>
             {loading && (
-                <MoreBuildsLoading loading={true}>See more xxxxx builds...</MoreBuildsLoading>
+                <MoreBuildsLoading loading={true}>See more xxxxxxxxxxxxx builds...</MoreBuildsLoading>
             )}
             {!loading && (
                 <MoreBuildsSmallGoldText as={'a'} href={moreBuildsLinkHref} target="_blank" title={moreBuildsLinkText} loading={loading}>{moreBuildsLinkText}<MoreBuildsIconStyled /></MoreBuildsSmallGoldText>

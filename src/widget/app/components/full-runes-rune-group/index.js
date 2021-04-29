@@ -113,7 +113,7 @@ const FullRunesRuneGroup = ({ mainId, iDs = [], type = 'primary', loading: isLoa
                     const totalItems = theRunes.length;
                     const key = `${rowIndex}-${totalItems}`;
                     return (
-                        <FullRunesBodyRow key={key} index={rowIndex} totalItems={totalItems} data={row} type={type} />
+                        <FullRunesBodyRow key={key} index={rowIndex} totalItems={totalItems} data={row} type={type} loading={loading} />
                     );
                 })}
             </FullRunesBody>

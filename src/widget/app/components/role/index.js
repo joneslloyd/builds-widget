@@ -17,23 +17,23 @@ const Role = () => {
             tw`items-center`,
         ]);
     });
-    const RoleSmallPurpleText = styled(SmallPurpleText)(() => {
+    const RoleSmallPurpleText = styled(SmallPurpleText)(({ loading = true }) => {
         return parseStyles([
-            tw`ml-1.5!`,
+            false === loading ? tw`ml-1.5!` : tw``,
         ]);
     });
 
-    const { daData: { data: { lol: { champion: { build: { role: rawRole = 'XXX' } = {} } = {} } = {} } = {} } = {} } = useDataApi();
+    const { daData: { data: { lol: { champion: { build: { role: rawRole = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { loading: isLoading = true } = useLoading();
 
     const role = 'ADC' === rawRole ? 'bot' : rawRole.toLowerCase();
-    const roleIcon = rolenameIcon(rawRole);
+    const roleIcon = rolenameIcon(rawRole, 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' === rawRole);
 
-    const loading = isLoading || ('xxx' === role || !role);
+    const loading = isLoading || (!roleIcon);
 
     return (
         <RoleStyles>
-            <Image src={roleIcon} title={role} alt={role} width={11} height={11} bgColor={false} />
+            {!loading && (<Image src={roleIcon} title={role} alt={role} width={11} height={11} bgColor={false} />)}
             <RoleSmallPurpleText loading={loading}>{role}</RoleSmallPurpleText>
         </RoleStyles>
     );

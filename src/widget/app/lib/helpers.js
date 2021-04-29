@@ -99,9 +99,9 @@ export const championImage = (slug) => {
     return slug ? `${cdnUrl}/assets/lol/images/dd/champions/icons/${slug.toLowerCase()}.png` : false;
 }
 
-export const rolenameIcon = (rolename) => {
+export const rolenameIcon = (rolename, skip = true) => {
     const cdnUrl = getEnvVar('CDN_URL');
-    return rolename && 'XXX' !== rolename ? `${cdnUrl}/assets/lol/images/rolename-icon/${rolename}.svg` : false;
+    return rolename && !skip ? `${cdnUrl}/assets/lol/images/rolename-icon/${rolename}.svg` : false;
 };
 
 export const roundWinRate = (value, precision = 1) => {

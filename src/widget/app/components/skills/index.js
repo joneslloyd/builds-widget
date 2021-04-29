@@ -4,7 +4,7 @@ import { useStaticGlobalProps } from '../../lib/context/static-global-props';
 
 const Skills = (props) => {
 
-    const { layout } = useStaticGlobalProps();
+    const { layout = 'full' } = useStaticGlobalProps();
 
     const DynamicSkills = loadable(() => import(`../${layout}-skills/index.js`));
 

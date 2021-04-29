@@ -34,10 +34,14 @@ const Patch = () => {
     const loading = isLoading || ('xx.x' === patch || !patch);
 
     return (
-        <PatchStyles>
-            <PatchSmallPurpleText loading={loading}>Patch</PatchSmallPurpleText>
-            <PatchSmallWhiteText loading={loading}>{patch}</PatchSmallWhiteText>
-        </PatchStyles>
+        <>
+            {!loading && (
+                <PatchStyles>
+                    <PatchSmallPurpleText loading={loading}>Patch</PatchSmallPurpleText>
+                    <PatchSmallWhiteText loading={loading}>{patch}</PatchSmallWhiteText>
+                </PatchStyles>
+            )}
+        </>
     );
 };
 

@@ -44,10 +44,14 @@ const WinRate = () => {
     const loading = isLoading || ('XX.X%' === winRate || !winRate);
 
     return (
-        <WinRateStyles>
-            <WinRateSmallPurpleText loading={loading}>Win rate</WinRateSmallPurpleText>
-            <WinRateSmallGreenText loading={loading}>{winRate}</WinRateSmallGreenText>
-        </WinRateStyles>
+        <>
+            {!loading && (
+                <WinRateStyles>
+                    <WinRateSmallPurpleText loading={loading}>Win rate</WinRateSmallPurpleText>
+                    <WinRateSmallGreenText loading={loading}>{winRate}</WinRateSmallGreenText>
+                </WinRateStyles>
+            )}
+        </>
     );
 };
 

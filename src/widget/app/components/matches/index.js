@@ -36,9 +36,13 @@ const Matches = () => {
     const loading = isLoading || ('x,xxx' === matchCountRaw || !matchCount);
 
     return (
-        <MatchesStyles>
-            <MatchesSmallPurpleText loading={loading}>Based on <MatchesSmallWhiteText loading={loading}>{matchCount}</MatchesSmallWhiteText> matches</MatchesSmallPurpleText>
-        </MatchesStyles>
+        <>
+            {!loading && (
+                <MatchesStyles>
+                    <MatchesSmallPurpleText loading={loading}>Based on <MatchesSmallWhiteText loading={loading}>{matchCount}</MatchesSmallWhiteText> matches</MatchesSmallPurpleText>
+                </MatchesStyles>
+            )}
+        </>
     );
 };
 

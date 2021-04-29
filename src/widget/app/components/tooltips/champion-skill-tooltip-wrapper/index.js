@@ -28,11 +28,16 @@ const ChampionSkillTooltipWrapper = ({ by, identifier, children }) => {
     }, [identifier]);
 
 
-    return (identifier && (
-        <TransparentTooltip tooltipFn={tooltipFn}>
-            <span style="z-index: 10;">{children}</span>
-        </TransparentTooltip>
-    ));
+    return (
+        <>
+            {identifier && (
+                <TransparentTooltip tooltipFn={tooltipFn}>
+                    <span style="z-index: 10;">{children}</span>
+                </TransparentTooltip>
+            )}
+            {!identifier && children}
+        </>
+    );
 };
 
 export default memo(ChampionSkillTooltipWrapper);
