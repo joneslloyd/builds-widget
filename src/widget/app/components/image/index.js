@@ -36,7 +36,7 @@ const Image = ({ src = false, alt, title, width, height, rounded = false, bgColo
 
     const ImageLoadingStyles = styled('div')(({ rounded, cursor }) => {
         return parseStyles([
-            tw`flex bg-widget-gold-light animate-pulse`,
+            tw`flex bg-widget-purple-skeleton animate-pulse`,
             rounded === 'full' ? tw`rounded-full` : tw``,
             rounded === 'md' ? tw`rounded-sm` : tw``,
             { 'width': `${width}px`, 'height': `${height}px` },
