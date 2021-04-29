@@ -90,6 +90,7 @@ module.exports = {
                     border: 'hsla(250, 37%, 29%, 1)',
                     overlay: `hsla(251, 29%, 36%, 1)`,
                     'skeleton-text': 'hsla(229, 24%, 63%, 1)',
+                    'skeleton': 'hsla(245, 24%, 29%, 1)',
                     text: 'hsla(245, 14%, 47%, 1)',
                     'text-25': 'hsla(245, 14%, 47%, 0.25)',
                     'full-runes-text': 'hsla(238, 24%, 76%, 1)',
