@@ -18,20 +18,20 @@ const Avatar = () => {
         ]);
     });
 
-    const { daData: { data: { lol: { champion: { build: { championSlug = '' } = {} } = {} } = {} } = {} } = {} } = useDataApi();
+    const { daData: { data: { lol: { champion: { build: { championSlug = false } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { sqData: { data: squidexData = {} } } = useSquidexApi();
     const { loading: isLoading = true } = useLoading();
 
     const { championCommonInfo = [] } = squidexData;
     const { flatData: { name = '', title = '' } = {} } = championCommonInfo[0] || {};
 
+    const loading = isLoading || '' === name;
+
     //Avatar URL
     const avatarUrl = championImage(championSlug);
 
     //Avatar title and alt text
     const altTitle = `${name} – ${title}`;
-
-    const loading = isLoading || '' === name;
 
     return (
         <AvatarStyles>
