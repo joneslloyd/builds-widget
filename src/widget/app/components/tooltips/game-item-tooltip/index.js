@@ -16,7 +16,7 @@ export const GameItemTooltip = ({ by = 'riotId', identifier = false }) => {
 
     //Set state of tooltip
     const setLocalTooltipRes = useCallback((ttRes) => {
-        if (ttRes) {
+        if (ttRes && !localTooltip) {
             setLocalTooltip(ttRes)
         }
     }, []);

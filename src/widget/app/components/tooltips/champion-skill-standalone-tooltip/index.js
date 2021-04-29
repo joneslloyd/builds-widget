@@ -15,7 +15,7 @@ export const ChampionSkillStandaloneTooltip = ({ by = 'riotId', identifier = fal
 
     //Set state of tooltip
     const doSetLocalTooltipRes = (ttRes) => {
-        if (ttRes) {
+        if (ttRes && !localTooltip) {
             setLocalTooltip(ttRes)
         }
     };

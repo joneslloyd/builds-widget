@@ -16,7 +16,7 @@ export const SummonerSpellTooltip = ({ slug = false }) => {
 
     //Set state of tooltip
     const doSetLocalTooltipRes = (ttRes) => {
-        if (ttRes) {
+        if (ttRes && !localTooltip) {
             setLocalTooltip(ttRes)
         }
     };

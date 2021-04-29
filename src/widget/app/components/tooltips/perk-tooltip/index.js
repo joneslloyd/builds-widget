@@ -16,7 +16,7 @@ export const PerkTooltip = ({ by = 'riotId', identifier = false }) => {
 
     //Set state of tooltip
     const doSetLocalTooltipRes = (ttRes) => {
-        if (ttRes) {
+        if (ttRes && !localTooltip) {
             setLocalTooltip(ttRes)
         }
     };
