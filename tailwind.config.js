@@ -19,6 +19,7 @@ module.exports = {
             none: '0px',
             sm: '0.19rem',
             DEFAULT: '0.25rem',
+            'md-s': '0.314rem',
             md: '0.375rem',
             lg: '0.5rem',
             xl: '0.75rem',
@@ -53,6 +54,15 @@ module.exports = {
             },
             backgroundSize: {
                 'x100y100': '100% 100%'
+            },
+            borderColor: {
+                tooltip: 'hsla(253, 36%, 23%, 1)',
+            },
+            borderWidth: {
+                '1': '1px',
+            },
+            boxShadow: {
+                tooltip: 'rgb(0 0 0 / 50%) 0px 0px 15px 0px',
             },
             colors: {
                 mobalytics: {
@@ -96,6 +106,7 @@ module.exports = {
                     'full-runes-text': 'hsla(238, 24%, 76%, 1)',
                     'line': 'hsla(233, 92%, 80%, 1)',
                     'outer-line': 'hsla(233, 92%, 80%, 0.4)',
+                    'tooltip': 'hsla(251, 49%, 15%, 1)',
                 },
                 'widget-red': {
                     DEFAULT: 'hsla(355, 76%, 55%, 1)',

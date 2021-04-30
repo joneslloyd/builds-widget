@@ -23,6 +23,9 @@ export const StyledLolRichText = ({ children, ...rest }) => {
             tw`relative text-sm leading-5`,
             {
                 'color': '#b3b4d0',
+                'p': {
+                    'display': 'inline'
+                },
                 '.custom': {
                     'display': 'inline'
                 },

@@ -8,7 +8,7 @@ export const BaseTooltipWrapper = ({ children, ...rest }) => {
 
     const BaseTooltipWrapperC = styled('div')(() => {
         return parseStyles([
-            tw`p-2.5 bg-widget-purple border border-widget-purple-border shadow leading-8`
+            tw`p-2.5 bg-widget-purple-tooltip border-tooltip border-solid border-1 rounded-md-s shadow-tooltip leading-8`
         ]);
     });
 

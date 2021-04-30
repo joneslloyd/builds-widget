@@ -26,10 +26,7 @@ const ItemWrapper = ({ children, ...rest }) => {
 
   const ItemWrapperC = styled(BaseTooltipWrapper)(() => {
     return parseStyles([
-      tw`flex flex-col w-100 normal-case!`,
-      {
-        'max-width': 'calc(100vw - 2rem)'
-      }
+      tw`flex flex-col w-100 normal-case!`
     ]);
   });
 
