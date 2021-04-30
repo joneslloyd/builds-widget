@@ -26,7 +26,7 @@ const FullRunes = () => {
     });
     const FullRunesDisplayRow = styled(FlexRow)(() => {
         return parseStyles([
-            tw`w-full`,
+            tw`w-full xl:min-w-32`,
         ]);
     });
     const FullRunesDisplayStyles = styled(FullRunesDisplay)(() => {
