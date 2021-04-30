@@ -55,7 +55,7 @@ export const Content = ({ children, ...rest }) => {
         return parseStyles([
             tw`relative py-2 px-3 `,
             {
-                'margin-top': '-3.75rem',
+                'margin-top': '-6.875rem',
                 'background-image': 'linear-gradient(to bottom, rgba(25, 19, 61, 0), #19133d 6rem, #19133d 100%)',
                 '> * + *': {
                     'margin-top': '0.25rem',

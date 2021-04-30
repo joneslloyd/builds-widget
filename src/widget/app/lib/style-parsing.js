@@ -2,6 +2,27 @@ const remToPx = (rem, base) => {
     return rem * base;
 };
 
+const replaceAt = (text, index, match, replacement) => {
+    const mLength = match.length;
+    console.log(text.substr(0, index));
+    console.log(replacement);
+    console.log(text.substr(index + mLength, text.length));
+    //Add 3 to account for 'rem'
+    return text.substr(0, index) + replacement + text.substr(index + mLength + 3, text.length);
+};
+
+const remFinderRegex = new RegExp(/(?<=\s|^|\b)(\d*\.*\d*)(?:rem)(?=\s|$|\b)/, 'gmi');
+
+const rindRemReplaceWithPxRegex = (text, base) => {
+    return text.replaceAll(remFinderRegex, (s, p1) => {
+        if (p1) {
+            return parseFloat(remToPx(p1, base), 10) + 'px';
+        }
+
+        return s;
+    });
+};
+
 const doParseRemToPx = (styles) => {
 
     const base = 16;
@@ -10,15 +31,11 @@ const doParseRemToPx = (styles) => {
 
     if (false === Array.isArray(styles)) {
         for (const [key, value] of Object.entries(styles)) {
-            // console.log('key: ', key, ' key is a ', typeof key);
-            // console.log('value: ', value, ' value is a ', typeof value);
+
             if (typeof value === 'string' && value.includes('rem')) {
-
-                const num = parseFloat(value, 10);
-                const pxNum = remToPx(num, base).toString() + 'px';
-
+                const newVal = rindRemReplaceWithPxRegex(value, base);
                 stylesData.push([
-                    key, pxNum
+                    key, newVal
                 ]);
             }
             else if (typeof value === 'object') {
@@ -36,7 +53,7 @@ const doParseRemToPx = (styles) => {
     else {
         for (let i = 0; i < styles.length; i++) {
             const currentStyle = styles[i];
-            stylesData.push(doParseStyles(currentStyle));
+            stylesData.push(doParseRemToPx(currentStyle));
         }
     }
 
