@@ -18,7 +18,7 @@ const Avatar = () => {
         ]);
     });
 
-    const { daData: { data: { lol: { champion: { build: { championSlug = false } = {} } = {} } = {} } = {} } = {} } = useDataApi();
+    const { daData: { data: { lol: { champion: { build: { championSlug = '' } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { sqData: { data: squidexData = {} } } = useSquidexApi();
     const { loading: isLoading = true } = useLoading();
 
