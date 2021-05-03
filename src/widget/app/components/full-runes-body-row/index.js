@@ -1,5 +1,5 @@
 import Rune from '../rune';
-import tw from 'twin.macro';
+import tw, { theme } from 'twin.macro';
 import { useStyled } from '../../lib/context/goober';
 import PerkTooltipWrapper from '../tooltips/perk-tooltip-wrapper';
 import { parseStyles } from '../../lib/helpers';
@@ -27,7 +27,6 @@ const FullRunesBodyRow = ({ index = 0, data = {}, type = 'primary', loading = tr
     });
 
     const { hasCircle, runes } = data;
-    const runeSize = 'primary' === type ? (index === 0 ? 48 : 36) : (index > 2 ? 24 : 36);
     const topSpace = index === 0 ? false : ('secondary' === type && index > 2 ? 'x-large' : 'large');
     const justifyContentSpaceBetween = ('secondary' === type && index === 0) ? true : false;
     const runeBorderWidth = ('secondary' === type && index > 2) ? '1px' : '2px';
@@ -37,7 +36,8 @@ const FullRunesBodyRow = ({ index = 0, data = {}, type = 'primary', loading = tr
             {runes && runes.map((runeData, runeIndex) => {
 
                 const { rune = false, hasRune = false } = runeData;
-                const leftSpace = runeIndex === 0 ? false : (('primary' === type && index === 0) ? 'normal' : ((index > 2) ? 'x-large' : 'large'));
+                const leftSpace = runeIndex === 0 ? false : ('secondary' === type && index > 2) ? 'x-large' : 'large';
+                const runeSize = ('secondary' === type && index > 2) ? 24 : (('primary' === type && index === 0 && hasRune) ? 36 : 32);
 
                 const key = `${rune ? rune : 'rune'}-${runeIndex}`;
 

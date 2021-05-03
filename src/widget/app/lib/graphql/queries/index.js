@@ -53,9 +53,9 @@ const LolChampionAbilityFragment = `
 `;
 
 export const DATA_API_CHAMPION_QUERY = `
-    query ChampionQuery($champion: String! = "akali") {
+    query ChampionQuery($champion: String! = "akali", $role: Rolename! = UNKNOWN) {
         lol {
-            champion(filters: {slug: $champion}) {
+            champion(filters: {slug: $champion, role: $role}) {
                 build {
                     championSlug
                     items {

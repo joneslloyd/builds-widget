@@ -10,7 +10,7 @@ export const DataApiContext = createContext(null);
 
 export const DataApiProvider = ({ children }) => {
 
-    const { champion } = useStaticGlobalProps();
+    const { champion, role } = useStaticGlobalProps();
     const { _, setLoading } = useLoading();
 
     //Data API data
@@ -57,7 +57,8 @@ export const DataApiProvider = ({ children }) => {
 
         //Get the data
         const result = await dataApiClient.query(DATA_API_CHAMPION_QUERY, {
-            champion
+            champion,
+            role
         }).toPromise();
 
         return result;
