@@ -10,7 +10,7 @@ export const DataApiContext = createContext(null);
 
 export const DataApiProvider = ({ children }) => {
 
-    const { champion, role } = useStaticGlobalProps();
+    const { champion, role, validRole } = useStaticGlobalProps();
     const { _, setLoading } = useLoading();
 
     //Data API data
@@ -64,7 +64,9 @@ export const DataApiProvider = ({ children }) => {
         return result;
     }, []);
 
-    useAsync(getApiData, processApiData);
+    if (validRole) {
+        useAsync(getApiData, processApiData);
+    }
 
     return (
         <DataApiContext.Provider value={store}>{children}</DataApiContext.Provider>

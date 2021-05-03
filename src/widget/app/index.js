@@ -7,7 +7,7 @@ import Header from './components/header';
 import Body from './components/body';
 import Footer from './components/footer';
 import tw from 'twin.macro';
-import { parseStyles } from './lib/helpers';
+import { parseStyles, validateStrEnumValue, Rolename } from './lib/helpers';
 import { memo } from 'preact/compat';
 
 const App = () => {
@@ -17,8 +17,9 @@ const App = () => {
 
   const { loading = true } = useLoading();
   const { daData: { data: { lol: { champion: { build } = {} } = {} } = {} } } = useDataApi();
+  const { champion, role, validRole } = useStaticGlobalProps();
+
   const hasBuild = build ? true : false;
-  const { champion, role } = useStaticGlobalProps();
 
   const Container = styled('div')(({ loaded = false }) => {
     return parseStyles([
@@ -29,7 +30,7 @@ const App = () => {
 
   const NoBuild = styled('p')(() => {
     return parseStyles([
-      tw`bg-widget-purple rounded-md px-6 py-5 border border-solid border-red-500 text-widget-purple-lightest font-medium`
+      tw`block bg-widget-purple rounded-md px-6 py-5 border border-solid border-red-500 text-widget-purple-lightest font-medium`
     ]);
   });
 
@@ -44,14 +45,17 @@ const App = () => {
 
   return (
     <>
-      {hasBuild && (
+      {(hasBuild && validRole) && (
         <Container loaded={loaded}>
           <Header />
           <Body />
           <Footer />
         </Container>
       )}
-      {(!hasBuild && !loading) && (
+      {(!validRole && !loading) && (
+        <NoBuild>Role is not a valid, uppercased role name. Role should be one of: {Object.keys(Rolename).map(function (r) { return Rolename[r] }).join(', ')}.</NoBuild>
+      )}
+      {(validRole && !hasBuild && !loading) && (
         <NoBuild>No build information available for <span style="text-transform: capitalize;">{champion}</span> in the <span style="text-transform: capitalize;">{role.toLowerCase()}</span> role.</NoBuild>
       )}
     </>

@@ -7,15 +7,13 @@ export const StaticGlobalProps = createContext(true);
 export const StaticGlobalPropsProvider = ({ layout = 'full', champion = 'amumu', role: roleRaw = 'UNKNOWN', children }) => {
 
     const role = roleRaw.toUpperCase();
-
-    if (!validateStrEnumValue(Rolename, role)) {
-        throw `Role is not a valid, uppercased role name. Role should be one of: ${Object.keys(Rolename).map(function (r) { return Rolename[r] }).join(', ')}`;
-    }
+    const validRole = validateStrEnumValue(Rolename, role);
 
     const store = {
         layout,
         champion,
         role,
+        validRole
     };
 
     return (

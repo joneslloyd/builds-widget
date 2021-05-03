@@ -10,7 +10,7 @@ export const SquidexApiContext = createContext(null);
 
 export const SquidexApiProvider = ({ children }) => {
 
-    const { champion } = useStaticGlobalProps();
+    const { champion, validRole } = useStaticGlobalProps();
     const { _, setLoading } = useLoading();
 
     //Squidex API data
@@ -76,7 +76,9 @@ export const SquidexApiProvider = ({ children }) => {
 
     }, []);
 
-    useAsync(getApiData, processApiData);
+    if (validRole) {
+        useAsync(getApiData, processApiData);
+    }
 
     return (
         <SquidexApiContext.Provider value={store}>{children}</SquidexApiContext.Provider>
