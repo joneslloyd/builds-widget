@@ -15,7 +15,7 @@ export const Wrapper = ({ children, ...rest }) => {
             {
                 'width': '17.5rem',
                 'background-color': '#19133d',
-                'border': '1px solid #221843',
+                'border': '0.0625rem solid #221843',
             },
         ]);
     });
@@ -55,8 +55,8 @@ export const Content = ({ children, ...rest }) => {
         return parseStyles([
             tw`relative py-2 px-3 `,
             {
-                'margin-top': '-6.875rem',
-                'background-image': 'linear-gradient(to bottom, rgba(25, 19, 61, 0), #19133d 6rem, #19133d 100%)',
+                'margin-top': '-3.75rem',
+                'background-image': 'linear-gradient(to bottom, rgba(25, 19, 61, 0), #19133d 3.75rem, #19133d 100%)',
                 '> * + *': {
                     'margin-top': '0.25rem',
                 },
@@ -118,6 +118,10 @@ export const Description = (props) => {
             {
                 'color': '#aaabca',
                 'line-height': '1.15rem',
+                'p': {
+                    'padding': '0',
+                    'margin': '0',
+                },
             },
         ]);
     });
@@ -133,9 +137,11 @@ export const AbilityMetric = ({ children, ...rest }) => {
 
     const AbilityMetricC = styled('p')(() => {
         return parseStyles([
-            tw`text-xs font-normal leading-5`,
+            tw`text-xs font-normal leading-5 m-0 p-0`,
             {
                 'color': '#8890b5',
+                'margin-top': '0.25rem',
+                'letter-spacing': '0.00625rem'
             },
         ]);
     });
