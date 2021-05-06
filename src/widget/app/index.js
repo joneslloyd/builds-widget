@@ -7,7 +7,7 @@ import Header from './components/header';
 import Body from './components/body';
 import Footer from './components/footer';
 import tw from 'twin.macro';
-import { parseStyles, validateStrEnumValue, Rolename } from './lib/helpers';
+import { parseStyles, Rolename } from './lib/helpers';
 import { memo } from 'preact/compat';
 
 const App = () => {

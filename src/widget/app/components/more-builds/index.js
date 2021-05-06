@@ -30,6 +30,9 @@ const MoreBuilds = () => {
     const MoreBuildsIconStyled = styled(MoreBuildsIcon)(() => {
         return parseStyles([
             tw`ml-1.5 fill-widget-gold`,
+            {
+                'margin-top': '0.125rem'
+            }
         ]);
     });
 
