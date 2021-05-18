@@ -5,7 +5,7 @@ import { useStyled } from '../../lib/context/goober';
 import FlexRow from '../../styles/components/flex-row';
 import { parseStyles } from '../../lib/helpers';
 
-const FullSkillOrderSkillsMap = ({ skillMap: rawSkillMap = [], loading = true }) => {
+const FullSkillOrderSkillsMap = ({ skillOrder: rawSkillOrder = [], loading = true }) => {
 
     const styled = useStyled();
 
@@ -21,20 +21,20 @@ const FullSkillOrderSkillsMap = ({ skillMap: rawSkillMap = [], loading = true })
         ]);
     });
 
-    const skillMap = rawSkillMap.length > 0 ? rawSkillMap.filter(s => s !== 'R') : [
-        0, 1, 2
+    const skillOrder = rawSkillOrder.length > 0 ? rawSkillOrder.filter(s => s !== 'R') : [
+        1, 2, 3
     ];
 
     return (
         <FullSkillOrderSkillsMapStyles>
-            {skillMap && skillMap.map((s, i) => {
+            {skillOrder && skillOrder.map((s, i) => {
 
-                const rightArrowOutput = i !== skillMap.length - 1 ? (
+                const rightArrowOutput = i !== skillOrder.length - 1 ? (
                     <RightArrow />
                 ) : false;
 
                 const leftSpace = i !== 0 ? 'normal' : false;
-                const rightSpace = i !== skillMap.length - 1 ? 'normal' : false;
+                const rightSpace = i !== skillOrder.length - 1 ? 'normal' : false;
 
                 return (
                     <>

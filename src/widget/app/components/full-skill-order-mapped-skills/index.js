@@ -4,9 +4,9 @@ import { useStyled } from '../../lib/context/goober';
 import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
 import SmallPurpleText from '../../styles/components/small-purple-text';
-import { parseStyles } from '../../lib/helpers';
+import { parseStyles, SkillKeyInt } from '../../lib/helpers';
 
-const FullSkillOrderMappedSkills = ({ skillOrder, skillMap, loading = true }) => {
+const FullSkillOrderMappedSkills = ({ skillOrder, loading = true }) => {
 
     const styled = useStyled();
 
@@ -52,7 +52,7 @@ const FullSkillOrderMappedSkills = ({ skillOrder, skillMap, loading = true }) =>
         <FullSkillOrderMappedSkillsStyles>
             {skillOrder.map((s, i) => {
                 const number = i + 1;
-                const key = skillMap[s - 1];
+                const key = SkillKeyInt[s];
                 const leftSpace = i !== 0 ? 'very-small' : 'small';
 
                 return (

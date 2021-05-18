@@ -5,7 +5,7 @@ import { useStyled } from '../../lib/context/goober';
 import FlexRow from '../../styles/components/flex-row';
 import { parseStyles } from '../../lib/helpers';
 
-const FullSkillOrderDisplay = ({ abilities, skillOrder, skillMap, loading = true }) => {
+const FullSkillOrderDisplay = ({ abilities, skillOrder, loading = true }) => {
 
     const styled = useStyled();
 
@@ -18,7 +18,7 @@ const FullSkillOrderDisplay = ({ abilities, skillOrder, skillMap, loading = true
     return (
         <FullSkillOrderDisplayStyles>
             <FullSkillOrderAbilities abilities={abilities} loading={loading} />
-            <FullSkillOrderMappedSkills skillOrder={skillOrder} skillMap={skillMap} loading={loading} />
+            <FullSkillOrderMappedSkills skillOrder={skillOrder} loading={loading} />
         </FullSkillOrderDisplayStyles>
     );
 };

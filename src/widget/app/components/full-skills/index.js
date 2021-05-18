@@ -10,7 +10,7 @@ import { useStyled } from '../../lib/context/goober';
 import FlexRow from '../../styles/components/flex-row';
 import FlexCol from '../../styles/components/flex-col';
 import SmallWhiteText from '../../styles/components/small-white-text';
-import { parseStyles } from '../../lib/helpers';
+import { parseStyles, SkillKeyInt, validateStrEnumValue } from '../../lib/helpers';
 
 const FullSkills = () => {
 
@@ -35,29 +35,31 @@ const FullSkills = () => {
 
     const { daData: { data: { lol: { champion: { build: { skillOrder = [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2] } = {} } = {} } = {} } = {} } = {} } = useDataApi();
     const { sqData: { data: { championCommonInfo: [{ flatData: { abilities: abilitiesRaw = [] } = {} } = {}] = [] } = {} } = {} } = useSquidexApi();
-    const { loading: isLoading = true } = useLoading();
+    const { loading = true } = useLoading();
 
     const abilities = useMemo(() => {
         return abilitiesRaw.filter(a => a.flatData.activationKey !== 'PASSIVE') || [];
     }, [abilitiesRaw]);
 
-    const skillMap = useMemo(() => {
-        return abilities.length > 0 ? abilities.reduce((a, i) => {
-            a.push(i.flatData.activationKey);
-            return a;
-        }, []) : []
+    const firstThreeSkillOrder = useMemo(() => {
+        const fsko = [];
+        skillOrder.some((s, i) => {
+            if (i >= 3) {
+                return true;
+            }
+            fsko.push(SkillKeyInt[s]);
+        });
+        return fsko;
     }, [abilities]);
-
-    const loading = isLoading || (skillMap.length === 0);
 
     return (
         <FullSkillOrderStyles>
             <FullSkillOrderRow>
                 <FullSkillOrderSmallWhiteText>Skill order</FullSkillOrderSmallWhiteText>
-                <FullSkillOrderSkillsMap skillMap={skillMap} loading={loading} />
+                <FullSkillOrderSkillsMap skillOrder={firstThreeSkillOrder} loading={loading} />
             </FullSkillOrderRow>
             <FullSkillOrderRow pt="normal">
-                <FullSkillOrderDisplay abilities={abilities} skillOrder={skillOrder} skillMap={skillMap} loading={loading} />
+                <FullSkillOrderDisplay abilities={abilities} skillOrder={skillOrder} loading={loading} />
             </FullSkillOrderRow>
         </FullSkillOrderStyles>
     );
